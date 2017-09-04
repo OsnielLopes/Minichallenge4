@@ -11,9 +11,22 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    var functionNode: Function?
+    
     override func didMove(to view: SKView) {
+        calculateFunction()
     }
     
+    func calculateFunction() {
+        if functionNode != nil {
+            functionNode?.node?.removeFromParent()
+        }
+        functionNode = Function()
+        functionNode?.drawFunction(width: Double((self.view?.frame.width)!),
+                                  height: Double((self.view?.frame.height)!))
+        functionNode?.node?.position = (self.view?.center)!
+        self.addChild((functionNode?.node!)!)
+    }
     
     func touchDown(atPoint pos : CGPoint) {
     }

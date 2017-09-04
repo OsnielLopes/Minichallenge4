@@ -16,10 +16,9 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
-            if let scene = SKScene() as? GameScene {
-                scene.scaleMode = .aspectFill
-                view.presentScene(scene)
-            }
+            let scene = GameScene(size: view.frame.size)
+            scene.scaleMode = .aspectFill
+            view.presentScene(scene)
             view.ignoresSiblingOrder = true
             view.showsFPS = true
             view.showsNodeCount = true
