@@ -15,6 +15,8 @@
 		BDBB59CB1F5DC02000AD5B9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDBB59C91F5DC02000AD5B9B /* LaunchScreen.storyboard */; };
 		BDBB59D61F5DC02000AD5B9B /* MiniChallenge4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59D51F5DC02000AD5B9B /* MiniChallenge4Tests.swift */; };
 		BDBB59E11F5DC02000AD5B9B /* MiniChallenge4UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59E01F5DC02000AD5B9B /* MiniChallenge4UITests.swift */; };
+		BDBB59F11F5DC4E600AD5B9B /* SKFunctionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59F01F5DC4E600AD5B9B /* SKFunctionNode.swift */; };
+		BDBB59F51F5DC60E00AD5B9B /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59F41F5DC60E00AD5B9B /* Function.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		BDBB59DC1F5DC02000AD5B9B /* MiniChallenge4UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiniChallenge4UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDBB59E01F5DC02000AD5B9B /* MiniChallenge4UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniChallenge4UITests.swift; sourceTree = "<group>"; };
 		BDBB59E21F5DC02000AD5B9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BDBB59F01F5DC4E600AD5B9B /* SKFunctionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SKFunctionNode.swift; path = ../SKFunctionNode.swift; sourceTree = "<group>"; };
+		BDBB59F41F5DC60E00AD5B9B /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 		BDBB59B91F5DC02000AD5B9B /* MiniChallenge4 */ = {
 			isa = PBXGroup;
 			children = (
+				BDBB59F01F5DC4E600AD5B9B /* SKFunctionNode.swift */,
+				BDBB59F41F5DC60E00AD5B9B /* Function.swift */,
 				BDBB59BA1F5DC02000AD5B9B /* AppDelegate.swift */,
 				BDBB59C01F5DC02000AD5B9B /* GameScene.swift */,
 				BDBB59C21F5DC02000AD5B9B /* GameViewController.swift */,
@@ -266,7 +272,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDBB59C11F5DC02000AD5B9B /* GameScene.swift in Sources */,
+				BDBB59F11F5DC4E600AD5B9B /* SKFunctionNode.swift in Sources */,
 				BDBB59C31F5DC02000AD5B9B /* GameViewController.swift in Sources */,
+				BDBB59F51F5DC60E00AD5B9B /* Function.swift in Sources */,
 				BDBB59BB1F5DC02000AD5B9B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,6 +526,7 @@
 				BDBB59E71F5DC02000AD5B9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BDBB59E81F5DC02000AD5B9B /* Build configuration list for PBXNativeTarget "MiniChallenge4Tests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +535,7 @@
 				BDBB59EA1F5DC02000AD5B9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BDBB59EB1F5DC02000AD5B9B /* Build configuration list for PBXNativeTarget "MiniChallenge4UITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +544,7 @@
 				BDBB59ED1F5DC02000AD5B9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
