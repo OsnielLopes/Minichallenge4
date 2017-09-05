@@ -11,21 +11,22 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    var functionNode: Function?
+    var activeFunction: Function?
     
     override func didMove(to view: SKView) {
         calculateFunction()
     }
     
     func calculateFunction() {
-        if functionNode != nil {
-            functionNode?.node?.removeFromParent()
+        if activeFunction != nil {
+            activeFunction?.node?.removeFromParent()
         }
-        functionNode = Function()
-        functionNode?.drawFunction(width: Double((self.view?.frame.width)!),
-                                  height: Double((self.view?.frame.height)!))
-        functionNode?.node?.position = (self.view?.center)!
-        self.addChild((functionNode?.node!)!)
+        activeFunction = Function()
+        activeFunction?.drawFunction(width:  Double((self.view?.frame.width)!),
+                                     height: Double((self.view?.frame.height)!))
+        activeFunction?.node?.position = (self.view?.center)!
+        activeFunction?.node?.setScale(10)
+        self.addChild((activeFunction?.node!)!)
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -35,6 +36,7 @@ class GameScene: SKScene {
     }
     
     func touchUp(atPoint pos : CGPoint) {
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

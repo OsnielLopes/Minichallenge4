@@ -16,9 +16,7 @@ class Function {
     var functionPath: CGMutablePath?
     
     var functionPoints: [CGPoint] = []
-    
-    var nafioarf = 1.0
-    
+        
     func drawFunction(width: Double, height: Double) {
         generatePoints(width: width, height: height)
         functionPath = CGMutablePath()
@@ -29,9 +27,8 @@ class Function {
     }
     
     func scale(x: Double, y: Double, widht: Double, height: Double) -> CGPoint {
-        let scaled = CGPoint(x: widht *  x / 100,
-                             y: height * y / 100)
-        return scaled
+        return CGPoint(x: widht *  x / 100,
+                       y: height * y / 100)
     }
     
     func generatePoints(width: Double, height: Double) {
@@ -41,7 +38,7 @@ class Function {
     }
     
     func f(x: Double) -> Double {
-        return sin(x * nafioarf)
+        return sin(x)
     }
     
 }
