@@ -11,13 +11,29 @@ import SpriteKit
 
 class LinearFunction: Function {
     
+    var a: Double = 1
+    
+    var b: Double = 0
+    
     override init() {
         super.init()
         self.setRange(step: 1, min: -10, max: 10)
     }
     
     override func f(x: Double) -> Double {
-        return x
+        return a * x + b
+    }
+    
+    override func getScale() -> Double {
+        return 25
+    }
+    
+    override func pinchUpdate(factor: CGFloat) {
+        a += Double(factor) / 25
+    }
+    
+    override func swipeUpdate(factor: CGPoint) {
+        b += Double(factor.y) / 1000 * -1
     }
     
 }

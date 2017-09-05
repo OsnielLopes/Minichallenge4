@@ -19,10 +19,6 @@ class Function {
     
     var range: [Double] = []
     
-    func setRange(step: Double, min: Double, max: Double) {
-        range = stride(from: min, to: max, by: step).map({ n in n })
-    }
-    
     func drawFunction(width: Double, height: Double) {
         generatePoints(width: width, height: height)
         functionPath = CGMutablePath()
@@ -32,19 +28,31 @@ class Function {
         node?.strokeColor = .white
     }
     
-    func scale(x: Double, y: Double, widht: Double, height: Double) -> CGPoint {
-        return CGPoint(x: (widht *  x) / 15,
-                       y: (height * y) / 15)
-    }
-    
     func generatePoints(width: Double, height: Double) {
         functionPoints = range.map({
             scale(x: Double($0), y: f(x: Double($0)), widht: width, height: height)
         })
     }
     
+    func scale(x: Double, y: Double, widht: Double, height: Double) -> CGPoint {
+        return CGPoint(x: (widht *  x) / getScale(),
+                       y: (height * y) / getScale())
+    }
+    
+    func getScale() -> Double {
+        return 1
+    }
+    
     func f(x: Double) -> Double {
         return 0
     }
     
+    func setRange(step: Double, min: Double, max: Double) {
+        range = stride(from: min, to: max, by: step).map({ n in n })
+    }
+    
+    func pinchUpdate(factor: CGFloat) { }
+    
+    func swipeUpdate(factor: CGPoint) {  }
+
 }

@@ -8,13 +8,40 @@
 
 import SpriteKit
 import GameplayKit
+import UIKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     var activeFunction: Function?
     
+    var pinchGesture: UIPinchGestureRecognizer!
+    
+    var swipeGesture: UIPanGestureRecognizer!
+    
+    var beginningTouch: CGPoint?
+    
+    var movingTouch: CGPoint?
+    
     override func didMove(to view: SKView) {
         activeFunction = LinearFunction()
+        calculateFunction()
+        
+        pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.updatePinch))
+        pinchGesture.delegate = self
+        self.view?.addGestureRecognizer(pinchGesture)
+        
+        swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(self.updateSwipe))
+        swipeGesture.delegate = self
+        self.view?.addGestureRecognizer(swipeGesture)
+    }
+    
+    func updatePinch() {
+        activeFunction?.pinchUpdate(factor: pinchGesture.velocity * pinchGesture.scale)
+        calculateFunction()
+    }
+    
+    func updateSwipe() {
+        activeFunction?.swipeUpdate(factor: swipeGesture.velocity(in: self.view))
         calculateFunction()
     }
     
@@ -27,30 +54,6 @@ class GameScene: SKScene {
         activeFunction?.node?.position = (self.view?.center)!
         self.addChild((activeFunction?.node!)!)
     }
-    
-    func touchDown(atPoint pos : CGPoint) {
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        calculateFunction()
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-    }
-    
     
     override func update(_ currentTime: TimeInterval) {
     }
