@@ -16,6 +16,7 @@
 		BDBB59D61F5DC02000AD5B9B /* MiniChallenge4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59D51F5DC02000AD5B9B /* MiniChallenge4Tests.swift */; };
 		BDBB59E11F5DC02000AD5B9B /* MiniChallenge4UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59E01F5DC02000AD5B9B /* MiniChallenge4UITests.swift */; };
 		BDBB59F11F5DC4E600AD5B9B /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59F01F5DC4E600AD5B9B /* Function.swift */; };
+		BDBB59F91F5ECD4A00AD5B9B /* LinearFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59F81F5ECD4A00AD5B9B /* LinearFunction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		BDBB59E01F5DC02000AD5B9B /* MiniChallenge4UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniChallenge4UITests.swift; sourceTree = "<group>"; };
 		BDBB59E21F5DC02000AD5B9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BDBB59F01F5DC4E600AD5B9B /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Function.swift; path = ../Function.swift; sourceTree = "<group>"; };
+		BDBB59F81F5ECD4A00AD5B9B /* LinearFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +103,7 @@
 		BDBB59B91F5DC02000AD5B9B /* MiniChallenge4 */ = {
 			isa = PBXGroup;
 			children = (
-				BDBB59F01F5DC4E600AD5B9B /* Function.swift */,
+				BDBB59FA1F5ED01200AD5B9B /* Functions */,
 				BDBB59BA1F5DC02000AD5B9B /* AppDelegate.swift */,
 				BDBB59C01F5DC02000AD5B9B /* GameScene.swift */,
 				BDBB59C21F5DC02000AD5B9B /* GameViewController.swift */,
@@ -129,6 +131,15 @@
 				BDBB59E21F5DC02000AD5B9B /* Info.plist */,
 			);
 			path = MiniChallenge4UITests;
+			sourceTree = "<group>";
+		};
+		BDBB59FA1F5ED01200AD5B9B /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				BDBB59F01F5DC4E600AD5B9B /* Function.swift */,
+				BDBB59F81F5ECD4A00AD5B9B /* LinearFunction.swift */,
+			);
+			name = Functions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDBB59F91F5ECD4A00AD5B9B /* LinearFunction.swift in Sources */,
 				BDBB59C11F5DC02000AD5B9B /* GameScene.swift in Sources */,
 				BDBB59F11F5DC4E600AD5B9B /* Function.swift in Sources */,
 				BDBB59C31F5DC02000AD5B9B /* GameViewController.swift in Sources */,

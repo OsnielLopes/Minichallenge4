@@ -16,7 +16,13 @@ class Function {
     var functionPath: CGMutablePath?
     
     var functionPoints: [CGPoint] = []
-        
+    
+    var range: [Double] = []
+    
+    func setRange(step: Double, min: Double, max: Double) {
+        range = stride(from: min, to: max, by: step).map({ n in n })
+    }
+    
     func drawFunction(width: Double, height: Double) {
         generatePoints(width: width, height: height)
         functionPath = CGMutablePath()
@@ -27,18 +33,18 @@ class Function {
     }
     
     func scale(x: Double, y: Double, widht: Double, height: Double) -> CGPoint {
-        return CGPoint(x: widht *  x / 100,
-                       y: height * y / 100)
+        return CGPoint(x: (widht *  x) / 15,
+                       y: (height * y) / 15)
     }
     
     func generatePoints(width: Double, height: Double) {
-        functionPoints = (-100...100).map({
+        functionPoints = range.map({
             scale(x: Double($0), y: f(x: Double($0)), widht: width, height: height)
         })
     }
     
     func f(x: Double) -> Double {
-        return sin(x)
+        return 0
     }
     
 }

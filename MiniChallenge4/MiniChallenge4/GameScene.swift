@@ -14,18 +14,17 @@ class GameScene: SKScene {
     var activeFunction: Function?
     
     override func didMove(to view: SKView) {
+        activeFunction = LinearFunction()
         calculateFunction()
     }
     
     func calculateFunction() {
-        if activeFunction != nil {
+        if activeFunction?.node != nil {
             activeFunction?.node?.removeFromParent()
         }
-        activeFunction = Function()
         activeFunction?.drawFunction(width:  Double((self.view?.frame.width)!),
                                      height: Double((self.view?.frame.height)!))
         activeFunction?.node?.position = (self.view?.center)!
-        activeFunction?.node?.setScale(10)
         self.addChild((activeFunction?.node!)!)
     }
     
@@ -46,6 +45,7 @@ class GameScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        calculateFunction()
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
