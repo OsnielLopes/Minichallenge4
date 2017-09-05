@@ -23,7 +23,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     var movingTouch: CGPoint?
     
     override func didMove(to view: SKView) {
-        activeFunction = LinearFunction()
+        activeFunction = SinFunction()
         calculateFunction()
         
         pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.updatePinch))
