@@ -1,5 +1,5 @@
 //
-//  SinFunction.swift
+//  QuadraticFunction.swift
 //  MiniChallenge4
 //
 //  Created by Guilherme Paciulli on 05/09/17.
@@ -9,17 +9,17 @@
 import Foundation
 import SpriteKit
 
-class SinFunction: Function {
+class QuadraticFunction: Function {
     
     var a: Double = 1
         
     override init(scale: Double) {
         super.init(scale: scale)
-        self.setRange(step: 0.01, min: -2 * Double.pi, max: 2 * Double.pi)
+        self.setRange(step: 0.1, min: -30, max: 30)
     }
     
     override func f(x: Double) -> Double {
-        return sin(a * x)
+        return a * pow(x, 2)
     }
     
     override func pinchUpdate(factor: CGFloat) {
@@ -30,4 +30,6 @@ class SinFunction: Function {
             a = 9
         }
     }
+
+    
 }

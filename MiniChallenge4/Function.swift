@@ -15,12 +15,16 @@ class Function {
     
     var functionPath: CGMutablePath?
     
-    var functionPoints: [CGPoint] = []
-    
     var range: [Double] = []
     
+    var scale: Double = 0
+    
+    init(scale: Double) {
+        self.scale = scale
+    }
+    
     func drawFunction(width: Double, height: Double) {
-        generatePoints(width: width, height: height)
+        let functionPoints: [CGPoint] = range.map({ scale(x: Double($0), y: f(x: Double($0)), widht: width, height: height) })
         functionPath = CGMutablePath()
         functionPath?.addLines(between: functionPoints)
         node = SKShapeNode(path: functionPath!)
@@ -28,31 +32,18 @@ class Function {
         node?.strokeColor = .white
     }
     
-    func generatePoints(width: Double, height: Double) {
-        functionPoints = range.map({
-            scale(x: Double($0), y: f(x: Double($0)), widht: width, height: height)
-        })
-    }
-    
     func scale(x: Double, y: Double, widht: Double, height: Double) -> CGPoint {
-        return CGPoint(x: (widht *  x) / getScale(),
-                       y: (height * y) / getScale())
-    }
-    
-    func getScale() -> Double {
-        return 1
+        return CGPoint(x: (widht *  x) / scale,
+                       y: (height * y) / scale)
     }
     
     func f(x: Double) -> Double {
         return 0
     }
-    
+        
     func setRange(step: Double, min: Double, max: Double) {
         range = stride(from: min, to: max, by: step).map({ n in n })
     }
     
     func pinchUpdate(factor: CGFloat) { }
-    
-    func swipeUpdate(factor: CGPoint) {  }
-
 }
