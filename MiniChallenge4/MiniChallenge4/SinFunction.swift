@@ -15,7 +15,8 @@ class SinFunction: Function {
         
     override init(scale: Double) {
         super.init(scale: scale)
-        self.setRange(step: 0.01, min: -2 * Double.pi, max: 2 * Double.pi)
+        self.setRange(step: 0.01, min: -10, max: 10)
+        self.node?.name = "SinFunction"
     }
     
     override func f(x: Double) -> Double {

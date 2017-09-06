@@ -16,6 +16,7 @@ class LinearFunction: Function {
     override init(scale: Double) {
         super.init(scale: scale)
         self.setRange(step: 1, min: -10, max: 10)
+        self.node?.name = "LinearFunction"
     }
     
     override func f(x: Double) -> Double {

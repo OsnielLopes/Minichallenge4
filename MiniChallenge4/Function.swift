@@ -15,21 +15,24 @@ class Function {
     
     var functionPath: CGMutablePath?
     
-    var range: [Double] = []
+    var domain: [Double] = []
     
     var scale: Double = 0
+    
+    var functionPoints: [CGPoint] = []
     
     init(scale: Double) {
         self.scale = scale
     }
     
     func drawFunction(width: Double, height: Double) {
-        let functionPoints: [CGPoint] = range.map({ scale(x: Double($0), y: f(x: Double($0)), widht: width, height: height) })
+        functionPoints = domain.map({ scale(x: Double($0), y: f(x: Double($0)), widht: width, height: height) })
         functionPath = CGMutablePath()
         functionPath?.addLines(between: functionPoints)
         node = SKShapeNode(path: functionPath!)
         node?.lineWidth = 1
         node?.strokeColor = .white
+        
     }
     
     func scale(x: Double, y: Double, widht: Double, height: Double) -> CGPoint {
@@ -40,10 +43,28 @@ class Function {
     func f(x: Double) -> Double {
         return 0
     }
-        
+    
     func setRange(step: Double, min: Double, max: Double) {
-        range = stride(from: min, to: max, by: step).map({ n in n })
+        domain = stride(from: min, to: max, by: step).map({ n in n })
     }
     
     func pinchUpdate(factor: CGFloat) { }
+    
+    func deltaY() -> CGFloat{
+        var lower = functionPoints.first?.y
+        var higher = functionPoints.first?.y
+        for p in 1..<functionPoints.count{
+            if functionPoints[p].y < lower!{
+                lower = functionPoints[p].y
+            } else if functionPoints[p].y > higher!{
+                higher = functionPoints[p].y
+            }
+            
+        }
+        return higher! - lower!
+    }
+    
+    func addToTheNodePosition(x: Int = 0, y: Int = 0){
+//        self.node?.position
+    }
 }

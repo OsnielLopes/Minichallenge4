@@ -14,15 +14,24 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     var activeFunction: Function?
     
+    var functions: [Function] = []
+    
     var pinchGesture: UIPinchGestureRecognizer!
     
     var lastCenterPoint: CGPoint?
     
     override func didMove(to view: SKView) {
-        lastCenterPoint = CGPoint(x: (self.view?.frame.width)! * 0.2, y: (self.view?.frame.height)! * 0.5)
+        lastCenterPoint = CGPoint(x: (self.view?.frame.width)! * 0.15, y: (self.view?.frame.height)! * 0.5)
         
-        activeFunction = SinFunction(scale: Double((self.view?.frame.width)! * 0.6 / 10))
-        calculateFunction()
+        activeFunction = SinFunction(scale: Double((self.view?.frame.width)!) / 2)
+        initializeFuntion(function: activeFunction!)
+        var lastPoint = activeFunction?.functionPoints.last
+        
+        activeFunction = LinearFunction(scale: Double((self.view?.frame.width)!) / 2)
+        initializeFuntion(function: activeFunction!)
+        var newPoint = activeFunction?.functionPoints.first
+        
+        var deltaY = lastPoint.y - newPoint?.y
         
         pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.updatePinch))
         pinchGesture.delegate = self
@@ -31,19 +40,25 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     func updatePinch() {
         activeFunction?.pinchUpdate(factor: pinchGesture.velocity * pinchGesture.scale)
-        calculateFunction()
+        calculate(function: activeFunction!)
     }
     
-    func calculateFunction() {
-        if activeFunction?.node != nil {
-            activeFunction?.node?.removeFromParent()
-        }
+    func initializeFuntion(function: Function) {
+        activeFunction = function
+        functions.append(function)
+        calculate(function: function)
+    }
+    
+    func calculate(function: Function) {
+        
+        let point = CGPoint(x: (activeFunction?.functionPoints.last!.x)! + lastCenterPoint!.x + 20,
+                            y: (activeFunction?.functionPoints.last!.y)! + lastCenterPoint!.y)
+        
         activeFunction?.drawFunction(width:  Double((self.view?.frame.width)!),
                                      height: Double((self.view?.frame.height)!))
         activeFunction?.node?.position = lastCenterPoint!
+        
         self.addChild((activeFunction?.node!)!)
-    }
-    
-    override func update(_ currentTime: TimeInterval) {
+        lastCenterPoint = point
     }
 }

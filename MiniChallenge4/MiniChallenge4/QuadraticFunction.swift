@@ -15,7 +15,7 @@ class QuadraticFunction: Function {
         
     override init(scale: Double) {
         super.init(scale: scale)
-        self.setRange(step: 0.1, min: -30, max: 30)
+        self.setRange(step: 0.1, min: -10, max: 10)
     }
     
     override func f(x: Double) -> Double {
