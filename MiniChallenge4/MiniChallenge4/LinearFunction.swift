@@ -15,7 +15,11 @@ class LinearFunction: Function {
         
     override init(scale: Double) {
         super.init(scale: scale)
-        self.setRange(step: 1, min: -10, max: 10)
+        self.setRange(step: 1, min: Values.START, max: Values.END)
+    }
+    
+    override func drawFunction(width: Double, height: Double) {
+        super.drawFunction(width: width, height: height)
         self.node?.name = "LinearFunction"
     }
     
