@@ -24,30 +24,38 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         
         sceneSize = (self.view?.bounds.size)!
         
+        let bg = SKSpriteNode(texture: SKTexture(imageNamed: "Ceu"), color: UIColor.white, size: sceneSize)
+        bg.position = (self.view?.center)!
+        bg.zPosition = -1
+        self.addChild(bg)
+        
         pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.updatePinch))
         pinchGesture.delegate = self
         self.view?.addGestureRecognizer(pinchGesture)
         
+        if let musicURL = Bundle.main.url(forResource: "ObservingTheStar", withExtension: "ogg"){
+            let backgroundMusic = SKAudioNode(url: musicURL)
+            addChild(backgroundMusic)
+        } else{
+            
+        }
+        
         lastCenterPoint = CGPoint(x: (self.view?.frame.width)! * 0.15, y: (self.view?.frame.height)! * 0.5)
         
-        //Add a sin function
-        functions.append(SinFunction(scale: Double((self.view?.frame.width)!) / 2))
-        initializeFuntion(function: functions[0])
-        
-        //Add a linear function
-        functions.append(LinearFunction(scale: Double((self.view?.frame.width)!) / 2))
-        initializeFuntion(function: functions[1])
-        
-        join()
-        
-        let deleteButton = SKButton(pressed: "ApagarButton_", neinPressed: "ApagarButton")
+        let deleteButton = SKButton(pressed: "ApagarButton_", neinPressed: "ApagarButton", target: self,
+                                    action: #selector(removeActiveFunction))
         deleteButton.position = CGPoint(x: sceneSize.width*0.85, y: sceneSize.height*0.1)
         self.addChild(deleteButton)
         
-        let addFuntionButton = SKButton(pressed: "BlackHole", neinPressed: "BlackHole")
-        addFuntionButton.name = "addNewFuntionButton"
+        let addFuntionButton = SKButton(pressed: "plus_placeholder", neinPressed: "plus_placeholder", target: self,
+                                        action: #selector(addRandomFunction))
         addFuntionButton.position = CGPoint(x: sceneSize.width*0.95, y: sceneSize.height*0.1)
         self.addChild(addFuntionButton)
+        
+        let playButton = SKButton(pressed: "play_placeholder", neinPressed: "play_placeholder", target: self,
+                                  action: #selector(play))
+        playButton.position = CGPoint(x: sceneSize.width*0.95, y: sceneSize.height*0.3)
+        self.addChild(playButton)
     }
     
     func updatePinch() {
@@ -73,16 +81,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     func touchDown(atPoint pos : CGPoint) {
         for n in self.children{
             if n.contains(pos), let button = n as? SKButton {
-                if button.name != "addNewFuntionButton"{
-                    button.press()
-                    break
-                }else{
-                    addRandomFunction()
-                    break
-                }
+                button.press()
+                break
             }
         }
     }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
@@ -116,16 +120,59 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
             initializeFuntion(function: functions.last!)
         }
         if functions.count > 1{
-            join()
+            join(functions[functions.count-2],functions.last!)
         }
     }
     
-    func join(){
+    /// Joins the last two functions
+    func join(_ funcA: Function, _ funcB: Function){
+        //Find the variation between the value of y of the last point of a function and the first of the next one
+        let deltaY = (funcA.node?.convert((funcA.functionPoints.last)!, to: self).y)! - (funcB.node?.convert((funcB.functionPoints.first)!, to: self).y)!
         
-        let deltaY = (functions[functions.count-2].node?.convert((functions[functions.count-2].functionPoints.last)!, to: self).y)! - (functions.last?.node?.convert((functions.last?.functionPoints.first)!, to: self).y)!
-        
-        //Reposiciona o node recem-adicionado
+        //Repositions a node
         let action = SKAction.moveBy(x: 0, y: deltaY, duration: 1)
         functions.last?.node?.run(action)
+    }
+    
+    func deltaY(_ funcA: Function, _ funcB: Function) -> CGFloat{
+        //return (funcA.node?.convert((funcA.functionPoints.last)!, to: self).y)! - (funcB.node?.convert((funcB.functionPoints.first)!, to: self).y)!
+        return (funcA.functionPoints.last?.y)! - (funcB.functionPoints.first?.y)!
+    }
+    /// Creates the path formed by the union of all functions.
+    func createThePath() -> CGMutablePath{
+        let path = CGMutablePath()
+        var deltaYBefore:CGFloat = 0
+        for i in 0..<functions.count {
+            if i>0{
+                deltaYBefore = deltaYBefore + deltaY(functions[i-1], functions[i])
+            }
+            var newPoints = functions[i].functionPoints
+            for j in 0..<newPoints.count{
+                newPoints[j].x = newPoints[j].x + (CGFloat(i) * ((functions[i].functionPoints.last?.x)! - (functions[i].functionPoints.first?.x)!))
+                if i > 0 {
+                    newPoints[j].y = newPoints[j].y + deltaYBefore
+                }
+                if i == 0 && j == 0{
+                    path.move(to: newPoints[j])
+                }else{
+                    path.addLine(to: newPoints[j])
+                }
+            }
+        }
+        return path
+    }
+    
+    /// Makes the neutrino run
+    func play(){
+        if !functions.isEmpty{
+            let neutrino = SKSpriteNode(imageNamed: "neutrino")
+            neutrino.scale(to: CGSize(width: 60, height: 60))
+            neutrino.position = CGPoint(x: (self.view?.frame.width)! * 0.15, y: (self.view?.frame.height)! * 0.5)
+            self.addChild(neutrino)
+            let action = SKAction.follow(createThePath(), speed: 60)
+            neutrino.run(action) {
+                neutrino.removeFromParent()
+            }
+        }
     }
 }
