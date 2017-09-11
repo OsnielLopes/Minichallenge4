@@ -22,6 +22,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     var functionLabel: SKLabelNode!
     
+    var neutrino: SKSpriteNode!
+    
     override func didMove(to view: SKView) {
         
         sceneSize = (self.view?.bounds.size)!
@@ -42,7 +44,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         
         addChild(functionLabel)
         
-        lastCenterPoint = CGPoint(x: (self.view?.frame.width)! * 0.15, y: (self.view?.frame.height)! * 0.5)
+        lastCenterPoint = CGPoint(x: (self.view?.frame.width)! * 0.08, y: (self.view?.frame.height)! * 0.6)
         
         let deleteButton = SKButton(pressed: "ApagarButton_", neinPressed: "ApagarButton", target: self,
                                     action: #selector(removeActiveFunction))
@@ -58,11 +60,18 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                                   action: #selector(play))
         playButton.position = CGPoint(x: sceneSize.width*0.95, y: sceneSize.height*0.3)
         self.addChild(playButton)
+        
+        neutrino = SKSpriteNode(imageNamed: "neutrino")
+        neutrino.scale(to: CGSize(width: 70, height: 70))
+        neutrino.position = lastCenterPoint!
+        self.addChild(neutrino)
     }
     
     override func update(_ currentTime: TimeInterval) {
         functionLabel.text = functions.last?.toString()
         if functions.count >= 2 {
+            join(functions[functions.count - 2], functions[functions.count - 1])
+        } else if functions.count == 1 {
             join(functions[functions.count - 2], functions[functions.count - 1])
         }
     }
@@ -82,10 +91,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                                      height: Double((self.view?.frame.height)!))
         functions.last?.node?.position = lastCenterPoint!
         self.addChild((functions.last?.node!)!)
-        let point = CGPoint(x: (functions.last?.functionPoints.last!.x)! + lastCenterPoint!.x + Values.DELTA_X,
-                            y: (functions.last?.functionPoints.last!.y)! + lastCenterPoint!.y)
         
-        lastCenterPoint = point
+        lastCenterPoint = CGPoint(x: (functions.last?.functionPoints.last!.x)! + lastCenterPoint!.x + Values.DELTA_X,
+                                  y: (functions.last?.functionPoints.last!.y)! + lastCenterPoint!.y)
     }
     
     func updateAFunction(){
@@ -150,15 +158,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
             let deltaY = (funcA.node?.convert((funcA.functionPoints.last)!, to: self).y)! - (funcB.node?.convert((funcB.functionPoints.first)!, to: self).y)!
             
             //Repositions a node
-//            let action = SKAction.moveBy(x: 0, y: deltaY, duration: 1)
-//            functions.last?.node?.run(action)
             functions.last?.node?.position = CGPoint(x: (functions.last?.node?.position.x)!,
                                                      y: (functions.last?.node?.position.y)! + deltaY)
         }
     }
     
     func deltaY(_ funcA: Function, _ funcB: Function) -> CGFloat{
-        //return (funcA.node?.convert((funcA.functionPoints.last)!, to: self).y)! - (funcB.node?.convert((funcB.functionPoints.first)!, to: self).y)!
         return (funcA.functionPoints.last?.y)! - (funcB.functionPoints.first?.y)!
     }
     /// Creates the path formed by the union of all functions.
@@ -188,14 +193,21 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     /// Makes the neutrino run
     func play(){
         if !functions.isEmpty{
-            let neutrino = SKSpriteNode(imageNamed: "neutrino")
-            neutrino.scale(to: CGSize(width: 60, height: 60))
-            neutrino.position = CGPoint(x: (self.view?.frame.width)! * 0.15, y: (self.view?.frame.height)! * 0.5)
-            self.addChild(neutrino)
             let action = SKAction.follow(createThePath(), speed: 60)
             neutrino.run(action) {
-                neutrino.removeFromParent()
+                self.neutrino.removeFromParent()
             }
         }
+    }
+    
+    func addPlanets(planets: [String]) {
+        var planet = SKSpriteNode(imageNamed: planets[0])
+        planet.scale(to: CGSize(width: 82.5, height: 82.5))
+        planet.position = CGPoint(x: 0, y: (self.view?.frame.height)! * 0.5)
+        self.addChild(planet)
+        planet = SKSpriteNode(imageNamed: planets[1])
+        planet.scale(to: CGSize(width: 82.5, height: 82.5))
+        planet.position = CGPoint(x: (self.view?.frame.width)! * 1, y: (self.view?.frame.height)! * 0.5)
+        self.addChild(planet)
     }
 }

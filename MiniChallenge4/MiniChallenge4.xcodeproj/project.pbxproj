@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		49380D941F62D79400380CFE /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49380D931F62D79400380CFE /* Variables.swift */; };
 		4948737D1F6086D4009B58F8 /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4948737C1F6086D4009B58F8 /* SKButton.swift */; };
+		BD83A1751F67340400D86563 /* LevelOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD83A1741F67340400D86563 /* LevelOne.swift */; };
 		BDBB59BB1F5DC02000AD5B9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59BA1F5DC02000AD5B9B /* AppDelegate.swift */; };
 		BDBB59C11F5DC02000AD5B9B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59C01F5DC02000AD5B9B /* GameScene.swift */; };
 		BDBB59C31F5DC02000AD5B9B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59C21F5DC02000AD5B9B /* GameViewController.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		49380D931F62D79400380CFE /* Variables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		4948737C1F6086D4009B58F8 /* SKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
+		BD83A1741F67340400D86563 /* LevelOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOne.swift; sourceTree = "<group>"; };
 		BDBB59B71F5DC02000AD5B9B /* MiniChallenge4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniChallenge4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDBB59BA1F5DC02000AD5B9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDBB59C01F5DC02000AD5B9B /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -88,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD83A1761F67340800D86563 /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				BD83A1741F67340400D86563 /* LevelOne.swift */,
+			);
+			name = Levels;
+			sourceTree = "<group>";
+		};
 		BDBB59AE1F5DC02000AD5B9B = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +131,7 @@
 				BDBB59C71F5DC02000AD5B9B /* Assets.xcassets */,
 				BDBB59C91F5DC02000AD5B9B /* LaunchScreen.storyboard */,
 				BDBB59CC1F5DC02000AD5B9B /* Info.plist */,
+				BD83A1761F67340800D86563 /* Levels */,
 			);
 			path = MiniChallenge4;
 			sourceTree = "<group>";
@@ -296,6 +307,7 @@
 				BDBB59C11F5DC02000AD5B9B /* GameScene.swift in Sources */,
 				49380D941F62D79400380CFE /* Variables.swift in Sources */,
 				4948737D1F6086D4009B58F8 /* SKButton.swift in Sources */,
+				BD83A1751F67340400D86563 /* LevelOne.swift in Sources */,
 				BDBB59F11F5DC4E600AD5B9B /* Function.swift in Sources */,
 				BDBB59C31F5DC02000AD5B9B /* GameViewController.swift in Sources */,
 				BDBB59FC1F5EE31E00AD5B9B /* SinFunction.swift in Sources */,
