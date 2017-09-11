@@ -10,8 +10,6 @@ import Foundation
 import SpriteKit
 
 class LinearFunction: Function {
-    
-    var a: Double = 1
         
     override init(scale: Double) {
         super.init(scale: scale)
@@ -28,11 +26,29 @@ class LinearFunction: Function {
     }
     
     override func pinchUpdate(factor: CGFloat) {
-        a += Double(factor) / 25
+        var newFactor = factor
+        var amount: CGFloat!
+        if factor > 1{
+            newFactor = newFactor - newFactor.rounded(FloatingPointRoundingRule.down)
+            amount = newFactor * 3
+        } else{
+            newFactor = 1 - newFactor
+            amount = newFactor * -3
+        }
+        print(amount)
+        a += Double(amount)
         if a > 5 {
             a = 5
         } else if a < -5 {
             a = -5
+        }
+    }
+    
+    override func toString() -> String {
+        if a != 1{
+            return "f(x) ="+String(a)+"x"
+        } else{
+            return "f(x) = x"
         }
     }
     

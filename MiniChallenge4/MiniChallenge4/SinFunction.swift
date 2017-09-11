@@ -10,8 +10,6 @@ import Foundation
 import SpriteKit
 
 class SinFunction: Function {
-    
-    var a: Double = 1
         
     override init(scale: Double) {
         super.init(scale: scale)
@@ -28,11 +26,28 @@ class SinFunction: Function {
     }
     
     override func pinchUpdate(factor: CGFloat) {
-        a -= Double(factor) / 25
+        var newFactor = factor
+        var amount: CGFloat!
+        if factor > 1{
+            newFactor = newFactor - newFactor.rounded(FloatingPointRoundingRule.down)
+            amount = newFactor * 3
+        } else{
+            newFactor = 1 - newFactor
+            amount = newFactor * -3
+        }
+        a += Double(amount)
         if a < -15.5 {
             a = -15.5
         } else if a > 9 {
             a = 9
+        }
+    }
+    
+    override func toString() -> String {
+        if a != 1{
+            return "f(x) = sen("+String(a)+"x)"
+        }else{
+            return "f(x) = sen(x)"
         }
     }
 }

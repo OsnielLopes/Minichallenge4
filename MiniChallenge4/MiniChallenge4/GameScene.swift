@@ -20,6 +20,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     var sceneSize: CGSize = CGSize(width: 0, height: 0)
     
+    var functionLabel: SKLabelNode!
+    
     override func didMove(to view: SKView) {
         
         sceneSize = (self.view?.bounds.size)!
@@ -33,12 +35,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         pinchGesture.delegate = self
         self.view?.addGestureRecognizer(pinchGesture)
         
-        if let musicURL = Bundle.main.url(forResource: "ObservingTheStar", withExtension: "ogg"){
-            let backgroundMusic = SKAudioNode(url: musicURL)
-            addChild(backgroundMusic)
-        } else{
-            
-        }
+        functionLabel = SKLabelNode(fontNamed: "Cochin")
+        functionLabel.fontSize = 20
+        functionLabel.fontColor = SKColor.white
+        functionLabel.position = CGPoint(x: frame.midX, y: frame.midY)
+        
+        addChild(functionLabel)
         
         lastCenterPoint = CGPoint(x: (self.view?.frame.width)! * 0.15, y: (self.view?.frame.height)! * 0.5)
         
@@ -58,9 +60,14 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         self.addChild(playButton)
     }
     
+    override func update(_ currentTime: TimeInterval) {
+        functionLabel.text = functions.last?.toString()
+    }
+    
     func updatePinch() {
-        functions.last?.pinchUpdate(factor: pinchGesture.velocity * pinchGesture.scale)
-        calculate(function: functions.last!)
+        functions.last?.pinchUpdate(factor: /*pinchGesture.velocity **/pinchGesture.scale)
+        //calculate(function: functions.last!)
+        updateAFunction()
     }
     
     func initializeFuntion(function: Function) {
@@ -68,6 +75,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     }
     
     func calculate(function: Function) {
+        functions.last?.node?.removeFromParent()
         functions.last?.drawFunction(width:  Double((self.view?.frame.width)!),
                                      height: Double((self.view?.frame.height)!))
         functions.last?.node?.position = lastCenterPoint!
@@ -76,6 +84,15 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                             y: (functions.last?.functionPoints.last!.y)! + lastCenterPoint!.y)
         
         lastCenterPoint = point
+    }
+    
+    func updateAFunction(){
+        let point = functions.last?.node?.position
+        functions.last?.node?.removeFromParent()
+        functions.last?.drawFunction(width:  Double((self.view?.frame.width)!),
+                                     height: Double((self.view?.frame.height)!))
+        functions.last?.node?.position = point!
+        self.addChild((functions.last?.node!)!)
     }
     
     func touchDown(atPoint pos : CGPoint) {

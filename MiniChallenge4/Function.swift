@@ -21,6 +21,8 @@ class Function {
     
     var functionPoints: [CGPoint] = []
     
+    var a: Double = 1
+    
     init(scale: Double) {
         self.scale = scale
     }
@@ -64,7 +66,7 @@ class Function {
         return higher! - lower!
     }
     
-    func addToTheNodePosition(x: Int = 0, y: Int = 0){
-//        self.node?.position
+    func toString() -> String{
+        preconditionFailure("This method must be overridden")
     }
 }
