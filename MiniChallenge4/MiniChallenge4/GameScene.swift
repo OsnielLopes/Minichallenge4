@@ -62,11 +62,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         functionLabel.text = functions.last?.toString()
+        if functions.count >= 2 {
+            join(functions[functions.count - 2], functions[functions.count - 1])
+        }
     }
     
     func updatePinch() {
-        functions.last?.pinchUpdate(factor: /*pinchGesture.velocity **/pinchGesture.scale)
-        //calculate(function: functions.last!)
+        functions.last?.pinchUpdate(factor: pinchGesture.scale)
         updateAFunction()
     }
     
@@ -88,7 +90,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     func updateAFunction(){
         let point = functions.last?.node?.position
-        functions.last?.node?.removeFromParent()
         functions.last?.drawFunction(width:  Double((self.view?.frame.width)!),
                                      height: Double((self.view?.frame.height)!))
         functions.last?.node?.position = point!
@@ -143,12 +144,17 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     /// Joins the last two functions
     func join(_ funcA: Function, _ funcB: Function){
-        //Find the variation between the value of y of the last point of a function and the first of the next one
-        let deltaY = (funcA.node?.convert((funcA.functionPoints.last)!, to: self).y)! - (funcB.node?.convert((funcB.functionPoints.first)!, to: self).y)!
         
-        //Repositions a node
-        let action = SKAction.moveBy(x: 0, y: deltaY, duration: 1)
-        functions.last?.node?.run(action)
+        if !(funcA.node?.hasActions())! && !(funcB.node?.hasActions())! {
+            //Find the variation between the value of y of the last point of a function and the first of the next one
+            let deltaY = (funcA.node?.convert((funcA.functionPoints.last)!, to: self).y)! - (funcB.node?.convert((funcB.functionPoints.first)!, to: self).y)!
+            
+            //Repositions a node
+//            let action = SKAction.moveBy(x: 0, y: deltaY, duration: 1)
+//            functions.last?.node?.run(action)
+            functions.last?.node?.position = CGPoint(x: (functions.last?.node?.position.x)!,
+                                                     y: (functions.last?.node?.position.y)! + deltaY)
+        }
     }
     
     func deltaY(_ funcA: Function, _ funcB: Function) -> CGFloat{

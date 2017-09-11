@@ -13,7 +13,7 @@ class SinFunction: Function {
         
     override init(scale: Double) {
         super.init(scale: scale)
-        self.setRange(step: 1, min: Values.START, max: Values.END)
+        self.setRange(step: 0.1, min: Values.START, max: Values.END)
     }
     
     override func drawFunction(width: Double, height: Double) {
@@ -22,7 +22,7 @@ class SinFunction: Function {
     }
     
     override func f(x: Double) -> Double {
-        return sin(a * x)
+        return a * sin(0.25 * x)
     }
     
     override func pinchUpdate(factor: CGFloat) {
@@ -36,16 +36,11 @@ class SinFunction: Function {
             amount = newFactor * -3
         }
         a += Double(amount)
-        if a < -15.5 {
-            a = -15.5
-        } else if a > 9 {
-            a = 9
-        }
     }
     
     override func toString() -> String {
         if a != 1{
-            return "f(x) = sen("+String(a)+"x)"
+            return "f(x) = \(a) * sen(x)"
         }else{
             return "f(x) = sen(x)"
         }

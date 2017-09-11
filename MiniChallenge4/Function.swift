@@ -22,7 +22,7 @@ class Function {
     var functionPoints: [CGPoint] = []
     
     var a: Double = 1
-    
+        
     init(scale: Double) {
         self.scale = scale
     }
@@ -34,7 +34,6 @@ class Function {
         node = SKShapeNode(path: functionPath!)
         node?.lineWidth = 1
         node?.strokeColor = .white
-        
     }
     
     func scale(x: Double, y: Double, widht: Double, height: Double) -> CGPoint {

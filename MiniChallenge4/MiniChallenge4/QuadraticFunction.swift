@@ -16,6 +16,11 @@ class QuadraticFunction: Function {
         self.setRange(step: 1, min: Values.START, max: Values.END)
     }
     
+    override func drawFunction(width: Double, height: Double) {
+        super.drawFunction(width: width, height: height)
+        self.node?.name = "QuadraticFunction"
+    }
+    
     override func f(x: Double) -> Double {
         return a * pow(x, 2)
     }
@@ -25,17 +30,12 @@ class QuadraticFunction: Function {
         var amount: CGFloat!
         if factor > 1{
             newFactor = newFactor - newFactor.rounded(FloatingPointRoundingRule.down)
-            amount = newFactor * 3
+            amount = newFactor * 0.05
         } else{
             newFactor = 1 - newFactor
-            amount = newFactor * -3
+            amount = newFactor * -0.05
         }
         a += Double(amount)
-        if a < -15.5 {
-            a = -15.5
-        } else if a > 9 {
-            a = 9
-        }
     }
     
     override func toString() -> String {

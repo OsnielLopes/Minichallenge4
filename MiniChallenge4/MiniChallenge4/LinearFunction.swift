@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class LinearFunction: Function {
-        
+    
     override init(scale: Double) {
         super.init(scale: scale)
         self.setRange(step: 1, min: Values.START, max: Values.END)
@@ -35,13 +35,7 @@ class LinearFunction: Function {
             newFactor = 1 - newFactor
             amount = newFactor * -3
         }
-        print(amount)
         a += Double(amount)
-        if a > 5 {
-            a = 5
-        } else if a < -5 {
-            a = -5
-        }
     }
     
     override func toString() -> String {
