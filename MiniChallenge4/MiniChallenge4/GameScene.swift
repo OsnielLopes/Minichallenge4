@@ -34,7 +34,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         pinchGesture.delegate = self
         self.view?.addGestureRecognizer(pinchGesture)
         
-        lastCenterPoint = pointProportionalTo(percentage: 0.205, and: 0.68)
+        lastCenterPoint = pointProportionalTo(percentage: 0.08, and: 0.6)
         
         
         //HUD ELEMENTS
@@ -86,10 +86,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         self.addChild(bg)
         
         neutrino = SKSpriteNode(imageNamed: "neutrino")
-        neutrino.scale(to: CGSize(width: 70, height: 70))
+        neutrino.scale(to: CGSize(width: Values.NEUTRINO_SIZE, height: Values.NEUTRINO_SIZE))
+        neutrino.alpha = 0.5
         neutrino.position = pointProportionalTo(percentage: 0.08, and: 0.6)
         self.addChild(neutrino)
 
+        lastCenterPoint = CGPoint(x: (self.view?.frame.width)! * 0.15, y: (self.view?.frame.height)! * 0.5)
+        lastCenterPoint?.x += CGFloat(Values.NEUTRINO_SIZE)/2
     }
     
     func pointProportionalTo(percentage widht: CGFloat, and height: CGFloat) -> CGPoint {
@@ -105,7 +108,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         if functions.count >= 2 {
             join(functions[functions.count - 2], functions[functions.count - 1])
         } else if functions.count == 1 {
-//            join(functions[0])
+            join(neutrino, functions.last!)
         }
     }
     
@@ -186,16 +189,21 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     }
     
     /// Joins the last two functions
-    func join(_ funcA: Function, _ funcB: Function){
+    func join(_ aObject: Any, _ funcB: Function){
         
-        if !(funcA.node?.hasActions())! && !(funcB.node?.hasActions())! {
+        var deltaY: CGFloat!
+        
+        if let funcA = aObject as? Function, !(funcA.node?.hasActions())! && !(funcB.node?.hasActions())! {
             //Find the variation between the value of y of the last point of a function and the first of the next one
-            let deltaY = (funcA.node?.convert((funcA.functionPoints.last)!, to: self).y)! - (funcB.node?.convert((funcB.functionPoints.first)!, to: self).y)!
-            
-            //Repositions a node
-            functions.last?.node?.position = CGPoint(x: (functions.last?.node?.position.x)!,
-                                                     y: (functions.last?.node?.position.y)! + deltaY)
+            deltaY = (funcA.node?.convert((funcA.functionPoints.last)!, to: self).y)! - (funcB.node?.convert((funcB.functionPoints.first)!, to: self).y)!
+        } else if aObject is SKSpriteNode{
+            deltaY = (lastCenterPoint?.y)! - (funcB.node?.convert((funcB.functionPoints.first)!, to: self).y)!
+            //TODO: IMPLEMENTAR VARIACAO TAMBEM NO EIXO X
         }
+        
+        //Repositions a node
+        functions.last?.node?.position = CGPoint(x: (functions.last?.node?.position.x)!,
+                                                 y: (functions.last?.node?.position.y)! + deltaY)
     }
     
     func join(_ funcA: Function){
