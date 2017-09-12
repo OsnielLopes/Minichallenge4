@@ -26,45 +26,78 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     override func didMove(to view: SKView) {
         
+        //CONFIGURATIONS
+        
         sceneSize = (self.view?.bounds.size)!
+        
+        pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.updatePinch))
+        pinchGesture.delegate = self
+        self.view?.addGestureRecognizer(pinchGesture)
+        
+        lastCenterPoint = pointProportionalTo(percentage: 0.205, and: 0.68)
+        
+        
+        //HUD ELEMENTS
+        
+        functionLabel = SKLabelNode(fontNamed: "Cochin")
+        functionLabel.fontSize = 20
+        functionLabel.fontColor = SKColor.white
+        functionLabel.position = CGPoint(x: frame.midX, y: frame.midY)
+        addChild(functionLabel)
+        
+        //Bottom menu:
+        
+        let bottomMenuBackground = SKShapeNode(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: sizeProportionalTo(percentage: 1, and: 0.2256267409)))
+        bottomMenuBackground.fillColor = UIColor(red: 53 / 255, green: 79 / 255, blue: 149 / 255, alpha: 1)
+        bottomMenuBackground.strokeColor = UIColor(red: 53 / 255, green: 79 / 255, blue: 149 / 255, alpha: 1)
+        self.addChild(bottomMenuBackground)
+        
+        let deleteButton = SKButton(pressed: "ApagarButton_", neinPressed: "ApagarButton", target: self, action: #selector(removeActiveFunction))
+        deleteButton.position = pointProportionalTo(percentage: 0.92, and: 0.11)
+        deleteButton.scale(to: sizeProportionalTo(percentage: 0.09791666667, and: 0.1745589601))
+        self.addChild(deleteButton)
+        
+        let goButton = SKButton(pressed: "Go Button", neinPressed: "Go Button_", target: self, action: #selector(play))
+        goButton.position = pointProportionalTo(percentage: 0.08, and: 0.11)
+        goButton.scale(to: sizeProportionalTo(percentage: 0.09791666667, and: 0.1745589601))
+        self.addChild(goButton)
+        
+        let quadraticButton = SKButton(pressed: "2 Grau Button", neinPressed: "2 Grau Button_", target: self, action: #selector(addQuadraticFunction))
+        quadraticButton.position = pointProportionalTo(percentage: 0.5, and: 0.12)
+        quadraticButton.scale(to: sizeProportionalTo(percentage: 0.1286458333, and: 0.165273909))
+        self.addChild(quadraticButton)
+        
+        let linearButton = SKButton(pressed: "Linear Button", neinPressed: "Linear Button_", target: self, action: #selector(addLinearFunction))
+        linearButton.position = pointProportionalTo(percentage: 0.3, and: 0.12)
+        linearButton.scale(to: sizeProportionalTo(percentage: 0.1286458333, and: 0.165273909))
+        self.addChild(linearButton)
+        
+        let sinButton = SKButton(pressed: "Sin Button", neinPressed: "Sin Button_", target: self, action: #selector(addSinFunction))
+        sinButton.position = pointProportionalTo(percentage: 0.7, and: 0.12)
+        sinButton.scale(to: sizeProportionalTo(percentage: 0.1286458333, and: 0.165273909))
+        self.addChild(sinButton)
+        
+        
+        //STANDART GAME ELEMENTS
         
         let bg = SKSpriteNode(texture: SKTexture(imageNamed: "Ceu"), color: UIColor.white, size: sceneSize)
         bg.position = (self.view?.center)!
         bg.zPosition = -1
         self.addChild(bg)
         
-        pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.updatePinch))
-        pinchGesture.delegate = self
-        self.view?.addGestureRecognizer(pinchGesture)
-        
-        functionLabel = SKLabelNode(fontNamed: "Cochin")
-        functionLabel.fontSize = 20
-        functionLabel.fontColor = SKColor.white
-        functionLabel.position = CGPoint(x: frame.midX, y: frame.midY)
-        
-        addChild(functionLabel)
-        
-        lastCenterPoint = CGPoint(x: (self.view?.frame.width)! * 0.08, y: (self.view?.frame.height)! * 0.6)
-        
-        let deleteButton = SKButton(pressed: "ApagarButton_", neinPressed: "ApagarButton", target: self,
-                                    action: #selector(removeActiveFunction))
-        deleteButton.position = CGPoint(x: sceneSize.width*0.85, y: sceneSize.height*0.1)
-        self.addChild(deleteButton)
-        
-        let addFuntionButton = SKButton(pressed: "plus_placeholder", neinPressed: "plus_placeholder", target: self,
-                                        action: #selector(addRandomFunction))
-        addFuntionButton.position = CGPoint(x: sceneSize.width*0.95, y: sceneSize.height*0.1)
-        self.addChild(addFuntionButton)
-        
-        let playButton = SKButton(pressed: "play_placeholder", neinPressed: "play_placeholder", target: self,
-                                  action: #selector(play))
-        playButton.position = CGPoint(x: sceneSize.width*0.95, y: sceneSize.height*0.3)
-        self.addChild(playButton)
-        
         neutrino = SKSpriteNode(imageNamed: "neutrino")
         neutrino.scale(to: CGSize(width: 70, height: 70))
-        neutrino.position = lastCenterPoint!
+        neutrino.position = pointProportionalTo(percentage: 0.08, and: 0.6)
         self.addChild(neutrino)
+
+    }
+    
+    func pointProportionalTo(percentage widht: CGFloat, and height: CGFloat) -> CGPoint {
+        return CGPoint(x: widht * sceneSize.width, y: height * sceneSize.height)
+    }
+    
+    func sizeProportionalTo(percentage widht: CGFloat, and height: CGFloat) -> CGSize {
+        return CGSize(width: widht * sceneSize.width, height: height * sceneSize.height)
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -72,7 +105,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         if functions.count >= 2 {
             join(functions[functions.count - 2], functions[functions.count - 1])
         } else if functions.count == 1 {
-            join(functions[functions.count - 2], functions[functions.count - 1])
+//            join(functions[0])
         }
     }
     
@@ -98,6 +131,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     func updateAFunction(){
         let point = functions.last?.node?.position
+        functions.last?.node?.removeFromParent()
         functions.last?.drawFunction(width:  Double((self.view?.frame.width)!),
                                      height: Double((self.view?.frame.height)!))
         functions.last?.node?.position = point!
@@ -131,22 +165,23 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         }
     }
     
-    func addRandomFunction(){
-        let funcs = ["Linear","Sin","Quadratic"]
-        let index = Int(arc4random_uniform(UInt32(funcs.count)))
-        let choosed = funcs[index]
-        if choosed == "Linear" {
-            functions.append(SinFunction(scale: Double((self.view?.frame.width)!) / 2))
-            initializeFuntion(function: functions.last!)
-        } else if choosed == "Sin"{
-            functions.append(LinearFunction(scale: Double((self.view?.frame.width)!) / 2))
-            initializeFuntion(function: functions.last!)
-        } else if choosed == "Quadratic"{
-            functions.append(QuadraticFunction(scale: Double((self.view?.frame.width)!) / 2))
-            initializeFuntion(function: functions.last!)
-        }
-        if functions.count > 1{
-            join(functions[functions.count-2],functions.last!)
+    func addLinearFunction() {
+        addFunction(f: LinearFunction(scale: Double((self.view?.frame.width)!) / 2))
+    }
+    
+    func addQuadraticFunction() {
+        addFunction(f: QuadraticFunction(scale: Double((self.view?.frame.width)!) / 2))
+    }
+    
+    func addSinFunction() {
+        addFunction(f: SinFunction(scale: Double((self.view?.frame.width)!) / 2))
+    }
+    
+    func addFunction(f: Function) {
+        functions.append(f)
+        initializeFuntion(function: f)
+        if functions.count > 1 {
+            join(functions[functions.count-2], functions.last!)
         }
     }
     
@@ -163,9 +198,19 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         }
     }
     
+    func join(_ funcA: Function){
+        //Find the variation between the value of y of the last point of a function and the last center point
+        let deltaY = (funcA.node?.convert((funcA.functionPoints.last)!, to: self).y)! - (lastCenterPoint?.y)!
+        
+        //Repositions a node
+        functions.last?.node?.position = CGPoint(x: (functions.last?.node?.position.x)!,
+                                                 y: (functions.last?.node?.position.y)! + deltaY)
+    }
+    
     func deltaY(_ funcA: Function, _ funcB: Function) -> CGFloat{
         return (funcA.functionPoints.last?.y)! - (funcB.functionPoints.first?.y)!
     }
+    
     /// Creates the path formed by the union of all functions.
     func createThePath() -> CGMutablePath{
         let path = CGMutablePath()
@@ -202,12 +247,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     func addPlanets(planets: [String]) {
         var planet = SKSpriteNode(imageNamed: planets[0])
-        planet.scale(to: CGSize(width: 82.5, height: 82.5))
-        planet.position = CGPoint(x: 0, y: (self.view?.frame.height)! * 0.5)
+        planet.scale(to: sizeProportionalTo(percentage: 0.05729166667, and: 0.1021355617))
+        planet.position = pointProportionalTo(percentage: 0.01, and: 0.6)
         self.addChild(planet)
         planet = SKSpriteNode(imageNamed: planets[1])
-        planet.scale(to: CGSize(width: 82.5, height: 82.5))
-        planet.position = CGPoint(x: (self.view?.frame.width)! * 1, y: (self.view?.frame.height)! * 0.5)
+        planet.scale(to: sizeProportionalTo(percentage: 0.05729166667, and: 0.1021355617))
+        planet.position = pointProportionalTo(percentage: 0.99, and: 0.6)
         self.addChild(planet)
     }
 }
