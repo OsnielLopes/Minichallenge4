@@ -16,6 +16,8 @@ class PauseMenuViewController: UIViewController {
     
     var effect: UIVisualEffect!
     
+    var gameViewController: GameViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         effect = blurView.effect
@@ -28,6 +30,17 @@ class PauseMenuViewController: UIViewController {
         UIView.animate(withDuration: 0.4, animations: {
             self.blurView.effect = self.effect
             self.popUpView.alpha = 1
+        })
+    }
+    
+    @IBAction func mainMenu(_ sender: Any) {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.blurView.effect = nil
+            self.popUpView.alpha = 0
+        }, completion: { _ in
+            self.dismiss(animated: false, completion: {_ in
+                self.gameViewController.dismiss(animated: false, completion: nil)
+            })
         })
     }
     

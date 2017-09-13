@@ -10,6 +10,79 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="7xf-Bj-IsI">
+            <objects>
+                <viewController id="Adh-DC-B8q" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dLj-aP-Xe3"/>
+                        <viewControllerLayoutGuide type="bottom" id="8a4-H2-04k"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="M7t-Ss-uad">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ceu" translatesAutoresizingMaskIntoConstraints="NO" id="6Ub-g0-160">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sun_menu" translatesAutoresizingMaskIntoConstraints="NO" id="nJo-W1-x7e">
+                                <rect key="frame" x="0.0" y="83.5" width="667" height="291.5"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Titulo_inicial" translatesAutoresizingMaskIntoConstraints="NO" id="y0H-7B-Odu">
+                                <rect key="frame" x="4" y="20" width="659" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8d-U4-CUQ">
+                                <rect key="frame" x="267" y="283" width="133" height="30"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="22"/>
+                                <state key="normal" title="Level Select">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuJ-yj-DYF">
+                                <rect key="frame" x="287" y="332" width="93" height="30"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="22"/>
+                                <state key="normal" title="About">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mf2-aV-JBv">
+                                <rect key="frame" x="250" y="167" width="167" height="97.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="80"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nJo-W1-x7e" firstAttribute="centerX" secondItem="M7t-Ss-uad" secondAttribute="centerX" id="E6k-rJ-9Qj"/>
+                            <constraint firstItem="mf2-aV-JBv" firstAttribute="centerY" secondItem="M7t-Ss-uad" secondAttribute="centerY" multiplier="1.15" id="EAX-Yf-Lkn"/>
+                            <constraint firstItem="LuJ-yj-DYF" firstAttribute="centerX" secondItem="M7t-Ss-uad" secondAttribute="centerX" id="FBH-cg-cM6"/>
+                            <constraint firstItem="6Ub-g0-160" firstAttribute="width" secondItem="M7t-Ss-uad" secondAttribute="width" id="FkZ-Kd-bbc"/>
+                            <constraint firstItem="8a4-H2-04k" firstAttribute="top" secondItem="nJo-W1-x7e" secondAttribute="bottom" id="HaH-Et-XmX"/>
+                            <constraint firstItem="LuJ-yj-DYF" firstAttribute="height" secondItem="M7t-Ss-uad" secondAttribute="height" multiplier="0.08" id="Jfj-KD-360"/>
+                            <constraint firstItem="6Ub-g0-160" firstAttribute="height" secondItem="M7t-Ss-uad" secondAttribute="height" id="PQt-hM-waP"/>
+                            <constraint firstItem="mf2-aV-JBv" firstAttribute="width" secondItem="M7t-Ss-uad" secondAttribute="width" multiplier="0.25" id="Qoc-vv-c0H"/>
+                            <constraint firstItem="6Ub-g0-160" firstAttribute="centerX" secondItem="M7t-Ss-uad" secondAttribute="centerX" id="RbT-4a-ZIH"/>
+                            <constraint firstItem="nJo-W1-x7e" firstAttribute="width" secondItem="M7t-Ss-uad" secondAttribute="width" id="UUc-ar-ehY"/>
+                            <constraint firstItem="e8d-U4-CUQ" firstAttribute="height" secondItem="M7t-Ss-uad" secondAttribute="height" multiplier="0.08" id="VhT-PW-9Zs"/>
+                            <constraint firstItem="e8d-U4-CUQ" firstAttribute="width" secondItem="M7t-Ss-uad" secondAttribute="width" multiplier="0.2" id="WeU-2S-NL9"/>
+                            <constraint firstItem="mf2-aV-JBv" firstAttribute="height" secondItem="M7t-Ss-uad" secondAttribute="height" multiplier="0.26" id="ayE-aa-Ufc"/>
+                            <constraint firstItem="LuJ-yj-DYF" firstAttribute="width" secondItem="M7t-Ss-uad" secondAttribute="width" multiplier="0.14" id="clJ-aT-Sqg"/>
+                            <constraint firstItem="nJo-W1-x7e" firstAttribute="height" secondItem="M7t-Ss-uad" secondAttribute="height" multiplier="0.778" id="eyU-1a-zgp"/>
+                            <constraint firstItem="mf2-aV-JBv" firstAttribute="centerX" secondItem="M7t-Ss-uad" secondAttribute="centerX" id="j2m-6e-8UG"/>
+                            <constraint firstItem="LuJ-yj-DYF" firstAttribute="centerY" secondItem="M7t-Ss-uad" secondAttribute="centerY" multiplier="1.85" id="lpB-Vi-u7i"/>
+                            <constraint firstItem="e8d-U4-CUQ" firstAttribute="centerX" secondItem="M7t-Ss-uad" secondAttribute="centerX" id="orR-dg-KlE"/>
+                            <constraint firstItem="e8d-U4-CUQ" firstAttribute="centerY" secondItem="M7t-Ss-uad" secondAttribute="centerY" multiplier="1.59" id="qOs-Qx-KiC"/>
+                            <constraint firstItem="6Ub-g0-160" firstAttribute="centerY" secondItem="M7t-Ss-uad" secondAttribute="centerY" id="wMd-nc-zjn"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pcr-p2-Ka0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34.632683658170919" y="-1564"/>
+        </scene>
         <!--Pause Menu View Controller-->
         <scene sceneID="cC6-pP-ngH">
             <objects>
@@ -49,6 +122,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2SR-hz-hjm">
                                         <rect key="frame" x="103" y="197" width="71.5" height="74"/>
                                         <state key="normal" image="Home Button"/>
+                                        <connections>
+                                            <action selector="mainMenu:" destination="Zwv-dJ-6YO" eventType="touchUpInside" id="bQn-V5-Y1F"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -109,12 +185,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="35" y="86"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Ceu" width="1920" height="1077"/>
         <image name="Home Button" width="204" height="211"/>
         <image name="Pause_Menu" width="800" height="867"/>
         <image name="Pause_Title" width="591" height="142"/>
         <image name="Play Button" width="204" height="211"/>
+        <image name="Sun_menu" width="1663" height="797"/>
+        <image name="Titulo_inicial" width="1254" height="287"/>
     </resources>
 </document>
