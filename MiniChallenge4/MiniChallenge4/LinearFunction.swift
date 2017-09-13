@@ -11,9 +11,9 @@ import SpriteKit
 
 class LinearFunction: Function {
     
-    override init(scale: Double) {
+    init(scale: Double, _ start: Double, _ end: Double) {
         super.init(scale: scale)
-        self.setRange(step: 1, min: Values.START, max: Values.END)
+        self.setRange(step: 1, min: start, max: end)
     }
     
     override func drawFunction(width: Double, height: Double) {
