@@ -28,6 +28,12 @@ class GameViewController: UIViewController {
     override var shouldAutorotate: Bool {
         return true
     }
+    
+    func pauseGame() {
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "pauseMenu") {
+            self.present(vc, animated: false, completion: nil)
+        }
+    }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .landscape

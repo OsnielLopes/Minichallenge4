@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Pause Menu View Controller-->
         <scene sceneID="cC6-pP-ngH">
             <objects>
-                <viewController storyboardIdentifier="pauseMenu" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zwv-dJ-6YO" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="pauseMenu" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zwv-dJ-6YO" customClass="PauseMenuViewController" customModule="MiniChallenge4" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qq6-fi-4KB"/>
                         <viewControllerLayoutGuide type="bottom" id="mXT-bM-fwC"/>
@@ -22,6 +22,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MO4-jn-Sny">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="iPf-qE-tLJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asF-Je-V9o">
                                 <rect key="frame" x="194" y="37" width="278.5" height="302"/>
                                 <subviews>
@@ -34,6 +42,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxb-08-O6Y">
                                         <rect key="frame" x="103.5" y="106.5" width="71.5" height="73.5"/>
                                         <state key="normal" image="Play Button"/>
+                                        <connections>
+                                            <action selector="backToGame:" destination="Zwv-dJ-6YO" eventType="touchUpInside" id="9UG-d3-Ow6"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2SR-hz-hjm">
                                         <rect key="frame" x="103" y="197" width="71.5" height="74"/>
@@ -61,18 +72,26 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="MO4-jn-Sny" firstAttribute="width" secondItem="Drq-e7-2bA" secondAttribute="width" id="1WD-qa-hxW"/>
                             <constraint firstItem="asF-Je-V9o" firstAttribute="height" secondItem="Drq-e7-2bA" secondAttribute="height" multiplier="0.805" id="PtN-D5-P5E"/>
                             <constraint firstItem="asF-Je-V9o" firstAttribute="width" secondItem="Drq-e7-2bA" secondAttribute="width" multiplier="0.418" id="Q8c-NM-prK"/>
+                            <constraint firstItem="MO4-jn-Sny" firstAttribute="centerX" secondItem="Drq-e7-2bA" secondAttribute="centerX" id="S4A-OX-iO1"/>
                             <constraint firstItem="asF-Je-V9o" firstAttribute="centerX" secondItem="Drq-e7-2bA" secondAttribute="centerX" id="XOp-vv-fbA"/>
                             <constraint firstItem="asF-Je-V9o" firstAttribute="centerY" secondItem="Drq-e7-2bA" secondAttribute="centerY" id="irP-ih-zMb"/>
+                            <constraint firstItem="MO4-jn-Sny" firstAttribute="centerY" secondItem="Drq-e7-2bA" secondAttribute="centerY" id="o8Y-RN-LUa"/>
+                            <constraint firstItem="MO4-jn-Sny" firstAttribute="height" secondItem="Drq-e7-2bA" secondAttribute="height" id="wfT-Hz-nyr"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="blurView" destination="MO4-jn-Sny" id="1g8-vG-N13"/>
+                        <outlet property="popUpView" destination="asF-Je-V9o" id="3Xp-vM-A9N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gHi-LI-9ug" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="-750"/>
+            <point key="canvasLocation" x="34.632683658170919" y="-751.20000000000005"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
