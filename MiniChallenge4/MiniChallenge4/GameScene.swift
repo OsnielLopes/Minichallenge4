@@ -26,11 +26,15 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     var firstDeltaY: CGFloat!
     
+    var utilSpace: Double!
+    
     override func didMove(to view: SKView) {
         
         //CONFIGURATIONS
         
         sceneSize = (self.view?.bounds.size)!
+        
+        utilSpace = Double(sceneSize.width) * 0.91
         
         pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.updatePinch))
         pinchGesture.delegate = self
@@ -87,11 +91,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         bg.zPosition = -1
         self.addChild(bg)
         
-        neutrino = SKSpriteNode(imageNamed: "neutrino")
-        neutrino.scale(to: CGSize(width: Values.NEUTRINO_SIZE, height: Values.NEUTRINO_SIZE))
-        neutrino.alpha = 0.5
-        neutrino.position = pointProportionalTo(percentage: 0.08, and: 0.6)
-        self.addChild(neutrino)
+        newNeutrino()
     }
     
     func pointProportionalTo(percentage widht: CGFloat, and height: CGFloat) -> CGPoint {
@@ -107,9 +107,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         if functions.count >= 2 {
             join(functions[functions.count - 2], functions[functions.count - 1])
         }
-//         else if functions.count == 1 && !neutrino.hasActions(){
-//            join(neutrino, functions.last!)
-//        }
+        //         else if functions.count == 1 && !neutrino.hasActions(){
+        //            join(neutrino, functions.last!)
+        //        }
     }
     
     func updatePinch() {
@@ -168,15 +168,15 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     }
     
     func addLinearFunction() {
-        addFunction(f: LinearFunction(scale: Double((self.view?.frame.width)!) / 2))
+        addFunction(f: LinearFunction(scale: Double((self.view?.frame.width)!), -utilSpace/4, utilSpace/4))
     }
     
     func addQuadraticFunction() {
-        addFunction(f: QuadraticFunction(scale: Double((self.view?.frame.width)!) / 2))
+        addFunction(f: QuadraticFunction(scale: Double((self.view?.frame.width)!), -utilSpace/4, utilSpace/4))
     }
     
     func addSinFunction() {
-        addFunction(f: SinFunction(scale: Double((self.view?.frame.width)!) / 2))
+        addFunction(f: SinFunction(scale: Double((self.view?.frame.width)!), -utilSpace/4, utilSpace/4))
     }
     
     func addFunction(f: Function) {
@@ -208,7 +208,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         functions.last?.node?.position = CGPoint(x: (functions.last?.node?.position.x)! + deltaX,
                                                  y: (functions.last?.node?.position.y)! + deltaY)
     }
-
+    
     func deltaY(_ funcA: Function, _ funcB: Function) -> CGFloat{
         return (funcA.functionPoints.last?.y)! - (funcB.functionPoints.first?.y)!
     }
@@ -223,10 +223,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
             }
             var newPoints = functions[i].functionPoints
             for j in 0..<newPoints.count{
-                newPoints[j].x = newPoints[j].x + (CGFloat(i) * functions[i].deltaX()) + neutrino.position.x
+                newPoints[j].x = newPoints[j].x + (CGFloat(i) * ((functions[i].functionPoints.last?.x)! - (functions[i].functionPoints.first?.x)!)) + Values.DELTA_X
                 newPoints[j].y = newPoints[j].y + deltaYBefore
                 if i == 0 && j == 0{
-                    path.move(to: newPoints[j])
+                    path.move(to: CGPoint(x:0,y:0))
                 }else{
                     path.addLine(to: newPoints[j])
                 }
@@ -241,6 +241,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
             let action = SKAction.follow(createThePath(), speed: 60)
             neutrino.run(action) {
                 self.neutrino.removeFromParent()
+                self.newNeutrino()
             }
         }
     }
@@ -255,4 +256,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         planet.position = pointProportionalTo(percentage: 0.99, and: 0.6)
         self.addChild(planet)
     }
+    
+    func newNeutrino(){
+        neutrino = SKSpriteNode(imageNamed: "neutrino")
+        neutrino.scale(to: CGSize(width: Values.NEUTRINO_SIZE, height: Values.NEUTRINO_SIZE))
+        neutrino.position = pointProportionalTo(percentage: 0.08, and: 0.6)
+        self.addChild(neutrino)
+    }
+    
 }
