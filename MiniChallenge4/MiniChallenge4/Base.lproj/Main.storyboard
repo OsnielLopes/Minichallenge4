@@ -1,14 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zwv-dJ-6YO">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="cC6-pP-ngH">
+            <objects>
+                <viewController storyboardIdentifier="pauseMenu" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zwv-dJ-6YO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qq6-fi-4KB"/>
+                        <viewControllerLayoutGuide type="bottom" id="mXT-bM-fwC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Drq-e7-2bA">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asF-Je-V9o">
+                                <rect key="frame" x="194" y="37" width="278.5" height="302"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pause_Menu" translatesAutoresizingMaskIntoConstraints="NO" id="9cI-mn-Yae">
+                                        <rect key="frame" x="0.0" y="0.0" width="278" height="302"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pause_Title" translatesAutoresizingMaskIntoConstraints="NO" id="Reh-g8-5B8">
+                                        <rect key="frame" x="38" y="24.5" width="202.5" height="71.5"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxb-08-O6Y">
+                                        <rect key="frame" x="103.5" y="106.5" width="71.5" height="73.5"/>
+                                        <state key="normal" image="Play Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2SR-hz-hjm">
+                                        <rect key="frame" x="103" y="197" width="71.5" height="74"/>
+                                        <state key="normal" image="Home Button"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="2SR-hz-hjm" firstAttribute="centerX" secondItem="asF-Je-V9o" secondAttribute="centerX" id="0a0-5P-bow"/>
+                                    <constraint firstItem="Reh-g8-5B8" firstAttribute="centerX" secondItem="asF-Je-V9o" secondAttribute="centerX" id="0j9-aN-7uY"/>
+                                    <constraint firstItem="Reh-g8-5B8" firstAttribute="width" secondItem="asF-Je-V9o" secondAttribute="width" multiplier="0.727" id="3jq-tQ-Xnt"/>
+                                    <constraint firstItem="9cI-mn-Yae" firstAttribute="centerY" secondItem="asF-Je-V9o" secondAttribute="centerY" id="CkE-Or-uKb"/>
+                                    <constraint firstItem="9cI-mn-Yae" firstAttribute="height" secondItem="asF-Je-V9o" secondAttribute="height" id="CpX-QG-2bh"/>
+                                    <constraint firstItem="9cI-mn-Yae" firstAttribute="width" secondItem="asF-Je-V9o" secondAttribute="width" id="DBC-Gq-rS2"/>
+                                    <constraint firstItem="fxb-08-O6Y" firstAttribute="centerX" secondItem="asF-Je-V9o" secondAttribute="centerX" id="Gkk-DO-nAV"/>
+                                    <constraint firstItem="Reh-g8-5B8" firstAttribute="height" secondItem="asF-Je-V9o" secondAttribute="height" multiplier="0.236" id="LAG-y0-Iry"/>
+                                    <constraint firstItem="2SR-hz-hjm" firstAttribute="height" secondItem="asF-Je-V9o" secondAttribute="height" multiplier="0.245" id="bDG-Df-ml1"/>
+                                    <constraint firstItem="2SR-hz-hjm" firstAttribute="centerY" secondItem="asF-Je-V9o" secondAttribute="centerY" multiplier="1.55" id="ez9-Lj-txJ"/>
+                                    <constraint firstItem="fxb-08-O6Y" firstAttribute="width" secondItem="asF-Je-V9o" secondAttribute="width" multiplier="0.255" id="fFL-Du-xG0"/>
+                                    <constraint firstItem="Reh-g8-5B8" firstAttribute="centerY" secondItem="asF-Je-V9o" secondAttribute="centerY" multiplier="0.4" id="h0h-Il-U38"/>
+                                    <constraint firstItem="fxb-08-O6Y" firstAttribute="centerY" secondItem="asF-Je-V9o" secondAttribute="centerY" multiplier="0.95" id="npk-IC-vGq"/>
+                                    <constraint firstItem="2SR-hz-hjm" firstAttribute="width" secondItem="asF-Je-V9o" secondAttribute="width" multiplier="0.255" id="pR2-wc-QFo"/>
+                                    <constraint firstItem="fxb-08-O6Y" firstAttribute="height" secondItem="asF-Je-V9o" secondAttribute="height" multiplier="0.245" id="unD-F2-3cm"/>
+                                    <constraint firstItem="9cI-mn-Yae" firstAttribute="centerX" secondItem="asF-Je-V9o" secondAttribute="centerX" id="z1P-Hs-Srg"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="asF-Je-V9o" firstAttribute="height" secondItem="Drq-e7-2bA" secondAttribute="height" multiplier="0.805" id="PtN-D5-P5E"/>
+                            <constraint firstItem="asF-Je-V9o" firstAttribute="width" secondItem="Drq-e7-2bA" secondAttribute="width" multiplier="0.418" id="Q8c-NM-prK"/>
+                            <constraint firstItem="asF-Je-V9o" firstAttribute="centerX" secondItem="Drq-e7-2bA" secondAttribute="centerX" id="XOp-vv-fbA"/>
+                            <constraint firstItem="asF-Je-V9o" firstAttribute="centerY" secondItem="Drq-e7-2bA" secondAttribute="centerY" id="irP-ih-zMb"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gHi-LI-9ug" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="35" y="-750"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
@@ -27,4 +92,10 @@
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="Home Button" width="204" height="211"/>
+        <image name="Pause_Menu" width="800" height="867"/>
+        <image name="Pause_Title" width="591" height="142"/>
+        <image name="Play Button" width="204" height="211"/>
+    </resources>
 </document>
