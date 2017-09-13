@@ -13,5 +13,5 @@ struct Values {
     static var START = Double(-30)
     static var END = Double(30)
     static var DELTA_X = CGFloat(60)
-    static var NEUTRINO_SIZE = 70
+    static var NEUTRINO_SIZE = CGFloat(70)
 }

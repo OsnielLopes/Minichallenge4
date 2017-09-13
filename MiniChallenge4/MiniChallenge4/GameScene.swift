@@ -24,6 +24,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     var neutrino: SKSpriteNode!
     
+    var firstDeltaY: CGFloat!
+    
     override func didMove(to view: SKView) {
         
         //CONFIGURATIONS
@@ -90,9 +92,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         neutrino.alpha = 0.5
         neutrino.position = pointProportionalTo(percentage: 0.08, and: 0.6)
         self.addChild(neutrino)
-
-        lastCenterPoint = CGPoint(x: (self.view?.frame.width)! * 0.15, y: (self.view?.frame.height)! * 0.5)
-        lastCenterPoint?.x += CGFloat(Values.NEUTRINO_SIZE)/2
     }
     
     func pointProportionalTo(percentage widht: CGFloat, and height: CGFloat) -> CGPoint {
@@ -107,18 +106,18 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         functionLabel.text = functions.last?.toString()
         if functions.count >= 2 {
             join(functions[functions.count - 2], functions[functions.count - 1])
-        } else if functions.count == 1 {
-            join(neutrino, functions.last!)
         }
+//         else if functions.count == 1 && !neutrino.hasActions(){
+//            join(neutrino, functions.last!)
+//        }
     }
     
     func updatePinch() {
         functions.last?.pinchUpdate(factor: pinchGesture.scale)
         updateAFunction()
-    }
-    
-    func initializeFuntion(function: Function) {
-        calculate(function: function)
+        if functions.count == 1{
+            join(neutrino, functions.first!)
+        }
     }
     
     func calculate(function: Function) {
@@ -163,7 +162,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                                     y: (functions.last?.functionPoints.last!.y)! + (functions.last?.node?.position.y)!)
                 lastCenterPoint = point
             }else{
-                lastCenterPoint = CGPoint(x: (self.view?.frame.width)! * 0.15, y: (self.view?.frame.height)! * 0.5)
+                lastCenterPoint = neutrino.position
             }
         }
     }
@@ -182,9 +181,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     func addFunction(f: Function) {
         functions.append(f)
-        initializeFuntion(function: f)
-        if functions.count > 1 {
-            join(functions[functions.count-2], functions.last!)
+        calculate(function: f)
+        if functions.count == 1 {
+            join(neutrino, functions.last!)
         }
     }
     
@@ -192,29 +191,24 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     func join(_ aObject: Any, _ funcB: Function){
         
         var deltaY: CGFloat!
+        var deltaX: CGFloat = 0
         
         if let funcA = aObject as? Function, !(funcA.node?.hasActions())! && !(funcB.node?.hasActions())! {
             //Find the variation between the value of y of the last point of a function and the first of the next one
             deltaY = (funcA.node?.convert((funcA.functionPoints.last)!, to: self).y)! - (funcB.node?.convert((funcB.functionPoints.first)!, to: self).y)!
         } else if aObject is SKSpriteNode{
-            deltaY = (lastCenterPoint?.y)! - (funcB.node?.convert((funcB.functionPoints.first)!, to: self).y)!
-            //TODO: IMPLEMENTAR VARIACAO TAMBEM NO EIXO X
+            deltaY = neutrino.position.y - (funcB.node?.convert((funcB.functionPoints.first)!, to: self).y)!
+            deltaX = neutrino.position.x - (funcB.node?.convert((funcB.functionPoints.first)!, to: self).x)!
+            lastCenterPoint = CGPoint(x: (functions.last?.node?.position.x)! + deltaX + (functions.last?.deltaX())!,
+                                      y: (functions.last?.node?.position.y)! + deltaY)
+            firstDeltaY = deltaY
         }
         
         //Repositions a node
-        functions.last?.node?.position = CGPoint(x: (functions.last?.node?.position.x)!,
+        functions.last?.node?.position = CGPoint(x: (functions.last?.node?.position.x)! + deltaX,
                                                  y: (functions.last?.node?.position.y)! + deltaY)
     }
-    
-    func join(_ funcA: Function){
-        //Find the variation between the value of y of the last point of a function and the last center point
-        let deltaY = (funcA.node?.convert((funcA.functionPoints.last)!, to: self).y)! - (lastCenterPoint?.y)!
-        
-        //Repositions a node
-        functions.last?.node?.position = CGPoint(x: (functions.last?.node?.position.x)!,
-                                                 y: (functions.last?.node?.position.y)! + deltaY)
-    }
-    
+
     func deltaY(_ funcA: Function, _ funcB: Function) -> CGFloat{
         return (funcA.functionPoints.last?.y)! - (funcB.functionPoints.first?.y)!
     }
@@ -222,17 +216,15 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     /// Creates the path formed by the union of all functions.
     func createThePath() -> CGMutablePath{
         let path = CGMutablePath()
-        var deltaYBefore:CGFloat = 0
+        var deltaYBefore:CGFloat = -(functions.first?.functionPoints.first!.y)!
         for i in 0..<functions.count {
             if i>0{
                 deltaYBefore = deltaYBefore + deltaY(functions[i-1], functions[i])
             }
             var newPoints = functions[i].functionPoints
             for j in 0..<newPoints.count{
-                newPoints[j].x = newPoints[j].x + (CGFloat(i) * ((functions[i].functionPoints.last?.x)! - (functions[i].functionPoints.first?.x)!))
-                if i > 0 {
-                    newPoints[j].y = newPoints[j].y + deltaYBefore
-                }
+                newPoints[j].x = newPoints[j].x + (CGFloat(i) * functions[i].deltaX()) + neutrino.position.x
+                newPoints[j].y = newPoints[j].y + deltaYBefore
                 if i == 0 && j == 0{
                     path.move(to: newPoints[j])
                 }else{

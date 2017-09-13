@@ -65,6 +65,10 @@ class Function {
         return higher! - lower!
     }
     
+    func deltaX() -> CGFloat{
+        return functionPoints.last!.x - functionPoints.first!.x
+    }
+    
     func toString() -> String{
         preconditionFailure("This method must be overridden")
     }
