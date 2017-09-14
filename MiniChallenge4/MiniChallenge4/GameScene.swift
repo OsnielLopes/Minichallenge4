@@ -30,6 +30,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     var numberOfFunctionsAllowed: Double = 0
     
+    var meteors: [SKSpriteNode]!
+    
     override func didMove(to view: SKView) {
         
         //CONFIGURATIONS
@@ -269,8 +271,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     }
     
     func createMeteor(_ point: CGPoint, _ scale: CGFloat){
+        //TODO: criar o scale a partir do tamanho fornecido pelo sketch
         let textures = [SKTexture(imageNamed: "Asteroide Grande"), SKTexture(imageNamed: "Asteroide Pequeno")]
-        var meteor: SKSpriteNode = SKSpriteNode(texture: textures[Int(arc4random_uniform(2))])
+        let meteor: SKSpriteNode = SKSpriteNode(texture: textures[Int(arc4random_uniform(2))])
         meteor.position = point
         meteor.xScale = scale
         meteor.yScale = scale
@@ -284,6 +287,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         neutrino.scale(to: CGSize(width: Values.NEUTRINO_SIZE, height: Values.NEUTRINO_SIZE))
         neutrino.position = pointProportionalTo(percentage: 0.08, and: 0.6)
         self.addChild(neutrino)
+    }
+    
+    func convert(sketchX: Int, sketchY: Int) -> CGPoint{
+        //TODO: adicionar metade do tamanho do node
+        let newX = (sceneSize.width/1920)*CGFloat(sketchX)
+        let newY = (sceneSize.height/1080)*CGFloat(sketchY)
+        return CGPoint(x: newX, y: newY)
     }
     
 }
