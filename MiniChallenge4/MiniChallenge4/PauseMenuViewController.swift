@@ -39,7 +39,7 @@ class PauseMenuViewController: UIViewController {
             self.popUpView.alpha = 0
         }, completion: { _ in
             self.dismiss(animated: false, completion: {_ in
-                self.gameViewController.dismiss(animated: false, completion: nil)
+                self.gameViewController.returnToMainMenu()
             })
         })
     }

@@ -35,14 +35,20 @@ class QuadraticFunction: Function {
             newFactor = 1 - newFactor
             amount = newFactor * -3
         }
+        if a > 100 {
+            a = 100
+        } else if a < -100 {
+            a = -100
+        }
+        
         a += Double(amount)
     }
     
     override func toString() -> String {
         if a != 1{
-            return "f(x) = "+String(Double(round(100 * a)/100))+"x² x 10³"
+            return "f(x) = "+String(Double(round(100 * a)/100))+"x²"
         }else{
-            return "f(x) = x² x 10³"
+            return "f(x) = x²"
         }
     }
 
