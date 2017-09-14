@@ -29,11 +29,6 @@ class GameViewController: UIViewController {
         return true
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        pauseGame()
-    }
-    
     func pauseGame() {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "pauseMenu") as? PauseMenuViewController {
             vc.gameViewController = self
