@@ -10,9 +10,15 @@ import Foundation
 import SpriteKit
 
 class SinFunction: Function {
+    
+    var start: Double = 0
+    
+    var end: Double = 0
         
     init(scale: Double, _ start: Double, _ end: Double) {
         super.init(scale: scale)
+        self.start = start
+        self.end = end
         self.setRange(step: 0.1, min: start, max: end)
     }
     
@@ -22,18 +28,23 @@ class SinFunction: Function {
     }
     
     override func f(x: Double) -> Double {
-        return a * sin(0.25 * x)
+        return a * sin((x * Double.pi * 2) / abs(end - start))
     }
     
     override func pinchUpdate(factor: CGFloat) {
         var newFactor = factor
         var amount: CGFloat!
-        if factor > 1{
+        if factor > 1 {
             newFactor = newFactor - newFactor.rounded(FloatingPointRoundingRule.down)
-            amount = newFactor * 3
-        } else{
+            amount = newFactor * 7
+        } else {
             newFactor = 1 - newFactor
-            amount = newFactor * -3
+            amount = newFactor * -7
+        }
+        if a > 250 {
+            a = 250
+        } else if a < -250 {
+            a = -250
         }
         a += Double(amount)
     }

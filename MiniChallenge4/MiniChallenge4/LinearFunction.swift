@@ -35,6 +35,11 @@ class LinearFunction: Function {
             newFactor = 1 - newFactor
             amount = newFactor * -1
         }
+        if a > 10 {
+            a = 10
+        } else if a < -10 {
+            a = -10
+        }
         a += Double(amount)
     }
     
