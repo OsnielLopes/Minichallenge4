@@ -268,6 +268,17 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         self.addChild(planet)
     }
     
+    func createMeteor(_ point: CGPoint, _ scale: CGFloat){
+        let textures = [SKTexture(imageNamed: "Asteroide Grande"), SKTexture(imageNamed: "Asteroide Pequeno")]
+        var meteor: SKSpriteNode = SKSpriteNode(texture: textures[Int(arc4random_uniform(2))])
+        meteor.position = point
+        meteor.xScale = scale
+        meteor.yScale = scale
+        self.addChild(meteor)
+        let rotateAction = SKAction.rotate(byAngle: CGFloat(arc4random_uniform(90)), duration: 1)
+        meteor.run(SKAction.repeatForever(rotateAction))
+    }
+    
     func newNeutrino(){
         neutrino = SKSpriteNode(imageNamed: "neutrino")
         neutrino.scale(to: CGSize(width: Values.NEUTRINO_SIZE, height: Values.NEUTRINO_SIZE))
