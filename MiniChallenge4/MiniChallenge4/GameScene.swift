@@ -67,22 +67,22 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         deleteButton.scale(to: sizeProportionalTo(percentage: 0.09791666667, and: 0.1745589601))
         self.addChild(deleteButton)
         
-        let goButton = SKButton(pressed: "Go Button", neinPressed: "Go Button_", target: self, action: #selector(play))
+        let goButton = SKButton(pressed: "Go Button_", neinPressed: "Go Button", target: self, action: #selector(play))
         goButton.position = pointProportionalTo(percentage: 0.08, and: 0.11)
         goButton.scale(to: sizeProportionalTo(percentage: 0.09791666667, and: 0.1745589601))
         self.addChild(goButton)
         
-        let quadraticButton = SKButton(pressed: "2 Grau Button", neinPressed: "2 Grau Button_", target: self, action: #selector(addQuadraticFunction))
+        let quadraticButton = SKButton(pressed: "2 Grau Button_", neinPressed: "2 Grau Button", target: self, action: #selector(addQuadraticFunction))
         quadraticButton.position = pointProportionalTo(percentage: 0.5, and: 0.12)
         quadraticButton.scale(to: sizeProportionalTo(percentage: 0.1286458333, and: 0.165273909))
         self.addChild(quadraticButton)
         
-        let linearButton = SKButton(pressed: "Linear Button", neinPressed: "Linear Button_", target: self, action: #selector(addLinearFunction))
+        let linearButton = SKButton(pressed: "Linear Button_", neinPressed: "Linear Button", target: self, action: #selector(addLinearFunction))
         linearButton.position = pointProportionalTo(percentage: 0.3, and: 0.12)
         linearButton.scale(to: sizeProportionalTo(percentage: 0.1286458333, and: 0.165273909))
         self.addChild(linearButton)
         
-        let sinButton = SKButton(pressed: "Sin Button", neinPressed: "Sin Button_", target: self, action: #selector(addSinFunction))
+        let sinButton = SKButton(pressed: "Sin Button_", neinPressed: "Sin Button", target: self, action: #selector(addSinFunction))
         sinButton.position = pointProportionalTo(percentage: 0.7, and: 0.12)
         sinButton.scale(to: sizeProportionalTo(percentage: 0.1286458333, and: 0.165273909))
         self.addChild(sinButton)

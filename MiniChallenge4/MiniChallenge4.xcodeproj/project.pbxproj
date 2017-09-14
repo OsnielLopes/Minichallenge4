@@ -236,7 +236,7 @@
 				TargetAttributes = {
 					BDBB59B61F5DC02000AD5B9B = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = VLLH384AC4;
+						DevelopmentTeam = TME49RR833;
 						ProvisioningStyle = Automatic;
 					};
 					BDBB59D01F5DC02000AD5B9B = {
@@ -467,7 +467,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VLLH384AC4;
+				DEVELOPMENT_TEAM = TME49RR833;
 				INFOPLIST_FILE = MiniChallenge4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.mackMobile.anarchyCompany.MiniChallenge4;
@@ -480,7 +480,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VLLH384AC4;
+				DEVELOPMENT_TEAM = TME49RR833;
 				INFOPLIST_FILE = MiniChallenge4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.mackMobile.anarchyCompany.MiniChallenge4;
