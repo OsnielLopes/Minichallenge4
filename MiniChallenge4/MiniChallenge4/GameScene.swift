@@ -271,14 +271,15 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     }
     
     func createMeteor(_ point: CGPoint, _ scale: CGFloat){
-        //TODO: criar o scale a partir do tamanho fornecido pelo sketch
+        let newScale = scale/246
         let textures = [SKTexture(imageNamed: "Asteroide Grande"), SKTexture(imageNamed: "Asteroide Pequeno")]
         let meteor: SKSpriteNode = SKSpriteNode(texture: textures[Int(arc4random_uniform(2))])
-        meteor.position = point
-        meteor.xScale = scale
-        meteor.yScale = scale
+        let newPoint = CGPoint(x: point.x + scale/2, y: point.y+scale/2)
+        meteor.position = newPoint
+        meteor.xScale = newScale
+        meteor.yScale = newScale
         self.addChild(meteor)
-        let rotateAction = SKAction.rotate(byAngle: CGFloat(arc4random_uniform(90)), duration: 1)
+        let rotateAction = SKAction.rotate(byAngle: CGFloat(Double(arc4random_uniform(200))/100)+0.1, duration: 1)
         meteor.run(SKAction.repeatForever(rotateAction))
     }
     

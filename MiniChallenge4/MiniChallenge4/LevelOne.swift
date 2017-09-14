@@ -34,7 +34,7 @@ class LevelOne: GameScene {
         ]
         
         for meteor in meteorsDescription{
-            self.createMeteor(meteor[0] as! CGPoint,meteor[1] as! CGFloat)
+            self.createMeteor(meteor[0] as! CGPoint, CGFloat(meteor[1] as! Int))
         }
     }
     
