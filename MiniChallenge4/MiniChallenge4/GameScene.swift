@@ -44,7 +44,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         
         lastCenterPoint = pointProportionalTo(percentage: 0.08, and: 0.6)
         
-        numberOfFunctionsAllowed = 2
+        numberOfFunctionsAllowed = 1
         
         
         //HUD ELEMENTS
@@ -124,11 +124,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     func calculate(function: Function) {
         functions.last?.node?.removeFromParent()
         functions.last?.drawFunction(width:  Double((self.view?.frame.width)!),
-                                     height: Double((self.view?.frame.height)!))
+                                    height: Double((self.view?.frame.height)!))
         functions.last?.node?.position = lastCenterPoint!
         self.addChild((functions.last?.node!)!)
         
-        lastCenterPoint = CGPoint(x: (functions.last?.functionPoints.last!.x)! + lastCenterPoint!.x + CGFloat(utilSpace),
+        lastCenterPoint = CGPoint(x: (functions.last?.functionPoints.last!.x)! + lastCenterPoint!.x + ((functions.last?.deltaX())! / 2),
                                   y: (functions.last?.functionPoints.last!.y)! + lastCenterPoint!.y)
     }
     
@@ -169,15 +169,21 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     }
     
     func addLinearFunction() {
-        addFunction(f: LinearFunction(scale: Double((self.view?.frame.width)!), -utilSpace / (2 * numberOfFunctionsAllowed), utilSpace / (2 * numberOfFunctionsAllowed)))
+        addFunction(f: LinearFunction(scale: Double((self.view?.frame.width)!),
+                                      -utilSpace / (2 * numberOfFunctionsAllowed),
+                                      utilSpace / (2 * numberOfFunctionsAllowed)))
     }
     
     func addQuadraticFunction() {
-        addFunction(f: QuadraticFunction(scale: Double((self.view?.frame.width)!), -utilSpace / (2 * numberOfFunctionsAllowed), utilSpace / (2 * numberOfFunctionsAllowed)))
+        addFunction(f: QuadraticFunction(scale: Double((self.view?.frame.width)!),
+                                         -utilSpace / (2 * numberOfFunctionsAllowed),
+                                         utilSpace / (2 * numberOfFunctionsAllowed)))
     }
     
     func addSinFunction() {
-        addFunction(f: SinFunction(scale: Double((self.view?.frame.width)!), -utilSpace / (2 * numberOfFunctionsAllowed), utilSpace / (2 * numberOfFunctionsAllowed)))
+        addFunction(f: SinFunction(scale: Double((self.view?.frame.width)!),
+                                   -utilSpace / (2 * numberOfFunctionsAllowed),
+                                   utilSpace / (2 * numberOfFunctionsAllowed)))
     }
     
     func addFunction(f: Function) {
