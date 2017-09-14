@@ -30,17 +30,17 @@ class LinearFunction: Function {
         var amount: CGFloat!
         if factor > 1{
             newFactor = newFactor - newFactor.rounded(FloatingPointRoundingRule.down)
-            amount = newFactor * 3
+            amount = newFactor
         } else{
             newFactor = 1 - newFactor
-            amount = newFactor * -3
+            amount = newFactor * -1
         }
         a += Double(amount)
     }
     
     override func toString() -> String {
         if a != 1{
-            return "f(x) ="+String(a)+"x"
+            return "f(x) = "+String(Double(round(100 * a) / 100))+"x"
         } else{
             return "f(x) = x"
         }

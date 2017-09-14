@@ -28,19 +28,23 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     var utilSpace: Double!
     
+    var numberOfFunctionsAllowed: Double = 0
+    
     override func didMove(to view: SKView) {
         
         //CONFIGURATIONS
         
         sceneSize = (self.view?.bounds.size)!
         
-        utilSpace = Double(sceneSize.width) * 0.91
+        utilSpace = Double(sceneSize.width) * 0.87
         
         pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.updatePinch))
         pinchGesture.delegate = self
         self.view?.addGestureRecognizer(pinchGesture)
         
         lastCenterPoint = pointProportionalTo(percentage: 0.08, and: 0.6)
+        
+        numberOfFunctionsAllowed = 2
         
         
         //HUD ELEMENTS
@@ -107,9 +111,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         if functions.count >= 2 {
             join(functions[functions.count - 2], functions[functions.count - 1])
         }
-        //         else if functions.count == 1 && !neutrino.hasActions(){
-        //            join(neutrino, functions.last!)
-        //        }
     }
     
     func updatePinch() {
@@ -127,7 +128,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         functions.last?.node?.position = lastCenterPoint!
         self.addChild((functions.last?.node!)!)
         
-        lastCenterPoint = CGPoint(x: (functions.last?.functionPoints.last!.x)! + lastCenterPoint!.x + Values.DELTA_X,
+        lastCenterPoint = CGPoint(x: (functions.last?.functionPoints.last!.x)! + lastCenterPoint!.x + CGFloat(utilSpace),
                                   y: (functions.last?.functionPoints.last!.y)! + lastCenterPoint!.y)
     }
     
@@ -158,7 +159,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
             functions.last?.node?.removeFromParent()
             functions.remove(at: functions.count-1)
             if functions.count >= 1{
-                let point = CGPoint(x: (functions.last?.functionPoints.last!.x)! + (functions.last?.node?.position.x)! + Values.DELTA_X,
+                let point = CGPoint(x: (functions.last?.functionPoints.last!.x)! + (functions.last?.node?.position.x)! + CGFloat(utilSpace / (2 * numberOfFunctionsAllowed)),
                                     y: (functions.last?.functionPoints.last!.y)! + (functions.last?.node?.position.y)!)
                 lastCenterPoint = point
             }else{
@@ -168,22 +169,24 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     }
     
     func addLinearFunction() {
-        addFunction(f: LinearFunction(scale: Double((self.view?.frame.width)!), -utilSpace/4, utilSpace/4))
+        addFunction(f: LinearFunction(scale: Double((self.view?.frame.width)!), -utilSpace / (2 * numberOfFunctionsAllowed), utilSpace / (2 * numberOfFunctionsAllowed)))
     }
     
     func addQuadraticFunction() {
-        addFunction(f: QuadraticFunction(scale: Double((self.view?.frame.width)!), -utilSpace/4, utilSpace/4))
+        addFunction(f: QuadraticFunction(scale: Double((self.view?.frame.width)!), -utilSpace / (2 * numberOfFunctionsAllowed), utilSpace / (2 * numberOfFunctionsAllowed)))
     }
     
     func addSinFunction() {
-        addFunction(f: SinFunction(scale: Double((self.view?.frame.width)!), -utilSpace/4, utilSpace/4))
+        addFunction(f: SinFunction(scale: Double((self.view?.frame.width)!), -utilSpace / (2 * numberOfFunctionsAllowed), utilSpace / (2 * numberOfFunctionsAllowed)))
     }
     
     func addFunction(f: Function) {
-        functions.append(f)
-        calculate(function: f)
-        if functions.count == 1 {
-            join(neutrino, functions.last!)
+        if numberOfFunctionsAllowed > Double(functions.count) {
+            functions.append(f)
+            calculate(function: f)
+            if functions.count == 1 {
+                join(neutrino, functions.last!)
+            }
         }
     }
     
@@ -222,8 +225,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                 deltaYBefore = deltaYBefore + deltaY(functions[i-1], functions[i])
             }
             var newPoints = functions[i].functionPoints
-            for j in 0..<newPoints.count{
-                newPoints[j].x = newPoints[j].x + (CGFloat(i) * ((functions[i].functionPoints.last?.x)! - (functions[i].functionPoints.first?.x)!)) + Values.DELTA_X
+            for j in 0..<newPoints.count {
+                let subtraction = ((functions[i].functionPoints.last?.x)! - (functions[i].functionPoints.first?.x)!)
+                let utilSpaceSlash4 = CGFloat(utilSpace / (2 * numberOfFunctionsAllowed))
+                newPoints[j].x = newPoints[j].x + (CGFloat(i) * subtraction) + utilSpaceSlash4
                 newPoints[j].y = newPoints[j].y + deltaYBefore
                 if i == 0 && j == 0{
                     path.move(to: CGPoint(x:0,y:0))

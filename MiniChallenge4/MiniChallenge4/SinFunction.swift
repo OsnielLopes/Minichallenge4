@@ -40,7 +40,7 @@ class SinFunction: Function {
     
     override func toString() -> String {
         if a != 1{
-            return "f(x) = \(a)sen(x)"
+            return "f(x) = \(Double(round(100 * a) / 100))sen(x)"
         }else{
             return "f(x) = sen(x)"
         }

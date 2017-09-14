@@ -22,7 +22,7 @@ class QuadraticFunction: Function {
     }
     
     override func f(x: Double) -> Double {
-        return a * pow(x, 2)
+        return a * pow(x, 2) / 1000
     }
     
     override func pinchUpdate(factor: CGFloat) {
@@ -30,19 +30,19 @@ class QuadraticFunction: Function {
         var amount: CGFloat!
         if factor > 1{
             newFactor = newFactor - newFactor.rounded(FloatingPointRoundingRule.down)
-            amount = newFactor * 0.05
+            amount = newFactor * 3
         } else{
             newFactor = 1 - newFactor
-            amount = newFactor * -0.05
+            amount = newFactor * -3
         }
         a += Double(amount)
     }
     
     override func toString() -> String {
         if a != 1{
-            return "f(x) ="+String(a)+"x²"
+            return "f(x) = "+String(Double(round(100 * a)/100))+"x² x 10³"
         }else{
-            return "f(x) = x²"
+            return "f(x) = x² x 10³"
         }
     }
 
