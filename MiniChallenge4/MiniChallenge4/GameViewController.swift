@@ -12,7 +12,7 @@ import GameplayKit
 
 class GameViewController: UIViewController {
     
-    var level: GameScene?
+    var level: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class GameViewController: UIViewController {
                 var scene: GameScene
                 
                 if level != nil {
-                    scene = level!
+                    scene = getLevelInstanceByNumber(index: level!)
                 } else {
                     var lastCompletedLevel = 0
                     for i in 0...levels.count {
@@ -80,5 +80,4 @@ class GameViewController: UIViewController {
             return GameScene()
         }
     }
-    
 }

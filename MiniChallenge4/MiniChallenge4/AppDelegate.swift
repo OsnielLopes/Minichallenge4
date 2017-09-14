@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         if UserDefaults.standard.array(forKey: "LevelProgression") == nil {
-            UserDefaults.standard.set([false, false], forKey: "LevelProgression")
+            UserDefaults.standard.set([false, false, false, false, false, false, false, false], forKey: "LevelProgression")
         }
         
         return true
