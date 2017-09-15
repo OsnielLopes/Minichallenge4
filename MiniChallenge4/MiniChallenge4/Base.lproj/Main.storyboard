@@ -279,8 +279,8 @@
         <scene sceneID="LEB-N1-7nS">
             <objects>
                 <collectionViewController modalPresentationStyle="overCurrentContext" id="Cq6-2k-mO5" customClass="LevelSelectionCollectionViewController" customModule="MiniChallenge4" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="LfT-xU-KRR">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="187.5"/>
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="LfT-xU-KRR">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="4" id="MGy-FN-fR0">
@@ -325,7 +325,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGV-55-FEG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-726" y="978"/>
+            <point key="canvasLocation" x="-725" y="1116"/>
         </scene>
     </scenes>
     <resources>

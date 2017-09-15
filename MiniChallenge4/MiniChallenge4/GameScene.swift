@@ -10,7 +10,11 @@ import SpriteKit
 import GameplayKit
 import UIKit
 
-class GameScene: SKScene, UIGestureRecognizerDelegate {
+class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate {
+    
+    let hazardCategory: UInt32 = 0x1 << 0
+    
+    let neutrinoCategory: UInt32 = 0x1 << 1
     
     var functions = Array<Function>()
     
@@ -41,6 +45,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     override func didMove(to view: SKView) {
         
         //CONFIGURATIONS
+        
+        self.physicsWorld.contactDelegate = self
         
         sceneSize = (self.view?.bounds.size)!
         
@@ -152,7 +158,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
             print("YOU WIN MOTHERFUCKER")
         }
         
-        if self.checkIfPlayerLost() {
+        if !isPlaying && self.playerOutOfScreen() {
             neutrinoDiedTragically()
         }
     }
@@ -162,27 +168,19 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         self.gameViewController.pauseGame()
     }
     
-    func checkIfPlayerLost() -> Bool {
-        return isPlaying && (playerOutOfScreen() || playerHitHazard())
-    }
-    
     func playerOutOfScreen() -> Bool {
         let pos = neutrino.position
         return pos.y > sceneSize.height || pos.y < sceneSize.height * 0.2256267409
     }
     
-    func playerHitHazard() -> Bool {
-        return hazards.first(where: { $0.contains(neutrino.position) }) != nil
-    }
-    
     func neutrinoDiedTragically() {
         neutrino.removeAllActions()
-//        neutrino.texture = SKTexture(imageNamed: "")
-        neutrino.physicsBody = SKPhysicsBody(texture: neutrino.texture!, size: neutrino.size)
+        //        neutrino.texture = SKTexture(imageNamed: "")
+        neutrino.physicsBody?.affectedByGravity = true
     }
     
     func updatePinch() {
-        if !isPlaying {
+        if !isPlaying && functions.count > 0 {
             functions.last?.pinchUpdate(factor: pinchGesture.scale)
             updateAFunction()
             if functions.count == 1{
@@ -348,11 +346,15 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         var planet = SKSpriteNode(imageNamed: planets[0])
         planet.scale(to: sizeProportionalTo(percentage: 0.05729166667, and: 0.1021355617))
         planet.position = pointProportionalTo(percentage: 0.01, and: 0.6)
+        planet.shadowedBitMask = 1
+        planet.lightingBitMask = 1
         self.addChild(planet)
         
         planet = SKSpriteNode(imageNamed: planets[1])
         planet.scale(to: sizeProportionalTo(percentage: 0.05729166667, and: 0.1021355617))
         planet.position = pointProportionalTo(percentage: 0.99, and: 0.6)
+        planet.shadowedBitMask = 1
+        planet.lightingBitMask = 1
         
         winArea = SKShapeNode(circleOfRadius: planet.size.width * 0.8)
         winArea.position = planet.position
@@ -374,6 +376,16 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         self.addChild(meteor)
         let rotateAction = SKAction.rotate(byAngle: CGFloat(Double(arc4random_uniform(200))/100)+0.1, duration: 1)
         meteor.run(SKAction.repeatForever(rotateAction))
+        meteor.shadowedBitMask = 1
+        meteor.lightingBitMask = 1
+        
+        meteor.physicsBody = SKPhysicsBody(texture: meteor.texture!, size: meteor.size)
+        meteor.physicsBody?.affectedByGravity = false
+        meteor.physicsBody?.usesPreciseCollisionDetection = true
+        meteor.physicsBody?.categoryBitMask = hazardCategory
+        meteor.physicsBody?.contactTestBitMask = neutrinoCategory
+        meteor.physicsBody?.collisionBitMask = 0x1 << 3
+        
         hazards.append(meteor)
     }
     
@@ -381,7 +393,28 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         neutrino = SKSpriteNode(imageNamed: "neutrino")
         neutrino.scale(to: CGSize(width: Values.NEUTRINO_SIZE, height: Values.NEUTRINO_SIZE))
         neutrino.position = pointProportionalTo(percentage: 0.08, and: 0.6)
+        
+        neutrino.physicsBody = SKPhysicsBody(texture: neutrino.texture!, size: neutrino.size)
+        neutrino.physicsBody?.affectedByGravity = false
+        neutrino.physicsBody?.usesPreciseCollisionDetection = true
+        neutrino.physicsBody?.categoryBitMask = neutrinoCategory
+        neutrino.physicsBody?.contactTestBitMask =  hazardCategory
+        neutrino.physicsBody?.collisionBitMask = 0x1 << 2
+        
+        
+        let neutrinoLight = SKLightNode()
+        neutrinoLight.falloff = 1
+        neutrinoLight.ambientColor = UIColor.lightGray
+        neutrino.addChild(neutrinoLight)
+        
         self.addChild(neutrino)
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        if contact.bodyA.categoryBitMask == neutrinoCategory &&
+            contact.bodyB.categoryBitMask == hazardCategory {
+            neutrinoDiedTragically()
+        }
     }
     
     func convert(sketchX: Int, sketchY: Int) -> CGPoint{
