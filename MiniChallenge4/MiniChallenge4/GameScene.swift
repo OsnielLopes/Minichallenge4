@@ -40,7 +40,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     
     var isPlaying = false
     
+    var isDead = false
+    
     var gameViewController: GameViewController!
+    
+    var blurEffectView: UIVisualEffectView!
     
     override func didMove(to view: SKView) {
         
@@ -60,6 +64,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         
         numberOfFunctionsAllowed = 1
         
+        blurEffectView = UIVisualEffectView()
+        
+        blurEffectView.frame = (self.view?.frame)!
+        
+        self.view?.addSubview(blurEffectView)
+        
         
         //HUD ELEMENTS
         
@@ -73,7 +83,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         self.addChild(funcBox)
         
         functionLabel = SKLabelNode(fontNamed: "Avenir")
-        functionLabel.fontSize = 20
+        functionLabel.fontSize = funcBox.size.height * 0.5
         functionLabel.fontColor = SKColor.black
         functionLabel.position = pointProportionalTo(percentage: 0.5, and: 0.92)
         functionLabel.zPosition = 1.2
@@ -158,7 +168,20 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             print("YOU WIN MOTHERFUCKER")
         }
         
-        if !isPlaying && self.playerOutOfScreen() {
+        if isDead && self.playerOutOfScreen() {
+            isDead = false
+            UIView.animate(withDuration: 1, animations: {
+                self.blurEffectView.effect = UIBlurEffect(style: .dark)
+            }, completion: {_ in
+                UIView.animate(withDuration: 1, animations: {
+                    self.blurEffectView.effect = nil
+                    self.isPlaying = false
+                    self.resetEverything()
+                })
+            })
+        }
+        
+        if isPlaying && self.playerOutOfScreen() {
             neutrinoDiedTragically()
         }
     }
@@ -174,9 +197,14 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
     
     func neutrinoDiedTragically() {
-        neutrino.removeAllActions()
-        //        neutrino.texture = SKTexture(imageNamed: "")
-        neutrino.physicsBody?.affectedByGravity = true
+        if !isDead {
+            neutrino.removeAllActions()
+            neutrino.texture = SKTexture(imageNamed: "Character Sad")
+            neutrino.physicsBody?.affectedByGravity = true
+            neutrino.physicsBody?.applyImpulse(CGVector(dx: 0, dy: neutrino.size.width / 7.5))
+            isPlaying = false
+            isDead = true
+        }
     }
     
     func updatePinch() {
@@ -390,11 +418,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
     
     func newNeutrino(){
-        neutrino = SKSpriteNode(imageNamed: "neutrino")
+        neutrino = SKSpriteNode(imageNamed: "Character Idle")
         neutrino.scale(to: CGSize(width: Values.NEUTRINO_SIZE, height: Values.NEUTRINO_SIZE))
         neutrino.position = pointProportionalTo(percentage: 0.08, and: 0.6)
         
-        neutrino.physicsBody = SKPhysicsBody(texture: neutrino.texture!, size: neutrino.size)
+        neutrino.physicsBody = SKPhysicsBody(texture: neutrino.texture!,
+                                             size: CGSize(width: neutrino.size.width * 0.5,
+                                                          height: neutrino.size.height * 0.5))
         neutrino.physicsBody?.affectedByGravity = false
         neutrino.physicsBody?.usesPreciseCollisionDetection = true
         neutrino.physicsBody?.categoryBitMask = neutrinoCategory
