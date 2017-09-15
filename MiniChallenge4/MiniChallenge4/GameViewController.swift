@@ -61,6 +61,39 @@ class GameViewController: UIViewController {
         }
     }
     
+    func winGame() {
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "winGame") as? WinGameViewController {
+            vc.gameViewController = self
+            self.present(vc, animated: false, completion: nil)
+        }
+    }
+    
+    func nextLevel() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.alpha = 0
+            if let levels = UserDefaults.standard.array(forKey: "LevelProgression") as? [Bool] {
+                
+                var scene: GameScene
+                
+                if self.level != nil {
+                    scene = self.getLevelInstanceByNumber(index: self.level!)
+                } else {
+                    var lastCompletedLevel = 0
+                    for i in 0...levels.count {
+                        if levels[i] == false {
+                            lastCompletedLevel = i
+                            break
+                        }
+                    }
+                    scene = self.getLevelInstanceByNumber(index: lastCompletedLevel)
+                }
+                scene.gameViewController = self
+            }
+        }, completion: {_ in
+            self.view.alpha = 1
+        })
+    }
+    
     func returnToMainMenu() {
         self.dismiss(animated: true, completion: nil)
     }
@@ -76,6 +109,8 @@ class GameViewController: UIViewController {
     func getLevelInstanceByNumber(index: Int) -> GameScene {
         switch index {
         case 0:
+            return LevelOne(size: view.frame.size)
+        case 1:
             return LevelOne(size: view.frame.size)
         default:
             return GameScene()

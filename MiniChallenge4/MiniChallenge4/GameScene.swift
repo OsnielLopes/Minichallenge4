@@ -89,7 +89,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         functionLabel.zPosition = 1.2
         self.addChild(functionLabel)
         
-        let pauseButton = SKButton(pressed: "Home Button_", neinPressed: "Home Button", target: self, action: #selector(self.pauseGame))
+        let pauseButton = SKButton(pressed: "Pause Button_", neinPressed: "Pause Button", target: self, action: #selector(self.pauseGame))
         pauseButton.position = pointProportionalTo(percentage: 0.93, and: 0.9)
         pauseButton.scale(to: sizeProportionalTo(percentage: 0.09791666667, and: 0.1745589601))
         pauseButton.zPosition = 1.1
@@ -165,7 +165,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         }
         
         if self.winArea.contains(neutrino.position) && isPlaying && !isDead {
-            print("YOU WIN MOTHERFUCKER")
+            self.isPaused = true
+            UIView.animate(withDuration: 10, animations: { }, completion: { _ in
+                self.gameViewController.winGame()
+            })
         }
         
         if isDead && self.playerOutOfScreen() {
@@ -362,6 +365,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     func play(){
         if !functions.isEmpty && !isPlaying {
             let action = SKAction.follow(createThePath(), speed: 60)
+            neutrino.texture = SKTexture(imageNamed: "Character Wow")
             neutrino.run(action) {
                 if !self.winArea.contains(self.neutrino.position) {
                     self.neutrinoDiedTragically()

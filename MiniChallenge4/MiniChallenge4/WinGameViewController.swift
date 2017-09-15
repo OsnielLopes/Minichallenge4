@@ -9,27 +9,47 @@
 import UIKit
 
 class WinGameViewController: UIViewController {
+    @IBOutlet weak var blurView: UIVisualEffectView!
 
+    @IBOutlet weak var popUpView: UIView!
+    
+    var effect: UIVisualEffect!
+    
+    var gameViewController: GameViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        effect = blurView.effect
+        blurView.effect = nil
+        popUpView.alpha = 0
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        UIView.animate(withDuration: 0.4, animations: {
+            self.blurView.effect = self.effect
+            self.popUpView.alpha = 1
+        })
     }
-    */
-
+    @IBAction func nextLevel(_ sender: Any) {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.blurView.effect = nil
+            self.popUpView.alpha = 0
+        }, completion: { _ in
+            self.dismiss(animated: false, completion: {_ in
+                self.gameViewController.nextLevel()
+            })
+        })
+    }
+    
+    @IBAction func backToMainMenu(_ sender: Any) {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.blurView.effect = nil
+            self.popUpView.alpha = 0
+        }, completion: { _ in
+            self.dismiss(animated: false, completion: {_ in
+                self.gameViewController.returnToMainMenu()
+            })
+        })
+    }
 }
