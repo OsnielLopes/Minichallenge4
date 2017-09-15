@@ -35,6 +35,7 @@ class GameViewController: UIViewController {
                     scene = getLevelInstanceByNumber(index: lastCompletedLevel)
                 }
                 scene.scaleMode = .aspectFill
+                scene.gameViewController = self
                 view.presentScene(scene)
                 view.ignoresSiblingOrder = true
                 view.showsFPS = false

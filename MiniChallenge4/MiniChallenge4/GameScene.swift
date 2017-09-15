@@ -30,11 +30,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     var numberOfFunctionsAllowed: Double = 0
     
-    var meteors: [SKSpriteNode] = []
+    var hazards: [SKSpriteNode] = []
     
     var winArea: SKShapeNode!
     
     var isPlaying = false
+    
+    var gameViewController: GameViewController!
     
     override func didMove(to view: SKView) {
         
@@ -55,6 +57,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         
         //HUD ELEMENTS
         
+        //UPPER MENU:
+        
         let funcBox = SKSpriteNode(texture: SKTexture(imageNamed: "funcbox"),
                                    color: UIColor.white,
                                    size: sizeProportionalTo(percentage: 0.25, and: 0.1))
@@ -69,7 +73,14 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         functionLabel.zPosition = 1.2
         self.addChild(functionLabel)
         
-        //Bottom menu:
+        let pauseButton = SKButton(pressed: "Home Button_", neinPressed: "Home Button", target: self, action: #selector(self.pauseGame))
+        pauseButton.position = pointProportionalTo(percentage: 0.93, and: 0.9)
+        pauseButton.scale(to: sizeProportionalTo(percentage: 0.09791666667, and: 0.1745589601))
+        pauseButton.zPosition = 1.1
+        self.addChild(pauseButton)
+        
+        
+        //BOTTOM MENU:
         
         let bottomMenuBackground = SKShapeNode(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: sizeProportionalTo(percentage: 1, and: 0.2256267409)))
         bottomMenuBackground.fillColor = UIColor(red: 53 / 255, green: 79 / 255, blue: 149 / 255, alpha: 1)
@@ -142,24 +153,32 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         }
         
         if self.checkIfPlayerLost() {
-            print("YOU LOST")
+            neutrinoDiedTragically()
         }
     }
     
+    func pauseGame() {
+        self.view?.isPaused = true
+        self.gameViewController.pauseGame()
+    }
+    
     func checkIfPlayerLost() -> Bool {
-        return isPlaying && (playerOutOfScreen() || playerHitMeteor())
+        return isPlaying && (playerOutOfScreen() || playerHitHazard())
     }
     
     func playerOutOfScreen() -> Bool {
         let pos = neutrino.position
-        return pos.y > sceneSize.height || pos.y < 0
+        return pos.y > sceneSize.height || pos.y < sceneSize.height * 0.2256267409
     }
     
-    func playerHitMeteor() -> Bool {
-        if neutrino != nil {
-            return meteors.first(where: { $0.contains(neutrino.position) }) != nil
-        }
-        return false
+    func playerHitHazard() -> Bool {
+        return hazards.first(where: { $0.contains(neutrino.position) }) != nil
+    }
+    
+    func neutrinoDiedTragically() {
+        neutrino.removeAllActions()
+//        neutrino.texture = SKTexture(imageNamed: "")
+        neutrino.physicsBody = SKPhysicsBody(texture: neutrino.texture!, size: neutrino.size)
     }
     
     func updatePinch() {
@@ -206,17 +225,31 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     }
     
     func removeActiveFunction(){
-        if functions.count > 0 && !isPlaying {
-            functions.last?.node?.removeFromParent()
-            functions.remove(at: functions.count-1)
-            if functions.count >= 1{
-                let point = CGPoint(x: (functions.last?.functionPoints.last!.x)! + (functions.last?.node?.position.x)! + CGFloat(utilSpace / (2 * numberOfFunctionsAllowed)),
-                                    y: (functions.last?.functionPoints.last!.y)! + (functions.last?.node?.position.y)!)
-                lastCenterPoint = point
-            }else{
-                lastCenterPoint = neutrino.position
+        if !isPlaying {
+            if functions.count > 0 {
+                functions.last?.node?.removeFromParent()
+                functions.remove(at: functions.count-1)
+                if functions.count >= 1{
+                    let point = CGPoint(x: (functions.last?.functionPoints.last!.x)! + (functions.last?.node?.position.x)! + CGFloat(utilSpace / (2 * numberOfFunctionsAllowed)),
+                                        y: (functions.last?.functionPoints.last!.y)! + (functions.last?.node?.position.y)!)
+                    lastCenterPoint = point
+                }else{
+                    lastCenterPoint = neutrino.position
+                }
             }
+        } else {
+            resetEverything()
         }
+    }
+    
+    func resetEverything() {
+        self.neutrino.removeAllActions()
+        self.neutrino.removeFromParent()
+        self.newNeutrino()
+        for f in functions {
+            f.node?.removeFromParent()
+        }
+        functions = []
     }
     
     func addLinearFunction() {
@@ -333,7 +366,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     func createMeteor(_ point: CGPoint, _ scale: CGFloat){
         let newScale = scale/246
         let textures = [SKTexture(imageNamed: "Asteroide Grande"), SKTexture(imageNamed: "Asteroide Pequeno")]
-        let meteor: SKSpriteNode = SKSpriteNode(texture: textures[Int(arc4random_uniform(2))])
+        let meteor = SKSpriteNode(texture: textures[Int(arc4random_uniform(2))])
         let newPoint = CGPoint(x: point.x + scale/2, y: point.y+scale/2)
         meteor.position = newPoint
         meteor.xScale = newScale
@@ -341,7 +374,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         self.addChild(meteor)
         let rotateAction = SKAction.rotate(byAngle: CGFloat(Double(arc4random_uniform(200))/100)+0.1, duration: 1)
         meteor.run(SKAction.repeatForever(rotateAction))
-        meteors.append(meteor)
+        hazards.append(meteor)
     }
     
     func newNeutrino(){
