@@ -15,6 +15,7 @@
 		BD83A1801F6B0CE400D86563 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD83A17F1F6B0CE400D86563 /* Extensions.swift */; };
 		BD83A1821F6B212800D86563 /* LevelSelectionCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD83A1811F6B212800D86563 /* LevelSelectionCollectionViewController.swift */; };
 		BD83A1841F6B219700D86563 /* LevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD83A1831F6B219700D86563 /* LevelCollectionViewCell.swift */; };
+		BDB8C7FA1F6C98FA0046DC1C /* WinGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB8C7F91F6C98FA0046DC1C /* WinGameViewController.swift */; };
 		BDBB59BB1F5DC02000AD5B9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59BA1F5DC02000AD5B9B /* AppDelegate.swift */; };
 		BDBB59C11F5DC02000AD5B9B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59C01F5DC02000AD5B9B /* GameScene.swift */; };
 		BDBB59C31F5DC02000AD5B9B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59C21F5DC02000AD5B9B /* GameViewController.swift */; };
@@ -55,6 +56,7 @@
 		BD83A17F1F6B0CE400D86563 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BD83A1811F6B212800D86563 /* LevelSelectionCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LevelSelectionCollectionViewController.swift; path = ../LevelSelectionCollectionViewController.swift; sourceTree = "<group>"; };
 		BD83A1831F6B219700D86563 /* LevelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCollectionViewCell.swift; sourceTree = "<group>"; };
+		BDB8C7F91F6C98FA0046DC1C /* WinGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinGameViewController.swift; sourceTree = "<group>"; };
 		BDBB59B71F5DC02000AD5B9B /* MiniChallenge4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniChallenge4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDBB59BA1F5DC02000AD5B9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDBB59C01F5DC02000AD5B9B /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				BD83A17D1F6B0CB300D86563 /* MainMenuViewController.swift */,
 				BD83A1811F6B212800D86563 /* LevelSelectionCollectionViewController.swift */,
 				BDBB59C41F5DC02000AD5B9B /* Main.storyboard */,
+				BDB8C7F91F6C98FA0046DC1C /* WinGameViewController.swift */,
 				BD83A1831F6B219700D86563 /* LevelCollectionViewCell.swift */,
 				BD83A17F1F6B0CE400D86563 /* Extensions.swift */,
 				BD83A1791F69A39300D86563 /* PauseMenuViewController.swift */,
@@ -330,6 +333,7 @@
 				BD83A1801F6B0CE400D86563 /* Extensions.swift in Sources */,
 				BDBB59F11F5DC4E600AD5B9B /* Function.swift in Sources */,
 				BDBB59C31F5DC02000AD5B9B /* GameViewController.swift in Sources */,
+				BDB8C7FA1F6C98FA0046DC1C /* WinGameViewController.swift in Sources */,
 				BDBB59FC1F5EE31E00AD5B9B /* SinFunction.swift in Sources */,
 				BDBB59BB1F5DC02000AD5B9B /* AppDelegate.swift in Sources */,
 			);

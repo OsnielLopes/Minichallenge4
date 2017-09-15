@@ -164,7 +164,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             join(functions[functions.count - 2], functions[functions.count - 1])
         }
         
-        if self.winArea.contains(neutrino.position) {
+        if self.winArea.contains(neutrino.position) && isPlaying && !isDead {
             print("YOU WIN MOTHERFUCKER")
         }
         
@@ -363,8 +363,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         if !functions.isEmpty && !isPlaying {
             let action = SKAction.follow(createThePath(), speed: 60)
             neutrino.run(action) {
-                self.neutrino.removeFromParent()
-                self.newNeutrino()
+                if !self.winArea.contains(self.neutrino.position) {
+                    self.neutrinoDiedTragically()
+                }
             }
             isPlaying = true
         }

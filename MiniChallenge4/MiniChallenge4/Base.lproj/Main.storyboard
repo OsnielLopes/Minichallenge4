@@ -175,25 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gHi-LI-9ug" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="-1577"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="fEB-kt-fnG">
-            <objects>
-                <viewController storyboardIdentifier="loseGame" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0YN-kF-cKj" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="MdE-py-AxR"/>
-                        <viewControllerLayoutGuide type="bottom" id="MhB-xU-sJi"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yfc-J3-bos">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GhW-Wg-tPA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="35" y="265"/>
+            <point key="canvasLocation" x="-47" y="-1166"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -211,7 +193,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="-751"/>
+            <point key="canvasLocation" x="-47" y="-338"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ByX-Wb-kRs">
@@ -327,6 +309,97 @@
             </objects>
             <point key="canvasLocation" x="-725" y="1116"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="ZLB-a3-Xya">
+            <objects>
+                <viewController storyboardIdentifier="winGame" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hOA-ZM-KCf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="f6k-JA-4LN"/>
+                        <viewControllerLayoutGuide type="bottom" id="bAM-xt-egA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2fn-5P-HV1">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXH-q2-muR">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gOp-j3-iWS">
+                                    <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d42-Jt-npg">
+                                <rect key="frame" x="194" y="37" width="278.5" height="302"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pause_Menu" translatesAutoresizingMaskIntoConstraints="NO" id="sQH-wl-zgw">
+                                        <rect key="frame" x="0.0" y="0.0" width="278" height="302"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You win!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOj-QN-rYu">
+                                        <rect key="frame" x="38.5" y="25" width="202.5" height="71"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="45"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0AC-Ej-ZM7">
+                                        <rect key="frame" x="103.5" y="106.5" width="71.5" height="73.5"/>
+                                        <state key="normal" image="Next Button"/>
+                                        <state key="selected" image="Next Button_"/>
+                                        <connections>
+                                            <action selector="backToGame:" destination="hOA-ZM-KCf" eventType="touchUpInside" id="UHw-kK-glp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nr9-cv-ld2">
+                                        <rect key="frame" x="103.5" y="197" width="71.5" height="74"/>
+                                        <state key="normal" image="Home Button"/>
+                                        <state key="selected" image="Home Button_"/>
+                                        <connections>
+                                            <action selector="mainMenu:" destination="hOA-ZM-KCf" eventType="touchUpInside" id="JTg-53-pdi"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="cOj-QN-rYu" firstAttribute="height" secondItem="d42-Jt-npg" secondAttribute="height" multiplier="0.236" id="4AO-Id-tLN"/>
+                                    <constraint firstItem="cOj-QN-rYu" firstAttribute="centerX" secondItem="d42-Jt-npg" secondAttribute="centerX" id="BeW-WL-8kK"/>
+                                    <constraint firstItem="Nr9-cv-ld2" firstAttribute="width" secondItem="d42-Jt-npg" secondAttribute="width" multiplier="0.255" id="DSu-Xf-PEU"/>
+                                    <constraint firstItem="sQH-wl-zgw" firstAttribute="centerY" secondItem="d42-Jt-npg" secondAttribute="centerY" id="Lrd-2h-0K1"/>
+                                    <constraint firstItem="0AC-Ej-ZM7" firstAttribute="height" secondItem="d42-Jt-npg" secondAttribute="height" multiplier="0.245" id="OFE-hO-ek1"/>
+                                    <constraint firstItem="Nr9-cv-ld2" firstAttribute="height" secondItem="d42-Jt-npg" secondAttribute="height" multiplier="0.245" id="SuA-Iu-QAk"/>
+                                    <constraint firstItem="Nr9-cv-ld2" firstAttribute="centerX" secondItem="d42-Jt-npg" secondAttribute="centerX" id="UuE-6W-zvP"/>
+                                    <constraint firstItem="0AC-Ej-ZM7" firstAttribute="centerY" secondItem="d42-Jt-npg" secondAttribute="centerY" multiplier="0.95" id="d2s-Fb-nFF"/>
+                                    <constraint firstItem="cOj-QN-rYu" firstAttribute="width" secondItem="d42-Jt-npg" secondAttribute="width" multiplier="0.727" id="eS4-jP-W1N"/>
+                                    <constraint firstItem="Nr9-cv-ld2" firstAttribute="centerY" secondItem="d42-Jt-npg" secondAttribute="centerY" multiplier="1.55" id="j54-Rg-6FF"/>
+                                    <constraint firstItem="0AC-Ej-ZM7" firstAttribute="centerX" secondItem="d42-Jt-npg" secondAttribute="centerX" id="mKW-0n-aXB"/>
+                                    <constraint firstItem="sQH-wl-zgw" firstAttribute="height" secondItem="d42-Jt-npg" secondAttribute="height" id="mMX-pC-KD5"/>
+                                    <constraint firstItem="sQH-wl-zgw" firstAttribute="width" secondItem="d42-Jt-npg" secondAttribute="width" id="pOm-dB-fhh"/>
+                                    <constraint firstItem="cOj-QN-rYu" firstAttribute="centerY" secondItem="d42-Jt-npg" secondAttribute="centerY" multiplier="0.4" id="pl0-FY-tD6"/>
+                                    <constraint firstItem="0AC-Ej-ZM7" firstAttribute="width" secondItem="d42-Jt-npg" secondAttribute="width" multiplier="0.255" id="sub-LA-zXx"/>
+                                    <constraint firstItem="sQH-wl-zgw" firstAttribute="centerX" secondItem="d42-Jt-npg" secondAttribute="centerX" id="y7g-Wa-DZk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="LXH-q2-muR" firstAttribute="height" secondItem="2fn-5P-HV1" secondAttribute="height" id="1Fv-KU-Pt7"/>
+                            <constraint firstItem="d42-Jt-npg" firstAttribute="width" secondItem="2fn-5P-HV1" secondAttribute="width" multiplier="0.418" id="CzB-eO-uHh"/>
+                            <constraint firstItem="d42-Jt-npg" firstAttribute="height" secondItem="2fn-5P-HV1" secondAttribute="height" multiplier="0.805" id="O7R-nD-Yqc"/>
+                            <constraint firstItem="d42-Jt-npg" firstAttribute="centerY" secondItem="2fn-5P-HV1" secondAttribute="centerY" id="eHV-wy-6v7"/>
+                            <constraint firstItem="d42-Jt-npg" firstAttribute="centerX" secondItem="2fn-5P-HV1" secondAttribute="centerX" id="j7X-Ej-72n"/>
+                            <constraint firstItem="LXH-q2-muR" firstAttribute="centerY" secondItem="2fn-5P-HV1" secondAttribute="centerY" id="kR1-iN-P6I"/>
+                            <constraint firstItem="LXH-q2-muR" firstAttribute="width" secondItem="2fn-5P-HV1" secondAttribute="width" id="khK-1H-FTs"/>
+                            <constraint firstItem="LXH-q2-muR" firstAttribute="centerX" secondItem="2fn-5P-HV1" secondAttribute="centerX" id="tBa-CZ-uMb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="blurView" destination="LXH-q2-muR" id="tF0-uQ-gEF"/>
+                        <outlet property="popUpView" destination="d42-Jt-npg" id="4lo-9Z-PGz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cmw-f7-yNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-47.226386806596707" y="480.80000000000001"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Ceu" width="1920" height="1077"/>
@@ -334,6 +407,8 @@
         <image name="Home Button_" width="204" height="210"/>
         <image name="Launch_Title" width="1248" height="293"/>
         <image name="Lvl 1" width="272" height="210"/>
+        <image name="Next Button" width="204" height="211"/>
+        <image name="Next Button_" width="204" height="210"/>
         <image name="Pause_Menu" width="800" height="867"/>
         <image name="Play Button" width="204" height="211"/>
         <image name="Play Button_" width="204" height="210"/>
