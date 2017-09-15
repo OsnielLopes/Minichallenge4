@@ -30,7 +30,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     var numberOfFunctionsAllowed: Double = 0
     
-    var meteors: [SKSpriteNode]!
+    var meteors: [SKSpriteNode] = []
+    
+    var winArea: SKShapeNode!
+    
+    var isPlaying = false
     
     override func didMove(to view: SKView) {
         
@@ -51,42 +55,56 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         
         //HUD ELEMENTS
         
-        functionLabel = SKLabelNode(fontNamed: "Cochin")
+        let funcBox = SKSpriteNode(texture: SKTexture(imageNamed: "funcbox"),
+                                   color: UIColor.white,
+                                   size: sizeProportionalTo(percentage: 0.25, and: 0.1))
+        funcBox.position = pointProportionalTo(percentage: 0.5, and: 0.94)
+        funcBox.zPosition = 1.1
+        self.addChild(funcBox)
+        
+        functionLabel = SKLabelNode(fontNamed: "Avenir")
         functionLabel.fontSize = 20
-        functionLabel.fontColor = SKColor.white
-        functionLabel.position = CGPoint(x: frame.midX, y: frame.midY)
-        addChild(functionLabel)
+        functionLabel.fontColor = SKColor.black
+        functionLabel.position = pointProportionalTo(percentage: 0.5, and: 0.92)
+        functionLabel.zPosition = 1.2
+        self.addChild(functionLabel)
         
         //Bottom menu:
         
         let bottomMenuBackground = SKShapeNode(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: sizeProportionalTo(percentage: 1, and: 0.2256267409)))
         bottomMenuBackground.fillColor = UIColor(red: 53 / 255, green: 79 / 255, blue: 149 / 255, alpha: 1)
         bottomMenuBackground.strokeColor = UIColor(red: 53 / 255, green: 79 / 255, blue: 149 / 255, alpha: 1)
+        bottomMenuBackground.zPosition = 1.1
         self.addChild(bottomMenuBackground)
         
         let deleteButton = SKButton(pressed: "ApagarButton_", neinPressed: "ApagarButton", target: self, action: #selector(removeActiveFunction))
         deleteButton.position = pointProportionalTo(percentage: 0.92, and: 0.11)
         deleteButton.scale(to: sizeProportionalTo(percentage: 0.09791666667, and: 0.1745589601))
+        deleteButton.zPosition = 1.2
         self.addChild(deleteButton)
         
         let goButton = SKButton(pressed: "Go Button_", neinPressed: "Go Button", target: self, action: #selector(play))
         goButton.position = pointProportionalTo(percentage: 0.08, and: 0.11)
         goButton.scale(to: sizeProportionalTo(percentage: 0.09791666667, and: 0.1745589601))
+        goButton.zPosition = 1.2
         self.addChild(goButton)
         
         let quadraticButton = SKButton(pressed: "2 Grau Button_", neinPressed: "2 Grau Button", target: self, action: #selector(addQuadraticFunction))
         quadraticButton.position = pointProportionalTo(percentage: 0.5, and: 0.12)
         quadraticButton.scale(to: sizeProportionalTo(percentage: 0.1286458333, and: 0.165273909))
+        quadraticButton.zPosition = 1.2
         self.addChild(quadraticButton)
         
         let linearButton = SKButton(pressed: "Linear Button_", neinPressed: "Linear Button", target: self, action: #selector(addLinearFunction))
         linearButton.position = pointProportionalTo(percentage: 0.3, and: 0.12)
         linearButton.scale(to: sizeProportionalTo(percentage: 0.1286458333, and: 0.165273909))
+        linearButton.zPosition = 1.2
         self.addChild(linearButton)
         
         let sinButton = SKButton(pressed: "Sin Button_", neinPressed: "Sin Button", target: self, action: #selector(addSinFunction))
         sinButton.position = pointProportionalTo(percentage: 0.7, and: 0.12)
         sinButton.scale(to: sizeProportionalTo(percentage: 0.1286458333, and: 0.165273909))
+        sinButton.zPosition = 1.2
         self.addChild(sinButton)
         
         
@@ -109,24 +127,55 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        functionLabel.text = functions.last?.toString()
+        if functions.last == nil {
+            functionLabel.text = "Select a function"
+        } else {
+            functionLabel.text = functions.last?.toString()
+        }
+        
         if functions.count >= 2 {
             join(functions[functions.count - 2], functions[functions.count - 1])
         }
+        
+        if self.winArea.contains(neutrino.position) {
+            print("YOU WIN MOTHERFUCKER")
+        }
+        
+        if self.checkIfPlayerLost() {
+            print("YOU LOST")
+        }
+    }
+    
+    func checkIfPlayerLost() -> Bool {
+        return isPlaying && (playerOutOfScreen() || playerHitMeteor())
+    }
+    
+    func playerOutOfScreen() -> Bool {
+        let pos = neutrino.position
+        return pos.y > sceneSize.height || pos.y < 0
+    }
+    
+    func playerHitMeteor() -> Bool {
+        if neutrino != nil {
+            return meteors.first(where: { $0.contains(neutrino.position) }) != nil
+        }
+        return false
     }
     
     func updatePinch() {
-        functions.last?.pinchUpdate(factor: pinchGesture.scale)
-        updateAFunction()
-        if functions.count == 1{
-            join(neutrino, functions.first!)
+        if !isPlaying {
+            functions.last?.pinchUpdate(factor: pinchGesture.scale)
+            updateAFunction()
+            if functions.count == 1{
+                join(neutrino, functions.first!)
+            }
         }
     }
     
     func calculate(function: Function) {
         functions.last?.node?.removeFromParent()
         functions.last?.drawFunction(width:  Double((self.view?.frame.width)!),
-                                    height: Double((self.view?.frame.height)!))
+                                     height: Double((self.view?.frame.height)!))
         functions.last?.node?.position = lastCenterPoint!
         self.addChild((functions.last?.node!)!)
         
@@ -157,7 +206,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     }
     
     func removeActiveFunction(){
-        if functions.count > 0 {
+        if functions.count > 0 && !isPlaying {
             functions.last?.node?.removeFromParent()
             functions.remove(at: functions.count-1)
             if functions.count >= 1{
@@ -189,11 +238,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     }
     
     func addFunction(f: Function) {
-        if numberOfFunctionsAllowed > Double(functions.count) {
-            functions.append(f)
-            calculate(function: f)
-            if functions.count == 1 {
-                join(neutrino, functions.last!)
+        if !isPlaying {
+            if numberOfFunctionsAllowed > Double(functions.count) {
+                functions.append(f)
+                calculate(function: f)
+                if functions.count == 1 {
+                    join(neutrino, functions.last!)
+                }
             }
         }
     }
@@ -250,12 +301,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     /// Makes the neutrino run
     func play(){
-        if !functions.isEmpty{
+        if !functions.isEmpty && !isPlaying {
             let action = SKAction.follow(createThePath(), speed: 60)
             neutrino.run(action) {
                 self.neutrino.removeFromParent()
                 self.newNeutrino()
             }
+            isPlaying = true
         }
     }
     
@@ -264,9 +316,17 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         planet.scale(to: sizeProportionalTo(percentage: 0.05729166667, and: 0.1021355617))
         planet.position = pointProportionalTo(percentage: 0.01, and: 0.6)
         self.addChild(planet)
+        
         planet = SKSpriteNode(imageNamed: planets[1])
         planet.scale(to: sizeProportionalTo(percentage: 0.05729166667, and: 0.1021355617))
         planet.position = pointProportionalTo(percentage: 0.99, and: 0.6)
+        
+        winArea = SKShapeNode(circleOfRadius: planet.size.width * 0.8)
+        winArea.position = planet.position
+        winArea.strokeColor = UIColor.clear
+        winArea.fillColor = UIColor.clear
+        self.addChild(winArea)
+        
         self.addChild(planet)
     }
     
@@ -281,6 +341,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         self.addChild(meteor)
         let rotateAction = SKAction.rotate(byAngle: CGFloat(Double(arc4random_uniform(200))/100)+0.1, duration: 1)
         meteor.run(SKAction.repeatForever(rotateAction))
+        meteors.append(meteor)
     }
     
     func newNeutrino(){
@@ -296,5 +357,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         let newY = (sceneSize.height/1080)*CGFloat(sketchY)
         return CGPoint(x: newX, y: newY)
     }
+    
+    
     
 }
