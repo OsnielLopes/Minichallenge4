@@ -406,13 +406,19 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     func createMeteor(_ point: CGPoint, _ scale: CGFloat){
         let newScale = scale/246
         let textures = [SKTexture(imageNamed: "Asteroide Grande"), SKTexture(imageNamed: "Asteroide Pequeno")]
-        let meteor = SKSpriteNode(texture: textures[Int(arc4random_uniform(2))])
-        let newPoint = CGPoint(x: point.x + scale/2, y: point.y+scale/2)
+        let randomIndex = Int(arc4random_uniform(2))
+        let meteor = SKSpriteNode(texture: textures[randomIndex])
+        let newPoint: CGPoint!
+        if randomIndex == 0 {
+            newPoint = CGPoint(x: point.x + #imageLiteral(resourceName: "Asteroide Grande").size.width/2, y: point.y + #imageLiteral(resourceName: "Asteroide Grande").size.height/2)
+        } else {
+            newPoint = CGPoint(x: point.x + #imageLiteral(resourceName: "Asteroide Pequeno").size.width/2, y: point.y + #imageLiteral(resourceName: "Asteroide Pequeno").size.height/2)
+        }
         meteor.position = newPoint
         meteor.xScale = newScale
         meteor.yScale = newScale
         self.addChild(meteor)
-        let rotateAction = SKAction.rotate(byAngle: CGFloat(Double(arc4random_uniform(200))/100)+0.1, duration: 1)
+        let rotateAction = SKAction.rotate(byAngle: CGFloat((arc4random_uniform(400)-200))/100, duration: 1)
         meteor.run(SKAction.repeatForever(rotateAction))
         meteor.shadowedBitMask = 1
         meteor.lightingBitMask = 1

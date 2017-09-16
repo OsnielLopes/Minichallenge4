@@ -45,7 +45,7 @@ class LinearFunction: Function {
     
     override func toString() -> String {
         if a != 1{
-            return "f(x) = "+String(Double(round(100 * a) / 100))+"x"
+            return "f(x) = "+String(Double(round(1000 * a) / 100))+"x"
         } else{
             return "f(x) = x"
         }
