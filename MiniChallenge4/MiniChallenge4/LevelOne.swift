@@ -36,9 +36,7 @@ class LevelOne: GameScene {
         for meteor in meteorsDescription{
             self.createMeteor(meteor[0] as! CGPoint, CGFloat(meteor[1] as! Int))
         }
-    }
-    
-    func didWon(){
-        ///TODO: mudar o vetor de levels
+        
+        levelIndex = 0
     }
 }

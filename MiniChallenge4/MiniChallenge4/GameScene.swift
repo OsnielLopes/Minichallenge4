@@ -9,6 +9,7 @@
 import SpriteKit
 import GameplayKit
 import UIKit
+import Foundation
 
 class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate {
     
@@ -45,6 +46,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     var gameViewController: GameViewController!
     
     var blurEffectView: UIVisualEffectView!
+    
+    var levelIndex = 0
     
     override func didMove(to view: SKView) {
         
@@ -166,9 +169,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         
         if self.winArea.contains(neutrino.position) && isPlaying && !isDead {
             self.isPaused = true
-            UIView.animate(withDuration: 10, animations: { }, completion: { _ in
-                self.gameViewController.winGame()
-            })
+            var levels = UserDefaults.standard.array(forKey: "LevelProgression")
+            levels?[levelIndex] = true
+            UserDefaults.standard.set(levels, forKey: "LevelProgression")
+            self.gameViewController.winGame()
         }
         
         if isDead && self.playerOutOfScreen() {
@@ -301,12 +305,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     
     func addFunction(f: Function) {
         if !isPlaying {
-            if numberOfFunctionsAllowed > Double(functions.count) {
-                functions.append(f)
-                calculate(function: f)
-                if functions.count == 1 {
-                    join(neutrino, functions.last!)
-                }
+            if numberOfFunctionsAllowed == Double(functions.count) {
+                removeActiveFunction()
+            }
+            functions.append(f)
+            calculate(function: f)
+            if functions.count == 1 {
+                join(neutrino, functions.last!)
             }
         }
     }

@@ -75,19 +75,18 @@ class GameViewController: UIViewController {
                 
                 var scene: GameScene
                 
-                if self.level != nil {
-                    scene = self.getLevelInstanceByNumber(index: self.level!)
-                } else {
-                    var lastCompletedLevel = 0
-                    for i in 0...levels.count {
-                        if levels[i] == false {
-                            lastCompletedLevel = i
-                            break
-                        }
+                var lastCompletedLevel = 0
+                for i in 0...levels.count {
+                    if levels[i] == false {
+                        lastCompletedLevel = i
+                        break
                     }
-                    scene = self.getLevelInstanceByNumber(index: lastCompletedLevel)
                 }
+                scene = self.getLevelInstanceByNumber(index: lastCompletedLevel)
                 scene.gameViewController = self
+                if let view = self.view as! SKView? {
+                    view.presentScene(scene)
+                }
             }
         }, completion: {_ in
             self.view.alpha = 1
@@ -113,7 +112,7 @@ class GameViewController: UIViewController {
         case 1:
             return LevelOne(size: view.frame.size)
         default:
-            return GameScene()
+            return LevelOne(size: view.frame.size)
         }
     }
 }

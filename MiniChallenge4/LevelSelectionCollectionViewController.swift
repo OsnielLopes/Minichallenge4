@@ -25,8 +25,8 @@ class LevelSelectionCollectionViewController: UICollectionViewController {
         }
         let passedLevels = levels.filter({ $0 == true })
         if passedLevels.count < levels.count {
-            if passedLevels.count > 0 {
-                levels[passedLevels.count + 1] = true
+            if passedLevels.count > 0 && passedLevels.count < 2 {
+                levels[passedLevels.count] = true
             } else {
                 levels[0] = true
             }
