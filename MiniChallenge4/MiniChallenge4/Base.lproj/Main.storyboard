@@ -225,31 +225,31 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Tq-WE-fj6">
-                                <rect key="frame" x="133" y="140.5" width="400" height="187.5"/>
+                                <rect key="frame" x="133" y="122" width="400" height="187.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="Cq6-2k-mO5" kind="embed" id="imh-H7-vOF"/>
+                                    <segue destination="Cq6-2k-mO5" kind="embed" id="SPf-UA-a34"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5Tq-WE-fj6" firstAttribute="centerX" secondItem="V6x-mh-Y24" secondAttribute="centerX" id="FJs-4i-uwX"/>
+                            <constraint firstItem="5Tq-WE-fj6" firstAttribute="height" secondItem="V6x-mh-Y24" secondAttribute="height" multiplier="0.5" id="F6G-Kr-WvS"/>
                             <constraint firstItem="WZz-cY-1NK" firstAttribute="height" secondItem="V6x-mh-Y24" secondAttribute="height" multiplier="0.18" id="GEk-I0-jXj"/>
                             <constraint firstItem="f6D-so-M3N" firstAttribute="width" secondItem="V6x-mh-Y24" secondAttribute="width" multiplier="0.5" id="Hbi-B3-rph"/>
                             <constraint firstItem="OYF-LE-wSs" firstAttribute="centerY" secondItem="V6x-mh-Y24" secondAttribute="centerY" id="MZk-yB-G2M"/>
                             <constraint firstItem="f6D-so-M3N" firstAttribute="height" secondItem="V6x-mh-Y24" secondAttribute="height" multiplier="0.15" id="N03-Du-xA0"/>
+                            <constraint firstItem="5Tq-WE-fj6" firstAttribute="centerY" secondItem="V6x-mh-Y24" secondAttribute="centerY" multiplier="1.15" id="RyW-8i-K2R"/>
                             <constraint firstItem="WZz-cY-1NK" firstAttribute="centerX" secondItem="V6x-mh-Y24" secondAttribute="centerX" multiplier="0.15" id="UuL-d2-wSd"/>
                             <constraint firstItem="f6D-so-M3N" firstAttribute="centerY" secondItem="V6x-mh-Y24" secondAttribute="centerY" multiplier="0.3" id="X2y-NI-Q5q"/>
                             <constraint firstItem="OYF-LE-wSs" firstAttribute="height" secondItem="V6x-mh-Y24" secondAttribute="height" id="XTa-Zj-BOg"/>
                             <constraint firstItem="f6D-so-M3N" firstAttribute="centerX" secondItem="V6x-mh-Y24" secondAttribute="centerX" id="arH-BP-2aT"/>
+                            <constraint firstItem="5Tq-WE-fj6" firstAttribute="width" secondItem="V6x-mh-Y24" secondAttribute="width" multiplier="0.6" id="d54-Ho-cRD"/>
                             <constraint firstItem="WZz-cY-1NK" firstAttribute="width" secondItem="V6x-mh-Y24" secondAttribute="width" multiplier="0.1" id="emB-Hx-DKt"/>
+                            <constraint firstItem="5Tq-WE-fj6" firstAttribute="centerX" secondItem="V6x-mh-Y24" secondAttribute="centerX" id="iDU-cX-bqy"/>
                             <constraint firstItem="OYF-LE-wSs" firstAttribute="width" secondItem="V6x-mh-Y24" secondAttribute="width" id="pt8-Zv-dy8"/>
                             <constraint firstItem="OYF-LE-wSs" firstAttribute="centerX" secondItem="V6x-mh-Y24" secondAttribute="centerX" id="wCS-z1-RIk"/>
                             <constraint firstItem="WZz-cY-1NK" firstAttribute="centerY" secondItem="V6x-mh-Y24" secondAttribute="centerY" multiplier="0.3" id="wvz-kg-EVQ"/>
-                            <constraint firstItem="5Tq-WE-fj6" firstAttribute="height" secondItem="V6x-mh-Y24" secondAttribute="height" multiplier="0.5" id="xJ5-RT-A41"/>
-                            <constraint firstItem="5Tq-WE-fj6" firstAttribute="width" secondItem="V6x-mh-Y24" secondAttribute="width" multiplier="0.6" id="xzb-N7-96S"/>
-                            <constraint firstItem="5Tq-WE-fj6" firstAttribute="centerY" secondItem="V6x-mh-Y24" secondAttribute="centerY" multiplier="1.25" id="zKF-nC-Y6k"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -261,8 +261,8 @@
         <scene sceneID="LEB-N1-7nS">
             <objects>
                 <collectionViewController modalPresentationStyle="overCurrentContext" id="Cq6-2k-mO5" customClass="LevelSelectionCollectionViewController" customModule="MiniChallenge4" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="LfT-xU-KRR">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="187.5"/>
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="LfT-xU-KRR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="4" id="MGy-FN-fR0">
@@ -289,10 +289,10 @@
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="yph-JD-73E" firstAttribute="height" secondItem="qe2-C4-wQA" secondAttribute="height" id="6xe-0J-hoy"/>
-                                    <constraint firstItem="yph-JD-73E" firstAttribute="width" secondItem="qe2-C4-wQA" secondAttribute="width" id="8cd-1t-UAf"/>
-                                    <constraint firstItem="yph-JD-73E" firstAttribute="centerX" secondItem="qe2-C4-wQA" secondAttribute="centerX" id="Cq8-ZS-hOE"/>
-                                    <constraint firstItem="yph-JD-73E" firstAttribute="centerY" secondItem="qe2-C4-wQA" secondAttribute="centerY" id="hGq-VA-J3I"/>
+                                    <constraint firstItem="yph-JD-73E" firstAttribute="top" secondItem="qe2-C4-wQA" secondAttribute="top" id="F7R-fi-yno"/>
+                                    <constraint firstItem="yph-JD-73E" firstAttribute="leading" secondItem="qe2-C4-wQA" secondAttribute="leading" id="eGC-AD-Tna"/>
+                                    <constraint firstAttribute="trailing" secondItem="yph-JD-73E" secondAttribute="trailing" id="iXb-JA-QPw"/>
+                                    <constraint firstAttribute="bottom" secondItem="yph-JD-73E" secondAttribute="bottom" id="pzt-Px-QfP"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="levelNumber" destination="yph-JD-73E" id="VHI-62-vpb"/>
@@ -304,6 +304,8 @@
                             <outlet property="delegate" destination="Cq6-2k-mO5" id="qoz-SA-fEC"/>
                         </connections>
                     </collectionView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="480"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGV-55-FEG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
