@@ -65,8 +65,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         
         lastCenterPoint = pointProportionalTo(percentage: 0.08, and: 0.6)
         
-        numberOfFunctionsAllowed = 1
-        
         blurEffectView = UIVisualEffectView()
         
         blurEffectView.frame = (self.view?.frame)!
@@ -283,6 +281,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             f.node?.removeFromParent()
         }
         functions = []
+        isPlaying = false
     }
     
     func addLinearFunction() {
@@ -394,7 +393,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         planet.shadowedBitMask = 1
         planet.lightingBitMask = 1
         
-        winArea = SKShapeNode(circleOfRadius: planet.size.width * 0.8)
+        winArea = SKShapeNode(circleOfRadius: planet.size.width * 0.9)
         winArea.position = planet.position
         winArea.strokeColor = UIColor.clear
         winArea.fillColor = UIColor.clear
@@ -404,23 +403,29 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
     
     func createMeteor(_ point: CGPoint, _ scale: CGFloat){
-        let newScale = scale/246
+        let newScale: CGFloat! = scale/246
         let textures = [SKTexture(imageNamed: "Asteroide Grande"), SKTexture(imageNamed: "Asteroide Pequeno")]
         let randomIndex = Int(arc4random_uniform(2))
         let meteor = SKSpriteNode(texture: textures[randomIndex])
         let newPoint: CGPoint!
+        let scaleForTheHeight: CGFloat! = 85 / meteor.size.width
         if randomIndex == 0 {
             newPoint = CGPoint(x: point.x + #imageLiteral(resourceName: "Asteroide Grande").size.width/2, y: point.y + #imageLiteral(resourceName: "Asteroide Grande").size.height/2)
         } else {
             newPoint = CGPoint(x: point.x + #imageLiteral(resourceName: "Asteroide Pequeno").size.width/2, y: point.y + #imageLiteral(resourceName: "Asteroide Pequeno").size.height/2)
         }
+        meteor.size.width = 85
+        meteor.size.height *= scaleForTheHeight
         meteor.position = newPoint
         meteor.xScale = newScale
         meteor.yScale = newScale
         self.addChild(meteor)
-        var random = Int(arc4random_uniform(400))
-        random -= 200
+        var random = Float(arc4random_uniform(390))
+        random -= 190
         random /= 100
+        if random == 0{
+            random = Float(randomIndex)-0.1
+        }
         let rotateAction = SKAction.rotate(byAngle: CGFloat(random), duration: 1)
         meteor.run(SKAction.repeatForever(rotateAction))
         meteor.shadowedBitMask = 1

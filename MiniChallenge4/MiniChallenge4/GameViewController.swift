@@ -110,7 +110,7 @@ class GameViewController: UIViewController {
         case 0:
             return LevelOne(size: view.frame.size)
         case 1:
-            return LevelOne(size: view.frame.size)
+            return LevelTwo(size: view.frame.size)
         default:
             return LevelOne(size: view.frame.size)
         }
