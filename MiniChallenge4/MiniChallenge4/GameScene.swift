@@ -418,7 +418,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         meteor.xScale = newScale
         meteor.yScale = newScale
         self.addChild(meteor)
-        let rotateAction = SKAction.rotate(byAngle: CGFloat((arc4random_uniform(400)-200))/100, duration: 1)
+        var random = Int(arc4random_uniform(400))
+        random -= 200
+        random /= 100
+        let rotateAction = SKAction.rotate(byAngle: CGFloat(random), duration: 1)
         meteor.run(SKAction.repeatForever(rotateAction))
         meteor.shadowedBitMask = 1
         meteor.lightingBitMask = 1
