@@ -306,6 +306,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         deleteButton.neinPressedImageName = "ApagarButton"
         deleteButton.pressedImageName = "ApagarButton_"
         deleteButton.texture = SKTexture(imageNamed: "ApagarButton")
+        
+        //Colocando as funcoes de volta
+        for f in functions{
+            addChild(f.node!)
+        }
     }
     
     func addLinearFunction() {
@@ -401,6 +406,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     /// Makes the neutrino run
     func play(){
         if !functions.isEmpty && !isPlaying {
+            
+            //Rotina para tirar o caminho
+            for f in functions {
+                f.node?.removeFromParent()
+            }
+            
             neutrino.texture = SKTexture(imageNamed: "Character Wow")
             let action = SKAction.follow(createThePath(), speed: 60)
             self.addChild(floatingSound)
