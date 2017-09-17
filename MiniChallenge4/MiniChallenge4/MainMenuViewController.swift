@@ -15,10 +15,10 @@ class MainMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.playSound = Audio.playSound(named: Audio.CLICK_IN)
+//        self.playSound = Audio.playSound(named: Audio.CLICK_IN)
     }
 
     @IBAction func playSound(_ sender: Any) {
-        self.playSound.play()
+//        self.playSound.play()
     }
 }

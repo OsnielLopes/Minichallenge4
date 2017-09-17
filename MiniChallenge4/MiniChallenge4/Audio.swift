@@ -43,7 +43,6 @@ struct Audio {
             audioPlayer = try AVAudioPlayer(contentsOf:aSound as URL)
             audioPlayer!.numberOfLoops = 0
             audioPlayer!.prepareToPlay()
-            audioPlayer!.play()
         } catch {
             print("Cannot play the file")
         }
