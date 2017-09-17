@@ -21,11 +21,11 @@ class LevelTwo: GameScene {
         
         let meteorsDescription = [
             [self.convert(sketchX: 133, sketchY: 824), 149],
-            [self.convert(sketchX: 230, sketchY: 400), 149],
+            [self.convert(sketchX: 230, sketchY: 450), 149],
             [self.convert(sketchX: 200, sketchY: 241), 149],
             
             [self.convert(sketchX: 286, sketchY: 799), 246],
-            [self.convert(sketchX: 380, sketchY: 396), 99],
+            [self.convert(sketchX: 380, sketchY: 380), 99],
             [self.convert(sketchX: 488, sketchY: 212), 103],
             
             [self.convert(sketchX: 588, sketchY: 791), 149],
@@ -33,7 +33,7 @@ class LevelTwo: GameScene {
             [self.convert(sketchX: 681, sketchY: 278), 63],
             
             [self.convert(sketchX: 961, sketchY: 758), 99],
-            [self.convert(sketchX: 921, sketchY: 420), 63],
+            [self.convert(sketchX: 700, sketchY: 356), 63],
             [self.convert(sketchX: 928, sketchY: 202), 99],
             
             [self.convert(sketchX: 1068, sketchY: 605), 215],
