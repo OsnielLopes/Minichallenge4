@@ -79,6 +79,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         floatingSound = floatingSoundd
         floatingSound.autoplayLooped = true
         floatingSound.isPositional = false
+        floatingSound.run(SKAction.changeVolume(to: 100, duration: 0))
         
         //HUD ELEMENTS
         

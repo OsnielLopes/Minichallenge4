@@ -10,6 +10,7 @@
 		49380D941F62D79400380CFE /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49380D931F62D79400380CFE /* Variables.swift */; };
 		4948737D1F6086D4009B58F8 /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4948737C1F6086D4009B58F8 /* SKButton.swift */; };
 		49D9EEEC1F6DC4C900C5CC66 /* LevelTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D9EEEB1F6DC4C900C5CC66 /* LevelTwo.swift */; };
+		BD4EBE311F6F17D900DCF9D8 /* victory.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD4EBE301F6F17D900DCF9D8 /* victory.wav */; };
 		BD83A1751F67340400D86563 /* LevelOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD83A1741F67340400D86563 /* LevelOne.swift */; };
 		BD83A17A1F69A39300D86563 /* PauseMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD83A1791F69A39300D86563 /* PauseMenuViewController.swift */; };
 		BD83A17E1F6B0CB300D86563 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD83A17D1F6B0CB300D86563 /* MainMenuViewController.swift */; };
@@ -35,7 +36,6 @@
 		BDC0A10A1F6EB71500C24CF8 /* SelectLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC0A1091F6EB71500C24CF8 /* SelectLevelViewController.swift */; };
 		BDC0A10C1F6EB76800C24CF8 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC0A10B1F6EB76800C24CF8 /* AboutViewController.swift */; };
 		BDC0A10E1F6EBB5D00C24CF8 /* bgMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BDC0A10D1F6EBB5D00C24CF8 /* bgMusic.mp3 */; };
-		BDD661F21F6E998F00F48B3B /* victory.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDD661EB1F6E998F00F48B3B /* victory.wav */; };
 		BDD661F41F6E998F00F48B3B /* function_selection.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDD661ED1F6E998F00F48B3B /* function_selection.wav */; };
 		BDD661F61F6E998F00F48B3B /* death.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDD661EF1F6E998F00F48B3B /* death.wav */; };
 		BDD661F71F6E998F00F48B3B /* pause.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDD661F01F6E998F00F48B3B /* pause.wav */; };
@@ -64,6 +64,7 @@
 		49380D931F62D79400380CFE /* Variables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		4948737C1F6086D4009B58F8 /* SKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
 		49D9EEEB1F6DC4C900C5CC66 /* LevelTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTwo.swift; sourceTree = "<group>"; };
+		BD4EBE301F6F17D900DCF9D8 /* victory.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = victory.wav; sourceTree = "<group>"; };
 		BD83A1741F67340400D86563 /* LevelOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOne.swift; sourceTree = "<group>"; };
 		BD83A1791F69A39300D86563 /* PauseMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseMenuViewController.swift; sourceTree = "<group>"; };
 		BD83A17D1F6B0CB300D86563 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
@@ -95,7 +96,6 @@
 		BDC0A1091F6EB71500C24CF8 /* SelectLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLevelViewController.swift; sourceTree = "<group>"; };
 		BDC0A10B1F6EB76800C24CF8 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		BDC0A10D1F6EBB5D00C24CF8 /* bgMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bgMusic.mp3; path = MiniChallenge4/bgMusic.mp3; sourceTree = "<group>"; };
-		BDD661EB1F6E998F00F48B3B /* victory.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = victory.wav; sourceTree = "<group>"; };
 		BDD661ED1F6E998F00F48B3B /* function_selection.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = function_selection.wav; sourceTree = "<group>"; };
 		BDD661EF1F6E998F00F48B3B /* death.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = death.wav; sourceTree = "<group>"; };
 		BDD661F01F6E998F00F48B3B /* pause.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pause.wav; sourceTree = "<group>"; };
@@ -218,9 +218,9 @@
 			isa = PBXGroup;
 			children = (
 				BDC0A10D1F6EBB5D00C24CF8 /* bgMusic.mp3 */,
+				BD4EBE301F6F17D900DCF9D8 /* victory.wav */,
 				BDC0A1051F6EB4E600C24CF8 /* click_in.wav */,
 				BDC0A1061F6EB4E600C24CF8 /* click_out.wav */,
-				BDD661EB1F6E998F00F48B3B /* victory.wav */,
 				BDD661F91F6EA05700F48B3B /* weewee.mp3 */,
 				BDD661ED1F6E998F00F48B3B /* function_selection.wav */,
 				BDD661FB1F6EA47600F48B3B /* remove_function.wav */,
@@ -347,12 +347,12 @@
 				BDD661FC1F6EA47600F48B3B /* remove_function.wav in Resources */,
 				BDC0A1071F6EB4E600C24CF8 /* click_in.wav in Resources */,
 				BDBB59C81F5DC02000AD5B9B /* Assets.xcassets in Resources */,
-				BDD661F21F6E998F00F48B3B /* victory.wav in Resources */,
 				BDC0A1081F6EB4E600C24CF8 /* click_out.wav in Resources */,
 				BDBB59CB1F5DC02000AD5B9B /* LaunchScreen.storyboard in Resources */,
 				BDD661FA1F6EA05700F48B3B /* weewee.mp3 in Resources */,
 				BDD661F61F6E998F00F48B3B /* death.wav in Resources */,
 				BDC0A10E1F6EBB5D00C24CF8 /* bgMusic.mp3 in Resources */,
+				BD4EBE311F6F17D900DCF9D8 /* victory.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

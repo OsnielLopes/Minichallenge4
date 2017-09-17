@@ -64,6 +64,7 @@ class MusicHelper {
             audioPlayer = try AVAudioPlayer(contentsOf:aSound as URL)
             audioPlayer!.numberOfLoops = -1
             audioPlayer!.prepareToPlay()
+            audioPlayer?.volume = 0.5
             audioPlayer!.play()
         } catch {
             print("Cannot play the file")
