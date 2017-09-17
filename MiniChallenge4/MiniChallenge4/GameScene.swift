@@ -51,6 +51,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     
     var floatingSound: SKAudioNode!
     
+    var deleteButton: SKButton!
+    
     override func didMove(to view: SKView) {
         
         //CONFIGURATIONS
@@ -111,7 +113,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         bottomMenuBackground.zPosition = 1.1
         self.addChild(bottomMenuBackground)
         
-        let deleteButton = SKButton(pressed: "ApagarButton_", neinPressed: "ApagarButton", target: self, action: #selector(removeActiveFunction))
+        deleteButton = SKButton(pressed: "ApagarButton_", neinPressed: "ApagarButton", target: self, action: #selector(removeActiveFunction))
         deleteButton.position = pointProportionalTo(percentage: 0.92, and: 0.11)
         deleteButton.scale(to: sizeProportionalTo(percentage: 0.09791666667, and: 0.1745589601))
         deleteButton.zPosition = 1.2
@@ -178,10 +180,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             UserDefaults.standard.set(levels, forKey: "LevelProgression")
             self.floatingSound.removeFromParent()
             let sound = SKAction.playSoundFileNamed(Audio.VICTORY, waitForCompletion: false)
-            
             self.run(sound, completion: {
                 self.gameViewController.winGame()
             })
+            deleteButton.neinPressedImageName = "ApagarButton"
+            deleteButton.pressedImageName = "ApagarButton_"
+            deleteButton.texture = SKTexture(imageNamed: "ApagarButton")
         }
         
         if isDead && self.playerOutOfScreen() {
@@ -225,6 +229,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             isDead = true
             self.floatingSound.removeFromParent()
             _ = Audio(named: Audio.DEATH, toPlayAt: self)
+            deleteButton.neinPressedImageName = "ApagarButton"
+            deleteButton.pressedImageName = "ApagarButton_"
+            deleteButton.texture = SKTexture(imageNamed: "ApagarButton")
         }
     }
     
@@ -286,7 +293,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
                 _ = Audio(named: Audio.REMOVE_FUNCTION, toPlayAt: self)
             }
         } else {
-            resetEverything()
+            self.resetEverything()
         }
     }
     
@@ -294,12 +301,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         self.neutrino.removeAllActions()
         self.neutrino.removeFromParent()
         self.newNeutrino()
-        for f in functions {
-            f.node?.removeFromParent()
-        }
-        functions = []
         self.floatingSound.removeFromParent()
         isPlaying = false
+        deleteButton.neinPressedImageName = "ApagarButton"
+        deleteButton.pressedImageName = "ApagarButton_"
+        deleteButton.texture = SKTexture(imageNamed: "ApagarButton")
     }
     
     func addLinearFunction() {
@@ -405,6 +411,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
                 self.floatingSound.removeFromParent()
             }
             isPlaying = true
+            deleteButton.neinPressedImageName = "Stop Button"
+            deleteButton.pressedImageName = "Stop Button_"
+            deleteButton.texture = SKTexture(imageNamed: "Stop Button")
         }
     }
     
