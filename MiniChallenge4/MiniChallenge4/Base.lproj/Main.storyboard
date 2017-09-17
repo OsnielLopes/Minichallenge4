@@ -107,9 +107,9 @@
                                     <constraint firstItem="jNz-h5-tid" firstAttribute="centerX" secondItem="GZh-aM-1Tm" secondAttribute="centerX" id="nMH-Gx-5bd"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Royalty Free Music from Bensound" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hVW-rZ-Tg1">
-                                <rect key="frame" x="183.5" y="321" width="300.5" height="33.5"/>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Royalty Free Music from Bensound. We use Electro Win Sound from Freesound by Mativve - https://goo.gl/aHSYva" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hVW-rZ-Tg1">
+                                <rect key="frame" x="100.5" y="321" width="466.5" height="33.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -136,7 +136,7 @@
                             <constraint firstItem="GZh-aM-1Tm" firstAttribute="width" secondItem="jUv-75-5Cx" secondAttribute="width" id="OhN-uD-vXS"/>
                             <constraint firstItem="h1C-t2-Ysb" firstAttribute="centerX" secondItem="6Nz-DZ-YIm" secondAttribute="centerX" multiplier="0.15" id="QCD-Al-Joq"/>
                             <constraint firstItem="GZh-aM-1Tm" firstAttribute="centerY" secondItem="6Nz-DZ-YIm" secondAttribute="centerY" multiplier="1.1" id="Sz1-GI-sgm"/>
-                            <constraint firstItem="hVW-rZ-Tg1" firstAttribute="width" secondItem="6Nz-DZ-YIm" secondAttribute="width" multiplier="0.45" id="ZEI-qd-c9l"/>
+                            <constraint firstItem="hVW-rZ-Tg1" firstAttribute="width" secondItem="6Nz-DZ-YIm" secondAttribute="width" multiplier="0.7" id="ZEI-qd-c9l"/>
                             <constraint firstItem="hVW-rZ-Tg1" firstAttribute="centerY" secondItem="6Nz-DZ-YIm" secondAttribute="centerY" multiplier="1.8" id="byZ-RJ-hJF"/>
                             <constraint firstItem="Oo9-3i-qef" firstAttribute="centerX" secondItem="6Nz-DZ-YIm" secondAttribute="centerX" multiplier="0.4" id="h0X-B4-plz"/>
                             <constraint firstItem="jNz-h5-tid" firstAttribute="height" secondItem="kgG-JT-WI9" secondAttribute="height" id="huC-Gq-3Tk"/>
