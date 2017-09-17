@@ -197,6 +197,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="playSound:" destination="Adh-DC-B8q" eventType="touchUpInside" id="Cuo-X4-8Rh"/>
                                     <segue destination="BV1-FR-VrT" kind="presentation" id="Vyg-kq-wGJ"/>
                                 </connections>
                             </button>
@@ -228,7 +229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pcr-p2-Ka0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-725" y="-751"/>
+            <point key="canvasLocation" x="-1485" y="-802"/>
         </scene>
         <!--Pause Menu View Controller-->
         <scene sceneID="cC6-pP-ngH">

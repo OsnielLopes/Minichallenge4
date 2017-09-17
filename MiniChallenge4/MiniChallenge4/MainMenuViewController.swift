@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MainMenuViewController: UIViewController {
+    
+    var playSound: AVAudioPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.playSound = Audio.playSound(named: Audio.CLICK_IN)
     }
 
+    @IBAction func playSound(_ sender: Any) {
+        self.playSound.play()
+    }
 }

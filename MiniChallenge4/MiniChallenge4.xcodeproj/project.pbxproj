@@ -30,10 +30,8 @@
 		BDBB59F91F5ECD4A00AD5B9B /* LinearFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59F81F5ECD4A00AD5B9B /* LinearFunction.swift */; };
 		BDBB59FC1F5EE31E00AD5B9B /* SinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59FB1F5EE31E00AD5B9B /* SinFunction.swift */; };
 		BDBB59FE1F5F154600AD5B9B /* QuadraticFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB59FD1F5F154600AD5B9B /* QuadraticFunction.swift */; };
-		BDD661F11F6E998F00F48B3B /* click_in.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDD661EA1F6E998F00F48B3B /* click_in.wav */; };
 		BDD661F21F6E998F00F48B3B /* victory.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDD661EB1F6E998F00F48B3B /* victory.wav */; };
 		BDD661F41F6E998F00F48B3B /* function_selection.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDD661ED1F6E998F00F48B3B /* function_selection.wav */; };
-		BDD661F51F6E998F00F48B3B /* click_out.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDD661EE1F6E998F00F48B3B /* click_out.wav */; };
 		BDD661F61F6E998F00F48B3B /* death.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDD661EF1F6E998F00F48B3B /* death.wav */; };
 		BDD661F71F6E998F00F48B3B /* pause.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDD661F01F6E998F00F48B3B /* pause.wav */; };
 		BDD661FA1F6EA05700F48B3B /* weewee.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BDD661F91F6EA05700F48B3B /* weewee.mp3 */; };
@@ -87,10 +85,8 @@
 		BDBB59F81F5ECD4A00AD5B9B /* LinearFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearFunction.swift; sourceTree = "<group>"; };
 		BDBB59FB1F5EE31E00AD5B9B /* SinFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinFunction.swift; sourceTree = "<group>"; };
 		BDBB59FD1F5F154600AD5B9B /* QuadraticFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuadraticFunction.swift; sourceTree = "<group>"; };
-		BDD661EA1F6E998F00F48B3B /* click_in.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click_in.wav; sourceTree = "<group>"; };
 		BDD661EB1F6E998F00F48B3B /* victory.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = victory.wav; sourceTree = "<group>"; };
 		BDD661ED1F6E998F00F48B3B /* function_selection.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = function_selection.wav; sourceTree = "<group>"; };
-		BDD661EE1F6E998F00F48B3B /* click_out.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click_out.wav; sourceTree = "<group>"; };
 		BDD661EF1F6E998F00F48B3B /* death.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = death.wav; sourceTree = "<group>"; };
 		BDD661F01F6E998F00F48B3B /* pause.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pause.wav; sourceTree = "<group>"; };
 		BDD661F91F6EA05700F48B3B /* weewee.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = weewee.mp3; sourceTree = "<group>"; };
@@ -209,11 +205,9 @@
 		BDD661F81F6E999600F48B3B /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				BDD661EA1F6E998F00F48B3B /* click_in.wav */,
 				BDD661EB1F6E998F00F48B3B /* victory.wav */,
 				BDD661F91F6EA05700F48B3B /* weewee.mp3 */,
 				BDD661ED1F6E998F00F48B3B /* function_selection.wav */,
-				BDD661EE1F6E998F00F48B3B /* click_out.wav */,
 				BDD661FB1F6EA47600F48B3B /* remove_function.wav */,
 				BDD661EF1F6E998F00F48B3B /* death.wav */,
 				BDD661F01F6E998F00F48B3B /* pause.wav */,
@@ -332,7 +326,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDD661F11F6E998F00F48B3B /* click_in.wav in Resources */,
 				BDBB59C61F5DC02000AD5B9B /* Main.storyboard in Resources */,
 				BDD661F41F6E998F00F48B3B /* function_selection.wav in Resources */,
 				BDD661F71F6E998F00F48B3B /* pause.wav in Resources */,
@@ -340,7 +333,6 @@
 				BDBB59C81F5DC02000AD5B9B /* Assets.xcassets in Resources */,
 				BDD661F21F6E998F00F48B3B /* victory.wav in Resources */,
 				BDBB59CB1F5DC02000AD5B9B /* LaunchScreen.storyboard in Resources */,
-				BDD661F51F6E998F00F48B3B /* click_out.wav in Resources */,
 				BDD661FA1F6EA05700F48B3B /* weewee.mp3 in Resources */,
 				BDD661F61F6E998F00F48B3B /* death.wav in Resources */,
 			);

@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import AVFoundation
 
 struct Audio {
     static var CLICK_IN = "click_in.wav"
@@ -24,6 +25,58 @@ struct Audio {
     init(named: String, toPlayAt scene: SKScene) {
         let sound = SKAction.playSoundFileNamed(named, waitForCompletion: false)
         scene.run(sound)
+    }
+    
+    static func playSound(named: String) -> AVAudioPlayer {
+        var audioPlayer: AVAudioPlayer?
+        
+        let start = named.index(named.endIndex, offsetBy: -3)
+        var end = named.endIndex
+        var range = start..<end
+        let type = named.substring(with: range)
+        end = named.index(start, offsetBy: -1)
+        range = named.startIndex..<end
+        let fileName = named.substring(with: range)
+        
+        let aSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: fileName, ofType: type)!)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf:aSound as URL)
+            audioPlayer!.numberOfLoops = 0
+            audioPlayer!.prepareToPlay()
+            audioPlayer!.play()
+        } catch {
+            print("Cannot play the file")
+        }
+        return audioPlayer!
+    }
+}
+
+class MusicHelper {
+    
+    static let sharedHelper = MusicHelper()
+    
+    var audioPlayer: AVAudioPlayer?
+    
+    private init() {}
+    
+    func playBackgroundMusic() {
+        let aSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "coolsong", ofType: "mp3")!)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf:aSound as URL)
+            audioPlayer!.numberOfLoops = -1
+            audioPlayer!.prepareToPlay()
+            audioPlayer!.play()
+        } catch {
+            print("Cannot play the file")
+        }
+    }
+    
+    func continueBackgroundMusic() {
+        self.audioPlayer?.play()
+    }
+    
+    func stopBackgroundMusic() {
+        self.audioPlayer?.stop()
     }
 }
 
