@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class WinGameViewController: UIViewController {
     @IBOutlet weak var blurView: UIVisualEffectView!
@@ -17,11 +18,17 @@ class WinGameViewController: UIViewController {
     
     var gameViewController: GameViewController!
     
+    var nextLevelSound: AVAudioPlayer!
+    
+    var backToMainMenu: AVAudioPlayer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         effect = blurView.effect
         blurView.effect = nil
         popUpView.alpha = 0
+        nextLevelSound = Audio.playSound(named: Audio.CLICK_IN)
+        backToMainMenu = Audio.playSound(named: Audio.CLICK_OUT)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,6 +39,7 @@ class WinGameViewController: UIViewController {
         })
     }
     @IBAction func nextLevel(_ sender: Any) {
+        nextLevelSound.play()
         UIView.animate(withDuration: 0.4, animations: {
             self.blurView.effect = nil
             self.popUpView.alpha = 0
@@ -43,6 +51,7 @@ class WinGameViewController: UIViewController {
     }
     
     @IBAction func backToMainMenu(_ sender: Any) {
+        backToMainMenu.play()
         UIView.animate(withDuration: 0.4, animations: {
             self.blurView.effect = nil
             self.popUpView.alpha = 0

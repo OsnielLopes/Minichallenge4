@@ -8,6 +8,7 @@
 
 import UIKit
 import SpriteKit
+import AVFoundation
 
 class PauseMenuViewController: UIViewController {
     
@@ -19,11 +20,17 @@ class PauseMenuViewController: UIViewController {
     
     var gameViewController: GameViewController!
     
+    var backToGameSound: AVAudioPlayer!
+    
+    var backToMainMenuSound: AVAudioPlayer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         effect = blurView.effect
         blurView.effect = nil
         popUpView.alpha = 0
+        backToGameSound = Audio.playSound(named: Audio.PAUSE)
+        backToMainMenuSound = Audio.playSound(named: Audio.CLICK_OUT)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,6 +42,7 @@ class PauseMenuViewController: UIViewController {
     }
     
     @IBAction func mainMenu(_ sender: Any) {
+        backToMainMenuSound.play()
         UIView.animate(withDuration: 0.4, animations: {
             self.blurView.effect = nil
             self.popUpView.alpha = 0
@@ -46,6 +54,7 @@ class PauseMenuViewController: UIViewController {
     }
     
     @IBAction func backToGame(_ sender: Any) {
+        backToGameSound.play()
         UIView.animate(withDuration: 0.4, animations: {
             self.blurView.effect = nil
             self.popUpView.alpha = 0

@@ -7,15 +7,19 @@
 //
 
 import UIKit
+import AVFoundation
 
 class LevelSelectionCollectionViewController: UICollectionViewController {
     
     var levels: [Bool] = []
     
     var levelSelectionViewController: UIViewController?
+    
+    var goToGameSound: AVAudioPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        goToGameSound = Audio.playSound(named: Audio.CLICK_IN)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +60,7 @@ class LevelSelectionCollectionViewController: UICollectionViewController {
     }
     
     func moveToGame(levelIndex: Int) {
+        goToGameSound.play()
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "gameController") as? GameViewController {
             vc.level = levelIndex
             self.levelSelectionViewController?.present(vc, animated: true, completion: nil)

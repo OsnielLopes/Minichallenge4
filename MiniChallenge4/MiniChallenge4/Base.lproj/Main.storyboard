@@ -177,6 +177,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="playSound:" destination="Adh-DC-B8q" eventType="touchUpInside" id="gc5-Pa-BwR"/>
                                     <segue destination="DWL-xc-upT" kind="presentation" modalTransitionStyle="crossDissolve" id="C7n-dj-RtM"/>
                                 </connections>
                             </button>
@@ -187,6 +188,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="playSound:" destination="Adh-DC-B8q" eventType="touchUpInside" id="YQU-Uo-ZYA"/>
                                     <segue destination="PIN-8p-1Yg" kind="presentation" modalTransitionStyle="crossDissolve" id="aoY-Or-hOf"/>
                                 </connections>
                             </button>
