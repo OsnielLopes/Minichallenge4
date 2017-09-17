@@ -154,6 +154,11 @@
                             <constraint firstItem="zYQ-7h-eIX" firstAttribute="width" secondItem="rdE-OW-6sW" secondAttribute="width" id="yxw-yG-IYK"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="chevisImage" destination="BTb-nx-kdx" id="Inz-bM-Ui8"/>
+                        <outlet property="osnielImage" destination="jNz-h5-tid" id="oDK-X8-IGh"/>
+                        <outlet property="paciulliImage" destination="kgG-JT-WI9" id="4NR-Qb-mbr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H7Q-bO-kHs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
