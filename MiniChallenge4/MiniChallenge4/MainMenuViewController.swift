@@ -15,6 +15,7 @@ class MainMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        MusicHelper.sharedHelper.playBackgroundMusic()
         self.playSound = Audio.playSound(named: Audio.CLICK_IN)
     }
 
