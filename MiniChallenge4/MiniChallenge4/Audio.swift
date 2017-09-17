@@ -14,6 +14,7 @@ struct Audio {
     static var CLICK_OUT = "click_out.wav"
     static var FUNCTION_SELECTION = "function_selection.wav"
     static var PAUSE = "pause.wav"
+    static var REMOVE_FUNCTION = "remove_function.wav"
     
     static var VICTORY = "victory.wav"
     static var DEATH = "death.wav"

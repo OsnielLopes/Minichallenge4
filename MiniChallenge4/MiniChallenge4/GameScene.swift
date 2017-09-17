@@ -49,6 +49,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     
     var levelIndex = 0
     
+    var floatingSound: SKAudioNode!
+    
     override func didMove(to view: SKView) {
         
         //CONFIGURATIONS
@@ -71,6 +73,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         
         self.view?.addSubview(blurEffectView)
         
+        let floatingSoundd = SKAudioNode(fileNamed: Audio.FLOAT)
+        floatingSound = floatingSoundd
+        floatingSound.autoplayLooped = true
+        floatingSound.isPositional = false
         
         //HUD ELEMENTS
         
@@ -166,12 +172,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         }
         
         if self.winArea.contains(neutrino.position) && isPlaying && !isDead {
-            self.isPaused = true
+            isPlaying = false
             var levels = UserDefaults.standard.array(forKey: "LevelProgression")
             levels?[levelIndex] = true
             UserDefaults.standard.set(levels, forKey: "LevelProgression")
+            self.floatingSound.removeFromParent()
             let sound = SKAction.playSoundFileNamed(Audio.VICTORY, waitForCompletion: false)
-            self.removeAction(forKey: "floating")
+            
             self.run(sound, completion: {
                 self.gameViewController.winGame()
             })
@@ -198,7 +205,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     func pauseGame() {
         self.view?.isPaused = true
         self.gameViewController.pauseGame()
-        _ = Audio(named: Audio.PAUSE, toPlayAt: self)
+        let sound = SKAction.playSoundFileNamed(Audio.PAUSE, waitForCompletion: false)
+        self.run(sound, completion: {
+            self.gameViewController.pauseGame()
+        })
     }
     
     func playerOutOfScreen() -> Bool {
@@ -214,7 +224,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             neutrino.physicsBody?.applyImpulse(CGVector(dx: 0, dy: neutrino.size.width / 7.5))
             isPlaying = false
             isDead = true
-            self.removeAction(forKey: "floating")
+            self.floatingSound.removeFromParent()
             _ = Audio(named: Audio.DEATH, toPlayAt: self)
         }
     }
@@ -274,6 +284,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
                 }else{
                     lastCenterPoint = neutrino.position
                 }
+                _ = Audio(named: Audio.REMOVE_FUNCTION, toPlayAt: self)
             }
         } else {
             resetEverything()
@@ -288,7 +299,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             f.node?.removeFromParent()
         }
         functions = []
-        self.removeAction(forKey: "floating")
+        self.floatingSound.removeFromParent()
         isPlaying = false
     }
     
@@ -313,7 +324,15 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     func addFunction(f: Function) {
         if !isPlaying {
             if numberOfFunctionsAllowed == Double(functions.count) {
-                removeActiveFunction()
+                functions.last?.node?.removeFromParent()
+                functions.remove(at: functions.count-1)
+                if functions.count >= 1{
+                    let point = CGPoint(x: (functions.last?.functionPoints.last!.x)! + (functions.last?.node?.position.x)! + CGFloat(utilSpace / (2 * numberOfFunctionsAllowed)),
+                                        y: (functions.last?.functionPoints.last!.y)! + (functions.last?.node?.position.y)!)
+                    lastCenterPoint = point
+                }else{
+                    lastCenterPoint = neutrino.position
+                }
             }
             functions.append(f)
             calculate(function: f)
@@ -379,13 +398,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         if !functions.isEmpty && !isPlaying {
             neutrino.texture = SKTexture(imageNamed: "Character Wow")
             let action = SKAction.follow(createThePath(), speed: 60)
-            let soundAction = SKAction.playSoundFileNamed(Audio.FLOAT, waitForCompletion: false)
-            self.run(SKAction.repeatForever(soundAction), withKey: "floating")
+            self.addChild(floatingSound)
             neutrino.run(action) {
                 if !self.winArea.contains(self.neutrino.position) {
                     self.neutrinoDiedTragically()
                 }
-                self.removeAction(forKey: "floating")
+                self.floatingSound.removeFromParent()
             }
             isPlaying = true
         }
