@@ -18,4 +18,7 @@ class SelectLevelViewController: UIViewController {
         backToMainMenu = Audio.playSound(named: Audio.CLICK_OUT)
     }
 
+    @IBAction func back(_ sender: Any) {
+        backToMainMenu.play()
+    }
 }

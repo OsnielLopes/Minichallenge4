@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--About View Controller-->
         <scene sceneID="ggq-50-oKl">
             <objects>
-                <viewController id="PIN-8p-1Yg" sceneMemberID="viewController">
+                <viewController id="PIN-8p-1Yg" customClass="AboutViewController" customModule="MiniChallenge4" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Z3K-2w-4zU"/>
                         <viewControllerLayoutGuide type="bottom" id="fIE-ys-HXW"/>
@@ -36,6 +36,7 @@
                                 <state key="normal" image="Home Button"/>
                                 <state key="selected" image="Home Button_"/>
                                 <connections>
+                                    <action selector="back:" destination="PIN-8p-1Yg" eventType="touchUpInside" id="jTi-6r-skA"/>
                                     <segue destination="Adh-DC-B8q" kind="presentation" modalTransitionStyle="crossDissolve" id="Khv-U5-xMo"/>
                                 </connections>
                             </button>
@@ -166,9 +167,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sun_menu" translatesAutoresizingMaskIntoConstraints="NO" id="nJo-W1-x7e">
                                 <rect key="frame" x="0.0" y="83.5" width="667" height="291.5"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Launch_Title" translatesAutoresizingMaskIntoConstraints="NO" id="y0H-7B-Odu">
-                                <rect key="frame" x="4" y="20" width="659" height="82"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch_Title" translatesAutoresizingMaskIntoConstraints="NO" id="y0H-7B-Odu">
+                                <rect key="frame" x="83.5" y="9.5" width="500" height="112.5"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8d-U4-CUQ">
                                 <rect key="frame" x="267" y="283" width="133" height="30"/>
@@ -206,6 +206,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="y0H-7B-Odu" firstAttribute="height" secondItem="M7t-Ss-uad" secondAttribute="height" multiplier="0.3" id="8B3-R5-SfQ"/>
                             <constraint firstItem="nJo-W1-x7e" firstAttribute="centerX" secondItem="M7t-Ss-uad" secondAttribute="centerX" id="E6k-rJ-9Qj"/>
                             <constraint firstItem="mf2-aV-JBv" firstAttribute="centerY" secondItem="M7t-Ss-uad" secondAttribute="centerY" multiplier="1.15" id="EAX-Yf-Lkn"/>
                             <constraint firstItem="LuJ-yj-DYF" firstAttribute="centerX" secondItem="M7t-Ss-uad" secondAttribute="centerX" id="FBH-cg-cM6"/>
@@ -224,7 +225,10 @@
                             <constraint firstItem="mf2-aV-JBv" firstAttribute="centerX" secondItem="M7t-Ss-uad" secondAttribute="centerX" id="j2m-6e-8UG"/>
                             <constraint firstItem="LuJ-yj-DYF" firstAttribute="centerY" secondItem="M7t-Ss-uad" secondAttribute="centerY" multiplier="1.85" id="lpB-Vi-u7i"/>
                             <constraint firstItem="e8d-U4-CUQ" firstAttribute="centerX" secondItem="M7t-Ss-uad" secondAttribute="centerX" id="orR-dg-KlE"/>
+                            <constraint firstItem="y0H-7B-Odu" firstAttribute="centerX" secondItem="M7t-Ss-uad" secondAttribute="centerX" id="pay-lv-RTC"/>
                             <constraint firstItem="e8d-U4-CUQ" firstAttribute="centerY" secondItem="M7t-Ss-uad" secondAttribute="centerY" multiplier="1.59" id="qOs-Qx-KiC"/>
+                            <constraint firstItem="y0H-7B-Odu" firstAttribute="width" secondItem="M7t-Ss-uad" secondAttribute="width" multiplier="0.75" id="tk4-lE-m6R"/>
+                            <constraint firstItem="y0H-7B-Odu" firstAttribute="centerY" secondItem="M7t-Ss-uad" secondAttribute="centerY" multiplier="0.35" id="tzq-SQ-yOy"/>
                             <constraint firstItem="6Ub-g0-160" firstAttribute="centerY" secondItem="M7t-Ss-uad" secondAttribute="centerY" id="wMd-nc-zjn"/>
                         </constraints>
                     </view>
@@ -339,10 +343,10 @@
             </objects>
             <point key="canvasLocation" x="-47" y="-338"/>
         </scene>
-        <!--View Controller-->
+        <!--Select Level View Controller-->
         <scene sceneID="ByX-Wb-kRs">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="DWL-xc-upT" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="DWL-xc-upT" customClass="SelectLevelViewController" customModule="MiniChallenge4" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cff-yi-yyl"/>
                         <viewControllerLayoutGuide type="bottom" id="EGb-Lk-iCw"/>
@@ -365,6 +369,7 @@
                                 <state key="normal" image="Home Button"/>
                                 <state key="selected" image="Home Button_"/>
                                 <connections>
+                                    <action selector="back:" destination="DWL-xc-upT" eventType="touchUpInside" id="hc6-zh-QL6"/>
                                     <segue destination="Adh-DC-B8q" kind="presentation" modalTransitionStyle="crossDissolve" id="Xg7-ds-6sn"/>
                                 </connections>
                             </button>
