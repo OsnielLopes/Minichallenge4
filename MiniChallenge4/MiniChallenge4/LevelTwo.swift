@@ -33,7 +33,7 @@ class LevelTwo: GameScene {
             [self.convert(sketchX: 681, sketchY: 278), 63],
             
             [self.convert(sketchX: 961, sketchY: 758), 99],
-            [self.convert(sketchX: 700, sketchY: 356), 63],
+            [self.convert(sketchX: 720, sketchY: 340), 63],
             [self.convert(sketchX: 928, sketchY: 202), 99],
             
             [self.convert(sketchX: 1068, sketchY: 605), 215],
