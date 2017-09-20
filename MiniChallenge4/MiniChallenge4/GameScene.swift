@@ -207,7 +207,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         }
     }
     
-    func pauseGame() {
+    @objc func pauseGame() {
         let sound = SKAction.playSoundFileNamed(Audio.PAUSE, waitForCompletion: false)
         self.run(sound, completion: {
             self.view?.isPaused = true
@@ -236,7 +236,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         }
     }
     
-    func updatePinch() {
+    @objc func updatePinch() {
         if !isPlaying && functions.count > 0 {
             functions.last?.pinchUpdate(factor: pinchGesture.scale)
             updateAFunction()
@@ -279,7 +279,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
     
-    func removeActiveFunction(){
+    @objc func removeActiveFunction(){
         if !isPlaying {
             if functions.count > 0 {
                 functions.last?.node?.removeFromParent()
@@ -314,19 +314,19 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         }
     }
     
-    func addLinearFunction() {
+    @objc func addLinearFunction() {
         addFunction(f: LinearFunction(scale: Double((self.view?.frame.width)!),
                                       -utilSpace / (2 * numberOfFunctionsAllowed),
                                       utilSpace / (2 * numberOfFunctionsAllowed)))
     }
     
-    func addQuadraticFunction() {
+    @objc func addQuadraticFunction() {
         addFunction(f: QuadraticFunction(scale: Double((self.view?.frame.width)!),
                                          -utilSpace / (2 * numberOfFunctionsAllowed),
                                          utilSpace / (2 * numberOfFunctionsAllowed)))
     }
     
-    func addSinFunction() {
+    @objc func addSinFunction() {
         addFunction(f: SinFunction(scale: Double((self.view?.frame.width)!),
                                    -utilSpace / (2 * numberOfFunctionsAllowed),
                                    utilSpace / (2 * numberOfFunctionsAllowed)))
@@ -405,7 +405,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
     
     /// Makes the neutrino run
-    func play(){
+    @objc func play(){
         if !functions.isEmpty && !isPlaying {
             
             //Rotina para tirar o caminho

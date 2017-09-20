@@ -44,7 +44,7 @@ class WinGameViewController: UIViewController {
             self.blurView.effect = nil
             self.popUpView.alpha = 0
         }, completion: { _ in
-            self.dismiss(animated: false, completion: {_ in
+            self.dismiss(animated: false, completion: { () -> Void in
                 self.gameViewController.nextLevel()
             })
         })
@@ -56,7 +56,7 @@ class WinGameViewController: UIViewController {
             self.blurView.effect = nil
             self.popUpView.alpha = 0
         }, completion: { _ in
-            self.dismiss(animated: false, completion: {_ in
+            self.dismiss(animated: false, completion: {() -> Void in
                 self.gameViewController.returnToMainMenu()
             })
         })

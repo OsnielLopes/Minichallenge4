@@ -33,10 +33,10 @@ struct Audio {
         let start = named.index(named.endIndex, offsetBy: -3)
         var end = named.endIndex
         var range = start..<end
-        let type = named.substring(with: range)
+        let type = String(named[range])
         end = named.index(start, offsetBy: -1)
         range = named.startIndex..<end
-        let fileName = named.substring(with: range)
+        let fileName = String(named[range])
         
         let aSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: fileName, ofType: type)!)
         do {
