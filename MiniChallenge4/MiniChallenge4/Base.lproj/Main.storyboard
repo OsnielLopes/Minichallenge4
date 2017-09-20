@@ -186,7 +186,7 @@
                                 <rect key="frame" x="83.5" y="9.5" width="500" height="112.5"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8d-U4-CUQ">
-                                <rect key="frame" x="267" y="283" width="133" height="30"/>
+                                <rect key="frame" x="233.5" y="283" width="200" height="30"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="22"/>
                                 <state key="normal" title="Level Select">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -197,7 +197,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuJ-yj-DYF">
-                                <rect key="frame" x="287" y="332" width="93" height="30"/>
+                                <rect key="frame" x="267" y="332" width="133" height="30"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="22"/>
                                 <state key="normal" title="About">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -208,7 +208,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mf2-aV-JBv">
-                                <rect key="frame" x="250" y="167" width="167" height="97.5"/>
+                                <rect key="frame" x="200" y="167" width="267" height="97.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="80"/>
                                 <state key="normal" title="Play">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -229,13 +229,13 @@
                             <constraint firstItem="8a4-H2-04k" firstAttribute="top" secondItem="nJo-W1-x7e" secondAttribute="bottom" id="HaH-Et-XmX"/>
                             <constraint firstItem="LuJ-yj-DYF" firstAttribute="height" secondItem="M7t-Ss-uad" secondAttribute="height" multiplier="0.08" id="Jfj-KD-360"/>
                             <constraint firstItem="6Ub-g0-160" firstAttribute="height" secondItem="M7t-Ss-uad" secondAttribute="height" id="PQt-hM-waP"/>
-                            <constraint firstItem="mf2-aV-JBv" firstAttribute="width" secondItem="M7t-Ss-uad" secondAttribute="width" multiplier="0.25" id="Qoc-vv-c0H"/>
+                            <constraint firstItem="mf2-aV-JBv" firstAttribute="width" secondItem="M7t-Ss-uad" secondAttribute="width" multiplier="0.4" id="Qoc-vv-c0H"/>
                             <constraint firstItem="6Ub-g0-160" firstAttribute="centerX" secondItem="M7t-Ss-uad" secondAttribute="centerX" id="RbT-4a-ZIH"/>
                             <constraint firstItem="nJo-W1-x7e" firstAttribute="width" secondItem="M7t-Ss-uad" secondAttribute="width" id="UUc-ar-ehY"/>
                             <constraint firstItem="e8d-U4-CUQ" firstAttribute="height" secondItem="M7t-Ss-uad" secondAttribute="height" multiplier="0.08" id="VhT-PW-9Zs"/>
-                            <constraint firstItem="e8d-U4-CUQ" firstAttribute="width" secondItem="M7t-Ss-uad" secondAttribute="width" multiplier="0.2" id="WeU-2S-NL9"/>
+                            <constraint firstItem="e8d-U4-CUQ" firstAttribute="width" secondItem="M7t-Ss-uad" secondAttribute="width" multiplier="0.3" id="WeU-2S-NL9"/>
                             <constraint firstItem="mf2-aV-JBv" firstAttribute="height" secondItem="M7t-Ss-uad" secondAttribute="height" multiplier="0.26" id="ayE-aa-Ufc"/>
-                            <constraint firstItem="LuJ-yj-DYF" firstAttribute="width" secondItem="M7t-Ss-uad" secondAttribute="width" multiplier="0.14" id="clJ-aT-Sqg"/>
+                            <constraint firstItem="LuJ-yj-DYF" firstAttribute="width" secondItem="M7t-Ss-uad" secondAttribute="width" multiplier="0.2" id="clJ-aT-Sqg"/>
                             <constraint firstItem="nJo-W1-x7e" firstAttribute="height" secondItem="M7t-Ss-uad" secondAttribute="height" multiplier="0.778" id="eyU-1a-zgp"/>
                             <constraint firstItem="mf2-aV-JBv" firstAttribute="centerX" secondItem="M7t-Ss-uad" secondAttribute="centerX" id="j2m-6e-8UG"/>
                             <constraint firstItem="LuJ-yj-DYF" firstAttribute="centerY" secondItem="M7t-Ss-uad" secondAttribute="centerY" multiplier="1.85" id="lpB-Vi-u7i"/>
@@ -379,7 +379,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WZz-cY-1NK">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WZz-cY-1NK">
                                 <rect key="frame" x="16.5" y="23" width="67" height="67.5"/>
                                 <state key="normal" image="Home Button"/>
                                 <state key="selected" image="Home Button_"/>
@@ -443,7 +443,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="97" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yph-JD-73E">
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yph-JD-73E">
                                             <rect key="frame" x="0.0" y="0.0" width="97" height="70"/>
                                             <state key="normal" title="Button" image="Lvl 1"/>
                                             <connections>
@@ -507,7 +507,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0AC-Ej-ZM7">
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0AC-Ej-ZM7">
                                         <rect key="frame" x="103.5" y="106.5" width="71.5" height="73.5"/>
                                         <state key="normal" image="Next Button"/>
                                         <state key="selected" image="Next Button_"/>
@@ -515,7 +515,7 @@
                                             <action selector="nextLevel:" destination="hOA-ZM-KCf" eventType="touchUpInside" id="dQq-4R-qrg"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nr9-cv-ld2">
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nr9-cv-ld2">
                                         <rect key="frame" x="103.5" y="197" width="71.5" height="74"/>
                                         <state key="normal" image="Home Button"/>
                                         <state key="selected" image="Home Button_"/>
@@ -584,6 +584,6 @@
         <image name="paciulli" width="253" height="308"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Khv-U5-xMo"/>
+        <segue reference="Xg7-ds-6sn"/>
     </inferredMetricsTieBreakers>
 </document>
