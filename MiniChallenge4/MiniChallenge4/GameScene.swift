@@ -267,16 +267,24 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
     
     func touchDown(atPoint pos : CGPoint) {
-        for n in self.children{
+        for n in self.children {
             if n.contains(pos), let button = n as? SKButton {
                 button.press()
                 break
+            } else {
+                if isPlaying && neutrino.hasActions() {
+                    neutrino.speed = 5
+                }
             }
         }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        neutrino.speed = 1
     }
     
     @objc func removeActiveFunction(){
@@ -414,14 +422,15 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             }
             
             neutrino.texture = SKTexture(imageNamed: "Character Wow")
-            let action = SKAction.follow(createThePath(), speed: 60)
+            let neutrinoFollowAction = SKAction.follow(createThePath(), asOffset: true, orientToPath: false, speed: 60)
             self.addChild(floatingSound)
-            neutrino.run(action) {
+            neutrino.run(neutrinoFollowAction) {
                 if !self.winArea.contains(self.neutrino.position) {
                     self.neutrinoDiedTragically()
                 }
                 self.floatingSound.removeFromParent()
             }
+            
             isPlaying = true
             deleteButton.neinPressedImageName = "Stop Button"
             deleteButton.pressedImageName = "Stop Button_"

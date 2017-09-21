@@ -16,6 +16,10 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         if let view = self.view as! SKView? {
             if let levels = UserDefaults.standard.array(forKey: "LevelProgression") as? [Bool] {
@@ -32,7 +36,7 @@ class GameViewController: UIViewController {
                             break
                         }
                     }
-                    scene = getLevelInstanceByNumber(index: lastCompletedLevel)
+                    scene = getLevelInstanceByNumber(index: lastCompletedLevel - 1)
                 }
                 scene.scaleMode = .aspectFill
                 scene.gameViewController = self
