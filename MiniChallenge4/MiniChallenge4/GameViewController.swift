@@ -71,23 +71,19 @@ class GameViewController: UIViewController {
     func nextLevel() {
         UIView.animate(withDuration: 0.5, animations: {
             self.view.alpha = 0
-            if let levels = UserDefaults.standard.array(forKey: "LevelProgression") as? [Bool] {
-                
+            
                 var scene: GameScene
                 
-                var lastCompletedLevel = 0
-                for i in 0...levels.count {
-                    if levels[i] == false {
-                        lastCompletedLevel = i
-                        break
-                    }
-                }
-                scene = self.getLevelInstanceByNumber(index: lastCompletedLevel)
+                let v = self.view as! SKView
+                let s = v.scene as! GameScene
+                var l = s.levelIndex + 1
+                if l == 2 { l = 0 }
+                
+                scene = self.getLevelInstanceByNumber(index: l)
                 scene.gameViewController = self
                 if let view = self.view as! SKView? {
                     view.presentScene(scene)
                 }
-            }
         }, completion: {_ in
             self.view.alpha = 1
         })
@@ -106,6 +102,7 @@ class GameViewController: UIViewController {
     }
     
     func getLevelInstanceByNumber(index: Int) -> GameScene {
+        level = index
         switch index {
         case 0:
             return LevelOne(size: view.frame.size)

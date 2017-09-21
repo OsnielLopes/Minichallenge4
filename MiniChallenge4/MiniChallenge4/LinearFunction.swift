@@ -30,10 +30,10 @@ class LinearFunction: Function {
         var amount: CGFloat!
         if factor > 1{
             newFactor = newFactor - newFactor.rounded(FloatingPointRoundingRule.down)
-            amount = newFactor
+            amount = newFactor * 0.15
         } else{
             newFactor = 1 - newFactor
-            amount = newFactor * -1
+            amount = newFactor * -0.15
         }
         if a > 10 {
             a = 10
