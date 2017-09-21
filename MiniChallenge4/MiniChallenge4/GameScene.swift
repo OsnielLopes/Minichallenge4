@@ -115,13 +115,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         self.addChild(bottomMenuBackground)
         
         deleteButton = SKButton(pressed: "ApagarButton_", neinPressed: "ApagarButton", target: self, action: #selector(removeActiveFunction))
-        deleteButton.position = pointProportionalTo(percentage: 0.08, and: 0.11)
+        deleteButton.position = pointProportionalTo(percentage: 0.92, and: 0.11)
         deleteButton.scale(to: sizeProportionalTo(percentage: 0.09791666667, and: 0.1745589601))
         deleteButton.zPosition = 1.2
         self.addChild(deleteButton)
         
         let goButton = SKButton(pressed: "Go Button_", neinPressed: "Go Button", target: self, action: #selector(play))
-        goButton.position = pointProportionalTo(percentage: 0.92, and: 0.11)
+        goButton.position = pointProportionalTo(percentage: 0.08, and: 0.11)
         goButton.scale(to: sizeProportionalTo(percentage: 0.09791666667, and: 0.1745589601))
         goButton.zPosition = 1.2
         self.addChild(goButton)
@@ -527,7 +527,25 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         let newY = (sceneSize.height/1080)*CGFloat(sketchY)
         return CGPoint(x: newX, y: newY)
     }
+
+}
+
+extension GameScene {
     
+    func unitX() -> CGFloat {
+        return self.sceneSize.width / 1000
+    }
     
+    func unitY() -> CGFloat {
+        return self.sceneSize.height / 1000
+    }
+    
+    func unitPoint(x: CGFloat, y: CGFloat) -> CGPoint {
+        return CGPoint(x: x * unitX(), y: y * unitY())
+    }
+    
+    func unitSize(widht: CGFloat, height: CGFloat) -> CGSize {
+        return CGSize(width: widht * unitX(), height: height * unitY())
+    }
     
 }
