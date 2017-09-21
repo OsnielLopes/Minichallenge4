@@ -267,16 +267,24 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
     
     func touchDown(atPoint pos : CGPoint) {
-        for n in self.children{
+        for n in self.children {
             if n.contains(pos), let button = n as? SKButton {
                 button.press()
                 break
+            } else {
+                if isPlaying && neutrino.hasActions() {
+                    neutrino.speed = 5
+                }
             }
         }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        neutrino.speed = 1
     }
     
     @objc func removeActiveFunction(){
@@ -414,14 +422,15 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             }
             
             neutrino.texture = SKTexture(imageNamed: "Character Wow")
-            let action = SKAction.follow(createThePath(), speed: 60)
+            let neutrinoFollowAction = SKAction.follow(createThePath(), asOffset: true, orientToPath: false, speed: 60)
             self.addChild(floatingSound)
-            neutrino.run(action) {
+            neutrino.run(neutrinoFollowAction) {
                 if !self.winArea.contains(self.neutrino.position) {
                     self.neutrinoDiedTragically()
                 }
                 self.floatingSound.removeFromParent()
             }
+            
             isPlaying = true
             deleteButton.neinPressedImageName = "Stop Button"
             deleteButton.pressedImageName = "Stop Button_"
@@ -527,7 +536,25 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         let newY = (sceneSize.height/1080)*CGFloat(sketchY)
         return CGPoint(x: newX, y: newY)
     }
+
+}
+
+extension GameScene {
     
+    func unitX() -> CGFloat {
+        return self.sceneSize.width / 1000
+    }
     
+    func unitY() -> CGFloat {
+        return self.sceneSize.height / 1000
+    }
+    
+    func unitPoint(x: CGFloat, y: CGFloat) -> CGPoint {
+        return CGPoint(x: x * unitX(), y: y * unitY())
+    }
+    
+    func unitSize(widht: CGFloat, height: CGFloat) -> CGSize {
+        return CGSize(width: widht * unitX(), height: height * unitY())
+    }
     
 }
