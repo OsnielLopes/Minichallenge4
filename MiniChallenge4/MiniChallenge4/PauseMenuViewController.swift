@@ -47,7 +47,7 @@ class PauseMenuViewController: UIViewController {
             self.blurView.effect = nil
             self.popUpView.alpha = 0
         }, completion: { _ in
-            self.dismiss(animated: false, completion: {_ in
+            self.dismiss(animated: false, completion: { () -> Void in
                 self.gameViewController.returnToMainMenu()
             })
         })
@@ -59,7 +59,7 @@ class PauseMenuViewController: UIViewController {
             self.blurView.effect = nil
             self.popUpView.alpha = 0
         }, completion: { _ in
-            self.dismiss(animated: false, completion: {_ in
+            self.dismiss(animated: false, completion: { () -> Void in
                 if let s = self.gameViewController.view as? SKView {
                     s.isPaused = false
                 }

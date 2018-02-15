@@ -53,6 +53,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     
     var deleteButton: SKButton!
     
+    var background: SKSpriteNode!
+    
+    var nextBackground: SKSpriteNode!
+    
+    var timer = Timer()
+    
     override func didMove(to view: SKView) {
         
         //CONFIGURATIONS
@@ -115,13 +121,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         self.addChild(bottomMenuBackground)
         
         deleteButton = SKButton(pressed: "ApagarButton_", neinPressed: "ApagarButton", target: self, action: #selector(removeActiveFunction))
-        deleteButton.position = pointProportionalTo(percentage: 0.92, and: 0.11)
+        deleteButton.position = pointProportionalTo(percentage: 0.08, and: 0.11)
         deleteButton.scale(to: sizeProportionalTo(percentage: 0.09791666667, and: 0.1745589601))
         deleteButton.zPosition = 1.2
         self.addChild(deleteButton)
         
         let goButton = SKButton(pressed: "Go Button_", neinPressed: "Go Button", target: self, action: #selector(play))
-        goButton.position = pointProportionalTo(percentage: 0.08, and: 0.11)
+        goButton.position = pointProportionalTo(percentage: 0.92, and: 0.11)
         goButton.scale(to: sizeProportionalTo(percentage: 0.09791666667, and: 0.1745589601))
         goButton.zPosition = 1.2
         self.addChild(goButton)
@@ -147,13 +153,36 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         
         //STANDART GAME ELEMENTS
         
-        let bg = SKSpriteNode(texture: SKTexture(imageNamed: "Ceu"), color: UIColor.white, size: sceneSize)
-        bg.position = (self.view?.center)!
-        bg.zPosition = -1
-        self.addChild(bg)
+        background = SKSpriteNode(texture: SKTexture(imageNamed: "Ceu"), color: UIColor.white, size: sceneSize)
+        background.position = (self.view?.center)!
+        background.zPosition = -1
+        
+//        nextBackground = background.copy() as! SKSpriteNode
+//        nextBackground.position = CGPoint(x: background.position.x + background.size.width,
+//                                          y: background.position.y)
+//        nextBackground.zPosition = -1
+//
+        self.addChild(background)
+//        self.addChild(nextBackground)
+//
+//        let bgParallaxMoving = SKAction.repeatForever(SKAction.moveBy(x: -background.size.width, y: 0, duration: 10))
+//        background.run(bgParallaxMoving)
+//        nextBackground.run(bgParallaxMoving)
+//
+//        timer = .scheduledTimer(timeInterval: 10, target: self, selector: #selector(moveParallax), userInfo: nil, repeats: true)
         
         newNeutrino()
     }
+    
+//    @objc func moveParallax() {
+//        if background.position.x <= (self.view?.center)!.x - background.size.width {
+//            background.position = CGPoint(x: (self.view?.center)!.x + background.size.width,
+//                                              y: background.position.y)
+//        } else if nextBackground.position.x <= (self.view?.center)!.x - background.size.width {
+//            nextBackground.position = CGPoint(x: (self.view?.center)!.x + background.size.width,
+//                                          y: background.position.y)
+//        }
+//    }
     
     func pointProportionalTo(percentage widht: CGFloat, and height: CGFloat) -> CGPoint {
         return CGPoint(x: widht * sceneSize.width, y: height * sceneSize.height)
@@ -207,7 +236,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         }
     }
     
-    func pauseGame() {
+    @objc func pauseGame() {
         let sound = SKAction.playSoundFileNamed(Audio.PAUSE, waitForCompletion: false)
         self.run(sound, completion: {
             self.view?.isPaused = true
@@ -236,7 +265,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         }
     }
     
-    func updatePinch() {
+    @objc func updatePinch() {
         if !isPlaying && functions.count > 0 {
             functions.last?.pinchUpdate(factor: pinchGesture.scale)
             updateAFunction()
@@ -267,10 +296,14 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
     
     func touchDown(atPoint pos : CGPoint) {
-        for n in self.children{
+        for n in self.children {
             if n.contains(pos), let button = n as? SKButton {
                 button.press()
                 break
+            } else {
+                if isPlaying && neutrino.hasActions() {
+                    neutrino.speed = 5
+                }
             }
         }
     }
@@ -279,7 +312,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
     
-    func removeActiveFunction(){
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        neutrino.speed = 1
+    }
+    
+    @objc func removeActiveFunction(){
         if !isPlaying {
             if functions.count > 0 {
                 functions.last?.node?.removeFromParent()
@@ -314,19 +351,19 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         }
     }
     
-    func addLinearFunction() {
+    @objc func addLinearFunction() {
         addFunction(f: LinearFunction(scale: Double((self.view?.frame.width)!),
                                       -utilSpace / (2 * numberOfFunctionsAllowed),
                                       utilSpace / (2 * numberOfFunctionsAllowed)))
     }
     
-    func addQuadraticFunction() {
+    @objc func addQuadraticFunction() {
         addFunction(f: QuadraticFunction(scale: Double((self.view?.frame.width)!),
                                          -utilSpace / (2 * numberOfFunctionsAllowed),
                                          utilSpace / (2 * numberOfFunctionsAllowed)))
     }
     
-    func addSinFunction() {
+    @objc func addSinFunction() {
         addFunction(f: SinFunction(scale: Double((self.view?.frame.width)!),
                                    -utilSpace / (2 * numberOfFunctionsAllowed),
                                    utilSpace / (2 * numberOfFunctionsAllowed)))
@@ -405,7 +442,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
     
     /// Makes the neutrino run
-    func play(){
+    @objc func play(){
         if !functions.isEmpty && !isPlaying {
             
             //Rotina para tirar o caminho
@@ -414,14 +451,15 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             }
             
             neutrino.texture = SKTexture(imageNamed: "Character Wow")
-            let action = SKAction.follow(createThePath(), speed: 60)
+            let neutrinoFollowAction = SKAction.follow(createThePath(), asOffset: true, orientToPath: false, speed: 60)
             self.addChild(floatingSound)
-            neutrino.run(action) {
+            neutrino.run(neutrinoFollowAction) {
                 if !self.winArea.contains(self.neutrino.position) {
                     self.neutrinoDiedTragically()
                 }
                 self.floatingSound.removeFromParent()
             }
+            
             isPlaying = true
             deleteButton.neinPressedImageName = "Stop Button"
             deleteButton.pressedImageName = "Stop Button_"
@@ -527,7 +565,25 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         let newY = (sceneSize.height/1080)*CGFloat(sketchY)
         return CGPoint(x: newX, y: newY)
     }
+
+}
+
+extension GameScene {
     
+    func unitX() -> CGFloat {
+        return self.sceneSize.width / 1000
+    }
     
+    func unitY() -> CGFloat {
+        return self.sceneSize.height / 1000
+    }
+    
+    func unitPoint(x: CGFloat, y: CGFloat) -> CGPoint {
+        return CGPoint(x: x * unitX(), y: y * unitY())
+    }
+    
+    func unitSize(widht: CGFloat, height: CGFloat) -> CGSize {
+        return CGSize(width: widht * unitX(), height: height * unitY())
+    }
     
 }
