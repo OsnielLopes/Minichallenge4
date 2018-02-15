@@ -18,7 +18,7 @@ class LevelCollectionViewCell: UICollectionViewCell {
 
     func setLevelNumber(number: Int) {
         self.number = number
-        self.levelNumber.setTitle("", for: .normal)
+        self.levelNumber.setTitle("Nível "+String(number + 1), for: .normal)
         self.levelNumber.setImage(UIImage(named: "Lvl \(number + 1)"), for: .normal)
         self.levelNumber.setImage(UIImage(named: "Lvl \(number + 1)_"), for: .selected)
         self.levelNumber.setImage(UIImage(named: "Lvl \(number + 1)x"), for: .disabled)

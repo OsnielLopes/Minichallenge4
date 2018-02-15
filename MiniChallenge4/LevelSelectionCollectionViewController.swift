@@ -56,6 +56,7 @@ class LevelSelectionCollectionViewController: UICollectionViewController {
                 specialCell.disable()
             }
         }
+        cell.accessibilityLabel = "Nível"+String(indexPath.row)
         return cell
     }
     
