@@ -239,8 +239,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     @objc func pauseGame() {
         let sound = SKAction.playSoundFileNamed(Audio.PAUSE, waitForCompletion: false)
         self.run(sound, completion: {
-            self.view?.isPaused = true
-            self.gameViewController.pauseGame()
+            DispatchQueue.main.async {
+                self.view?.isPaused = true
+                self.gameViewController.pauseGame()
+            }
         })
     }
     

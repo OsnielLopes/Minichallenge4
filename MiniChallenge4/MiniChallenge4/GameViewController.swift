@@ -9,10 +9,12 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import GameKit
 
 class GameViewController: UIViewController {
     
     var level: Int?
+    var startTime: DispatchTime!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +43,7 @@ class GameViewController: UIViewController {
                 scene.scaleMode = .aspectFill
                 scene.gameViewController = self
                 view.presentScene(scene)
+                startTime = DispatchTime.now()
                 view.ignoresSiblingOrder = true
                 view.showsFPS = false
                 view.showsNodeCount = false
@@ -59,16 +62,40 @@ class GameViewController: UIViewController {
     }
     
     func pauseGame() {
-        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "pauseMenu") as? PauseMenuViewController {
-            vc.gameViewController = self
-            self.present(vc, animated: false, completion: nil)
+        DispatchQueue.main.async {
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "pauseMenu") as? PauseMenuViewController {
+                vc.gameViewController = self
+                self.present(vc, animated: false, completion: {
+                })
+            } else {
+                print("Impossible to instantiate view controller 'pauseMenu' as PauseMenuViewController")
+            }
         }
     }
     
     func winGame() {
+        let endTime = DispatchTime.now()
+        let timeInterval = Double(endTime.uptimeNanoseconds) / 1_000_000_000 - Double(startTime.uptimeNanoseconds) / 1_000_000_000
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "winGame") as? WinGameViewController {
             vc.gameViewController = self
             self.present(vc, animated: false, completion: nil)
+        }
+        
+        if let level = level {
+            //report achiev
+            var id = "br.mackMobile.anarchyCompany.MiniChallenge4.\((level+1).toCardinal())LevelCompleted"
+            let achiev = GKAchievement(identifier: id)
+            achiev.percentComplete = 100
+            achiev.showsCompletionBanner = true
+            GKAchievement.report([achiev], withCompletionHandler: nil)
+            
+            //report score
+            id = "br.mackMobile.anarchyCompany.MiniChallenge4.\((level+1).toCardinal())LevelClassification"
+            let score = GKScore(leaderboardIdentifier: id)
+            score.value = Int64(timeInterval)
+            GKScore.report([score], withCompletionHandler: nil)
+        } else {
+            print("Level is nil")
         }
     }
     
@@ -76,18 +103,18 @@ class GameViewController: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.view.alpha = 0
             
-                var scene: GameScene
-                
-                let v = self.view as! SKView
-                let s = v.scene as! GameScene
-                var l = s.levelIndex + 1
-                if l == 2 { l = 0 }
-                
-                scene = self.getLevelInstanceByNumber(index: l)
-                scene.gameViewController = self
-                if let view = self.view as! SKView? {
-                    view.presentScene(scene)
-                }
+            var scene: GameScene
+            
+            let v = self.view as! SKView
+            let s = v.scene as! GameScene
+            var l = s.levelIndex + 1
+            if l == 2 { l = 0 }
+            
+            scene = self.getLevelInstanceByNumber(index: l)
+            scene.gameViewController = self
+            if let view = self.view as! SKView? {
+                view.presentScene(scene)
+            }
         }, completion: {_ in
             self.view.alpha = 1
         })
@@ -115,5 +142,9 @@ class GameViewController: UIViewController {
         default:
             return LevelOne(size: view.frame.size)
         }
+    }
+    
+    override func prefersHomeIndicatorAutoHidden() -> Bool {
+        return true
     }
 }

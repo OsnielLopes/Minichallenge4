@@ -27,3 +27,29 @@ extension CGFloat {
     }
 }
 
+extension Int {
+    func toCardinal() -> String {
+        switch self {
+        case 1:
+            return "first"
+        case 2:
+            return "second"
+        default:
+            return "not identified"
+        }
+    }
+}
+
+extension UIImage {
+    func applyTonalFilter() -> UIImage{
+        let context = CIContext(options: nil)
+        let currentFilter = CIFilter(name: "CIPhotoEffectTonal")
+        currentFilter?.setDefaults()
+        currentFilter!.setValue(CIImage(image: self), forKey: kCIInputImageKey)
+        let output = currentFilter?.outputImage
+        let cgimg = context.createCGImage(output!,from: output!.extent)
+        let processedImage = UIImage(cgImage: cgimg!)
+        return processedImage
+    }
+}
+

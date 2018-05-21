@@ -60,6 +60,13 @@ class LevelSelectionCollectionViewController: UICollectionViewController {
         return cell
     }
     
+    @IBAction func didTouchLevelButton(_ sender: UIButton) {
+        if let levelNumber = Int((sender.titleLabel?.text!)!) {
+            self.moveToGame(levelIndex: levelNumber)
+        }
+    }
+    
+    
     func moveToGame(levelIndex: Int) {
         goToGameSound.play()
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "gameController") as? GameViewController {

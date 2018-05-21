@@ -15,3 +15,15 @@ struct Values {
     static var DELTA_X = CGFloat(60)
     static var NEUTRINO_SIZE = CGFloat(70)
 }
+
+struct Skin {
+
+    static let skins: [String:UIImage] = ["luminito": #imageLiteral(resourceName: "Character Wow"),
+                                   "starman": #imageLiteral(resourceName: "starman"),
+                                   "sputnik":#imageLiteral(resourceName: "sputnik")]
+    
+    static public func getImage(_ skinName: String) -> UIImage?{
+        return skins[skinName]
+    }
+    
+}

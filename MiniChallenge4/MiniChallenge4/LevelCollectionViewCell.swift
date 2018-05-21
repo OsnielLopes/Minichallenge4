@@ -27,8 +27,4 @@ class LevelCollectionViewCell: UICollectionViewCell {
     func disable() {
         self.levelNumber.isEnabled = false
     }
-    
-    @IBAction func didPress(_ sender: Any) {
-        collectionView.moveToGame(levelIndex: number)
-    }
 }

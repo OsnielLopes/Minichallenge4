@@ -7,8 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		491749062037A1B500E1E93E /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491749042037A1B500E1E93E /* IAPHelper.swift */; };
+		491749072037A1B500E1E93E /* IAProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491749052037A1B500E1E93E /* IAProducts.swift */; };
+		49174909203A0F9600E1E93E /* SelectSkinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49174908203A0F9600E1E93E /* SelectSkinViewController.swift */; };
 		49380D941F62D79400380CFE /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49380D931F62D79400380CFE /* Variables.swift */; };
 		4948737D1F6086D4009B58F8 /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4948737C1F6086D4009B58F8 /* SKButton.swift */; };
+		49696CEC20B354B500E32F8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49696CEB20B354B500E32F8F /* AppDelegate.swift */; };
+		49696CEE20B354B500E32F8F /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49696CED20B354B500E32F8F /* GameScene.sks */; };
+		49696CF020B354B500E32F8F /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49696CEF20B354B500E32F8F /* Actions.sks */; };
+		49696CF220B354B500E32F8F /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49696CF120B354B500E32F8F /* GameScene.swift */; };
+		49696CF420B354B500E32F8F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49696CF320B354B500E32F8F /* GameViewController.swift */; };
+		49696CF720B354B500E32F8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49696CF520B354B500E32F8F /* Main.storyboard */; };
+		49696CF920B354BA00E32F8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49696CF820B354BA00E32F8F /* Assets.xcassets */; };
 		49D9EEEC1F6DC4C900C5CC66 /* LevelTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D9EEEB1F6DC4C900C5CC66 /* LevelTwo.swift */; };
 		BD4EBE311F6F17D900DCF9D8 /* victory.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD4EBE301F6F17D900DCF9D8 /* victory.wav */; };
 		BD83A1751F67340400D86563 /* LevelOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD83A1741F67340400D86563 /* LevelOne.swift */; };
@@ -61,8 +71,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		491749042037A1B500E1E93E /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		491749052037A1B500E1E93E /* IAProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAProducts.swift; sourceTree = "<group>"; };
+		49174908203A0F9600E1E93E /* SelectSkinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSkinViewController.swift; sourceTree = "<group>"; };
 		49380D931F62D79400380CFE /* Variables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		4948737C1F6086D4009B58F8 /* SKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
+		49696CE920B354B500E32F8F /* Luminito.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Luminito.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		49696CEB20B354B500E32F8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		49696CED20B354B500E32F8F /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		49696CEF20B354B500E32F8F /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		49696CF120B354B500E32F8F /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		49696CF320B354B500E32F8F /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		49696CF620B354B500E32F8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		49696CF820B354BA00E32F8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		49696CFA20B354BA00E32F8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49D9EEEB1F6DC4C900C5CC66 /* LevelTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTwo.swift; sourceTree = "<group>"; };
 		BD4EBE301F6F17D900DCF9D8 /* victory.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = victory.wav; sourceTree = "<group>"; };
 		BD83A1741F67340400D86563 /* LevelOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOne.swift; sourceTree = "<group>"; };
@@ -104,6 +126,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		49696CE620B354B500E32F8F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDBB59B41F5DC02000AD5B9B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -128,6 +157,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		491749032037A1B500E1E93E /* IAP */ = {
+			isa = PBXGroup;
+			children = (
+				491749042037A1B500E1E93E /* IAPHelper.swift */,
+				491749052037A1B500E1E93E /* IAProducts.swift */,
+			);
+			path = IAP;
+			sourceTree = "<group>";
+		};
+		49696CEA20B354B500E32F8F /* TV App */ = {
+			isa = PBXGroup;
+			children = (
+				49696CEB20B354B500E32F8F /* AppDelegate.swift */,
+				49696CED20B354B500E32F8F /* GameScene.sks */,
+				49696CEF20B354B500E32F8F /* Actions.sks */,
+				49696CF120B354B500E32F8F /* GameScene.swift */,
+				49696CF320B354B500E32F8F /* GameViewController.swift */,
+				49696CF520B354B500E32F8F /* Main.storyboard */,
+				49696CF820B354BA00E32F8F /* Assets.xcassets */,
+				49696CFA20B354BA00E32F8F /* Info.plist */,
+			);
+			path = "TV App";
+			sourceTree = "<group>";
+		};
 		BD83A1761F67340800D86563 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +196,7 @@
 				BDBB59B91F5DC02000AD5B9B /* MiniChallenge4 */,
 				BDBB59D41F5DC02000AD5B9B /* MiniChallenge4Tests */,
 				BDBB59DF1F5DC02000AD5B9B /* MiniChallenge4UITests */,
+				49696CEA20B354B500E32F8F /* TV App */,
 				BDBB59B81F5DC02000AD5B9B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -153,6 +207,7 @@
 				BDBB59B71F5DC02000AD5B9B /* MiniChallenge4.app */,
 				BDBB59D11F5DC02000AD5B9B /* MiniChallenge4Tests.xctest */,
 				BDBB59DC1F5DC02000AD5B9B /* MiniChallenge4UITests.xctest */,
+				49696CE920B354B500E32F8F /* Luminito.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -171,6 +226,7 @@
 				BD83A17D1F6B0CB300D86563 /* MainMenuViewController.swift */,
 				BD83A1811F6B212800D86563 /* LevelSelectionCollectionViewController.swift */,
 				BDBB59C41F5DC02000AD5B9B /* Main.storyboard */,
+				49174908203A0F9600E1E93E /* SelectSkinViewController.swift */,
 				BDC0A1091F6EB71500C24CF8 /* SelectLevelViewController.swift */,
 				BDC0A10B1F6EB76800C24CF8 /* AboutViewController.swift */,
 				BDB8C7F91F6C98FA0046DC1C /* WinGameViewController.swift */,
@@ -181,6 +237,7 @@
 				BDBB59C91F5DC02000AD5B9B /* LaunchScreen.storyboard */,
 				BDBB59CC1F5DC02000AD5B9B /* Info.plist */,
 				BDB8C7FB1F6D8AC10046DC1C /* Audio.swift */,
+				491749032037A1B500E1E93E /* IAP */,
 			);
 			path = MiniChallenge4;
 			sourceTree = "<group>";
@@ -234,6 +291,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		49696CE820B354B500E32F8F /* Luminito */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49696CFD20B354BA00E32F8F /* Build configuration list for PBXNativeTarget "Luminito" */;
+			buildPhases = (
+				49696CE520B354B500E32F8F /* Sources */,
+				49696CE620B354B500E32F8F /* Frameworks */,
+				49696CE720B354B500E32F8F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Luminito;
+			productName = Luminito;
+			productReference = 49696CE920B354B500E32F8F /* Luminito.app */;
+			productType = "com.apple.product-type.application";
+		};
 		BDBB59B61F5DC02000AD5B9B /* MiniChallenge4 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BDBB59E51F5DC02000AD5B9B /* Build configuration list for PBXNativeTarget "MiniChallenge4" */;
@@ -293,13 +367,18 @@
 		BDBB59AF1F5DC02000AD5B9B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Guilherme Paciulli";
 				TargetAttributes = {
+					49696CE820B354B500E32F8F = {
+						CreatedOnToolsVersion = 9.3;
+						DevelopmentTeam = 53BLZ9DZN8;
+						ProvisioningStyle = Automatic;
+					};
 					BDBB59B61F5DC02000AD5B9B = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = VLLH384AC4;
+						DevelopmentTeam = 53BLZ9DZN8;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -335,11 +414,23 @@
 				BDBB59B61F5DC02000AD5B9B /* MiniChallenge4 */,
 				BDBB59D01F5DC02000AD5B9B /* MiniChallenge4Tests */,
 				BDBB59DB1F5DC02000AD5B9B /* MiniChallenge4UITests */,
+				49696CE820B354B500E32F8F /* Luminito */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		49696CE720B354B500E32F8F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49696CF720B354B500E32F8F /* Main.storyboard in Resources */,
+				49696CEE20B354B500E32F8F /* GameScene.sks in Resources */,
+				49696CF920B354BA00E32F8F /* Assets.xcassets in Resources */,
+				49696CF020B354B500E32F8F /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDBB59B51F5DC02000AD5B9B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -376,6 +467,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		49696CE520B354B500E32F8F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49696CF220B354B500E32F8F /* GameScene.swift in Sources */,
+				49696CF420B354B500E32F8F /* GameViewController.swift in Sources */,
+				49696CEC20B354B500E32F8F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDBB59B31F5DC02000AD5B9B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -387,6 +488,7 @@
 				BDBB59FE1F5F154600AD5B9B /* QuadraticFunction.swift in Sources */,
 				BDBB59F91F5ECD4A00AD5B9B /* LinearFunction.swift in Sources */,
 				49D9EEEC1F6DC4C900C5CC66 /* LevelTwo.swift in Sources */,
+				491749072037A1B500E1E93E /* IAProducts.swift in Sources */,
 				BDBB59C11F5DC02000AD5B9B /* GameScene.swift in Sources */,
 				49380D941F62D79400380CFE /* Variables.swift in Sources */,
 				BD83A17A1F69A39300D86563 /* PauseMenuViewController.swift in Sources */,
@@ -394,11 +496,13 @@
 				BD83A1751F67340400D86563 /* LevelOne.swift in Sources */,
 				BD83A1801F6B0CE400D86563 /* Extensions.swift in Sources */,
 				BDBB59F11F5DC4E600AD5B9B /* Function.swift in Sources */,
+				49174909203A0F9600E1E93E /* SelectSkinViewController.swift in Sources */,
 				BDBB59C31F5DC02000AD5B9B /* GameViewController.swift in Sources */,
 				BDB8C7FA1F6C98FA0046DC1C /* WinGameViewController.swift in Sources */,
 				BDBB59FC1F5EE31E00AD5B9B /* SinFunction.swift in Sources */,
 				BDBB59BB1F5DC02000AD5B9B /* AppDelegate.swift in Sources */,
 				BDC0A10C1F6EB76800C24CF8 /* AboutViewController.swift in Sources */,
+				491749062037A1B500E1E93E /* IAPHelper.swift in Sources */,
 				BDB8C7FC1F6D8AC10046DC1C /* Audio.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,6 +539,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		49696CF520B354B500E32F8F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49696CF620B354B500E32F8F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		BDBB59C41F5DC02000AD5B9B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -454,6 +566,54 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		49696CFB20B354BA00E32F8F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 53BLZ9DZN8;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Luminito/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.OsnielTeixeira.Luminito;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.3;
+			};
+			name = Debug;
+		};
+		49696CFC20B354BA00E32F8F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 53BLZ9DZN8;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Luminito/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.OsnielTeixeira.Luminito;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.3;
+			};
+			name = Release;
+		};
 		BDBB59E31F5DC02000AD5B9B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -563,11 +723,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VLLH384AC4;
+				DEVELOPMENT_TEAM = 53BLZ9DZN8;
 				INFOPLIST_FILE = MiniChallenge4/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.mackMobile.anarchyCompany.MiniChallenge4;
+				PRODUCT_BUNDLE_IDENTIFIER = br.Mackenzie.MackMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -578,11 +738,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VLLH384AC4;
+				DEVELOPMENT_TEAM = 53BLZ9DZN8;
 				INFOPLIST_FILE = MiniChallenge4/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.mackMobile.anarchyCompany.MiniChallenge4;
+				PRODUCT_BUNDLE_IDENTIFIER = br.Mackenzie.MackMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -654,6 +814,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		49696CFD20B354BA00E32F8F /* Build configuration list for PBXNativeTarget "Luminito" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49696CFB20B354BA00E32F8F /* Debug */,
+				49696CFC20B354BA00E32F8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BDBB59B21F5DC02000AD5B9B /* Build configuration list for PBXProject "MiniChallenge4" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
